@@ -146,16 +146,19 @@ export default function KetarunaanCards() {
       className="py-10 sm:py-16 bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800/80 relative z-20 w-full max-w-full overflow-hidden"
     >
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* 4 Portal Icons Bar - Clean Minimalist Style exactly matching media_1789809408746.png */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-10 max-w-5xl mx-auto w-full">
+        {/* 4 Portal Icons Bar - Clean Minimalist Style with 3D Pop & Hover Depth */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-5xl mx-auto w-full">
           {portalItems.map((item, idx) => (
             <Link
               key={item.id}
               href={item.link}
-              className={`group flex flex-col items-center text-center p-4 rounded-2xl hover:bg-slate-50/80 dark:hover:bg-slate-900/60 transition-all duration-300 reveal-up ${delayClasses[idx % 4]}`}
+              className={`group relative flex flex-col items-center text-center p-5 rounded-3xl bg-white dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800/80 hover:border-emerald-500/30 hover:shadow-xl dark:hover:shadow-emerald-950/40 hover:-translate-y-2 hover:scale-[1.03] transition-all duration-300 reveal-pop ${delayClasses[idx % 4]}`}
             >
-              {/* SVG Vector Icon */}
-              <div className="mb-4 flex items-center justify-center h-16 sm:h-20">
+              {/* Subtle ambient halo on hover */}
+              <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+              {/* SVG Vector Icon with float effect */}
+              <div className="mb-4 flex items-center justify-center h-16 sm:h-20 group-hover:scale-110 group-hover:rotate-1 transition-all duration-300">
                 {renderIcon(item.type)}
               </div>
 

@@ -118,6 +118,15 @@ export function getInitialCMSState(): CMSState {
         profile: {
           ...INITIAL_PROFILE,
           ...(parsed.profile || {}),
+          headmasterGreeting: {
+            ...INITIAL_PROFILE.headmasterGreeting,
+            ...((parsed.profile && parsed.profile.headmasterGreeting) || {}),
+            photo:
+              (parsed.profile?.headmasterGreeting?.photo?.includes("unsplash.com") ||
+               parsed.profile?.headmasterGreeting?.photo === "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/kepala-sekolah.jpg")
+                ? INITIAL_PROFILE.headmasterGreeting.photo
+                : (parsed.profile?.headmasterGreeting?.photo || INITIAL_PROFILE.headmasterGreeting.photo),
+          },
           identity: {
             ...INITIAL_PROFILE.identity,
             ...((parsed.profile && parsed.profile.identity) || {}),
@@ -131,7 +140,13 @@ export function getInitialCMSState(): CMSState {
         activeVideoId: parsed.activeVideoId || "tJhzVg7Nq4g",
         announcement: parsed.announcement || DEFAULT_ANNOUNCEMENT,
         portalItems: parsed.portalItems || INITIAL_PORTAL_ITEMS,
-        tokohQuotes: parsed.tokohQuotes || INITIAL_TOKOH_QUOTES,
+        tokohQuotes: (parsed.tokohQuotes || INITIAL_TOKOH_QUOTES).map((t: TokohQuoteItem) => {
+          const init = INITIAL_TOKOH_QUOTES.find((item) => item.id === t.id);
+          if (init && (t.image?.includes("unsplash.com") || !t.image)) {
+            return { ...t, image: init.image };
+          }
+          return t;
+        }),
         chatbotSettings: {
           ...INITIAL_CHATBOT_SETTINGS,
           ...(parsed.chatbotSettings || {}),

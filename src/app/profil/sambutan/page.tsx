@@ -32,9 +32,13 @@ export default function SambutanPage() {
             <div className="w-full lg:w-72 flex-shrink-0 flex flex-col items-center text-center">
               <div className="relative w-48 h-60 sm:w-56 sm:h-72 rounded-2xl overflow-hidden shadow-xl border-4 border-white dark:border-slate-800 bg-slate-900 group">
                 <img
-                  src={greeting.photo || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80"}
-                  alt="Kepala SMKN 3 Yogyakarta"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src={
+                    greeting.photo && !greeting.photo.includes("unsplash.com")
+                      ? greeting.photo
+                      : "https://smkn3jogja.sch.id/wp-content/uploads/2025/03/Widada_KS-scaled.jpg"
+                  }
+                  alt="Widada, S.Pd, M.Pd - Kepala SMKN 3 Yogyakarta"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 right-3 text-white text-[11px] font-bold bg-skagata-900/90 py-1 px-2 rounded-lg backdrop-blur-sm border border-emerald-500/30">

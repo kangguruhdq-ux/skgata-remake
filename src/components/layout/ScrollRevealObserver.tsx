@@ -65,6 +65,18 @@ export default function ScrollRevealObserver() {
     const t2 = setTimeout(setupObserver, 250);
     const t3 = setTimeout(setupObserver, 650);
 
+    // MutationObserver to capture dynamically inserted or tab-switched elements
+    let mutationObserver: MutationObserver | null = null;
+    if (typeof window !== "undefined" && "MutationObserver" in window) {
+      mutationObserver = new MutationObserver(() => {
+        setupObserver();
+      });
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
     // Also re-run on custom CMS updates
     window.addEventListener("skagata_cms_updated", setupObserver);
 
@@ -73,6 +85,9 @@ export default function ScrollRevealObserver() {
       clearTimeout(t2);
       clearTimeout(t3);
       window.removeEventListener("skagata_cms_updated", setupObserver);
+      if (mutationObserver) {
+        mutationObserver.disconnect();
+      }
       if (observer) {
         observer.disconnect();
       }

@@ -31,7 +31,7 @@ export default function CareerBanner() {
                 <span>Telusuri Lowongan Kerja</span>
               </Link>
               <a
-                href="https://bursakerjasmk.sch.id/"
+                href="https://smkn3yk.sch.id/telusuri/lowongan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl text-xs transition flex items-center gap-2 btn-bounce"

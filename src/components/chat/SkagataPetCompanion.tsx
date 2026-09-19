@@ -330,6 +330,24 @@ export default function SkagataPetCompanion({
                 <stop offset="100%" stopColor="#059669" />
               </linearGradient>
 
+              {/* Baret Taruna Gradients */}
+              <linearGradient id="beretGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#064e3b" />
+                <stop offset="55%" stopColor="#047857" />
+                <stop offset="100%" stopColor="#022c22" />
+              </linearGradient>
+
+              <linearGradient id="beretFoldGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+                <stop offset="0%" stopColor="#34d399" />
+                <stop offset="100%" stopColor="#065f46" />
+              </linearGradient>
+
+              <linearGradient id="goldEmblemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fef08a" />
+                <stop offset="50%" stopColor="#f59e0b" />
+                <stop offset="100%" stopColor="#b45309" />
+              </linearGradient>
+
               <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="1.5" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
@@ -355,22 +373,21 @@ export default function SkagataPetCompanion({
               opacity="0.9"
             />
 
-            {/* Antenna & Beacon Orb */}
+            {/* Cyber Comms Antenna (Peeking from right of beret) */}
             <path
-              d="M50 20 L50 9"
+              d="M72 18 L81 8"
               stroke="#047857"
-              strokeWidth="3.5"
+              strokeWidth="2.5"
               strokeLinecap="round"
             />
             <circle
-              cx="50"
-              cy="7"
-              r={5 + pettingLevel * 1.5}
+              cx="81"
+              cy="8"
+              r={3.5 + pettingLevel * 1}
               fill={pettingLevel > 0 ? "#10b981" : "#059669"}
               filter="url(#softGlow)"
-              className="transition-all duration-700"
             />
-            <circle cx="48" cy="5" r="1.5" fill="#ffffff" />
+            <circle cx="80" cy="7" r="1" fill="#ffffff" />
 
             {/* Cyber Ear Fins with soft responsive flare */}
             <g
@@ -529,9 +546,62 @@ export default function SkagataPetCompanion({
               fill="#ecfdf5"
               stroke="#10b981"
               strokeWidth="1.5"
-              transform={pettingLevel > 0 ? "rotate(18 74 67)" : ""}
               className="transition-transform duration-700"
             />
+
+            {/* BARET TARUNA SKAGATA (Iconic Military Beret with Gold Crest) */}
+            <g
+              style={{
+                transformOrigin: "50px 22px",
+                transform: `rotate(${isPetting ? tiltAngle * 0.4 : 0}deg)`,
+                transition: "transform 0.3s ease-out",
+              }}
+            >
+              {/* Under-drape shadow */}
+              <ellipse cx="78" cy="24" rx="8" ry="4" fill="#022c22" opacity="0.6" />
+
+              {/* Beret Main Crown (Tilted proudly to the right) */}
+              <path
+                d="M 17 23 C 12 13, 26 5, 48 5 C 68 5, 87 11, 85 21 C 84 27, 72 27, 58 23 C 44 19, 28 20, 17 23 Z"
+                fill="url(#beretGrad)"
+                stroke="#022c22"
+                strokeWidth="1.2"
+              />
+
+              {/* Beret Fabric Fold & Sheen Highlight */}
+              <path
+                d="M 28 10 C 46 7, 64 8, 77 14 C 66 12, 48 10, 34 12 Z"
+                fill="url(#beretFoldGrad)"
+                opacity="0.45"
+              />
+
+              {/* Dark Leather Trim / Headband */}
+              <path
+                d="M 20 24 Q 48 19 77 25"
+                stroke="#0f172a"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+              />
+
+              {/* Ketarunaan Gold Crest / Lencana Baret (Left side) */}
+              <g transform="translate(34, 13)">
+                {/* Gold Shield */}
+                <path
+                  d="M 0 -6 L 6 -3 L 6 3 L 0 7 L -6 3 L -6 -3 Z"
+                  fill="url(#goldEmblemGrad)"
+                  stroke="#78350f"
+                  strokeWidth="0.8"
+                />
+                {/* Inner White Star */}
+                <polygon
+                  points="0,-4 1.2,-1 4.5,-1 2,0.8 2.8,4 0,2 -2.8,4 -2,0.8 -4.5,-1 -1.2,-1"
+                  fill="#ffffff"
+                />
+                {/* Gleam Sparkle */}
+                <circle cx="-1.5" cy="-2.5" r="0.8" fill="#ffffff" opacity="0.9" />
+              </g>
+            </g>
           </svg>
         </div>
 
