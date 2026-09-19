@@ -4,16 +4,18 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Settings, Check, RotateCcw, Video, Phone, Mail, MapPin, Sparkles, Bot, ArrowRight } from "lucide-react";
 import { useCMS } from "@/lib/store";
-import { VIDEOS_DATA } from "@/lib/data-initial";
+import { VideoData } from "@/lib/data-initial";
 
 export default function AdminPengaturanPage() {
   const {
     schoolInfo,
     socialLinks,
     activeVideoId,
+    videos,
     updateSchoolInfo,
     updateSocialLinks,
     setActiveVideoId,
+    updateVideos,
     resetToDefaults,
   } = useCMS();
 
@@ -36,6 +38,22 @@ export default function AdminPengaturanPage() {
   });
 
   const [savedMessage, setSavedMessage] = useState(false);
+  const [videoForm, setVideoForm] = useState<VideoData>({ id: "", title: "", subtitle: "", speaker: "", description: "", icon: "Play", color: "text-emerald-400 bg-emerald-500/20" });
+  const [editingVideoId, setEditingVideoId] = useState<string | null>(null);
+
+  const resetVideoForm = () => {
+    setVideoForm({ id: "", title: "", subtitle: "", speaker: "", description: "", icon: "Play", color: "text-emerald-400 bg-emerald-500/20" });
+    setEditingVideoId(null);
+  };
+
+  const saveVideo = (event: React.FormEvent) => {
+    event.preventDefault();
+    const id = editingVideoId || videoForm.id.trim() || `video-${Date.now()}`;
+    const payload = { ...videoForm, id };
+    updateVideos(editingVideoId ? videos.map((video) => video.id === editingVideoId ? payload : video) : [...videos, payload]);
+    if (!activeVideoId) setActiveVideoId(id);
+    resetVideoForm();
+  };
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
@@ -295,7 +313,7 @@ export default function AdminPengaturanPage() {
             </p>
 
             <div className="space-y-2 text-xs">
-              {VIDEOS_DATA.map((vid) => (
+              {videos.map((vid) => (
                 <button
                   key={vid.id}
                   onClick={() => setActiveVideoId(vid.id)}
@@ -313,6 +331,22 @@ export default function AdminPengaturanPage() {
                   )}
                 </button>
               ))}
+            </div>
+
+            <form onSubmit={saveVideo} className="border-t border-slate-100 pt-3 space-y-2.5 text-xs">
+              <p className="font-bold text-slate-800">{editingVideoId ? "Edit video" : "Tambah video"}</p>
+              <input required value={videoForm.id} disabled={!!editingVideoId} onChange={(e) => setVideoForm({ ...videoForm, id: e.target.value })} placeholder="ID YouTube (contoh: tJhzVg7Nq4g)" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-mono" />
+              <input required value={videoForm.title} onChange={(e) => setVideoForm({ ...videoForm, title: e.target.value })} placeholder="Judul video" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl" />
+              <input value={videoForm.subtitle} onChange={(e) => setVideoForm({ ...videoForm, subtitle: e.target.value })} placeholder="Subjudul" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl" />
+              <textarea required rows={2} value={videoForm.description} onChange={(e) => setVideoForm({ ...videoForm, description: e.target.value })} placeholder="Deskripsi video" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl" />
+              <div className="flex gap-2">
+                <button type="submit" className="flex-1 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold">{editingVideoId ? "Simpan Video" : "Tambah Video"}</button>
+                {editingVideoId && <button type="button" onClick={resetVideoForm} className="px-3 py-2 bg-slate-100 rounded-xl font-bold">Batal</button>}
+              </div>
+            </form>
+
+            <div className="space-y-1.5">
+              {videos.map((video) => <div key={`${video.id}-actions`} className="flex items-center gap-1.5 text-[10px]"><span className="truncate flex-1 text-slate-500">{video.id}</span><button type="button" onClick={() => { setEditingVideoId(video.id); setVideoForm(video); }} className="px-2 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 text-slate-600">Edit</button><button type="button" onClick={() => { if (videos.length > 1 && confirm("Hapus video ini?")) { updateVideos(videos.filter((item) => item.id !== video.id)); if (activeVideoId === video.id) setActiveVideoId(videos.find((item) => item.id !== video.id)?.id || ""); } }} className="px-2 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600">Hapus</button></div>)}
             </div>
           </div>
         </div>

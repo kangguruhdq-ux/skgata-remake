@@ -12,10 +12,11 @@ import {
   Info,
   CheckCircle,
 } from "lucide-react";
-import { VIDEOS_DATA, VideoData } from "@/lib/data-initial";
+import { useCMS } from "@/lib/store";
 
 export default function VideoTheater() {
-  const videoList = [
+  const { videos, activeVideoId } = useCMS();
+  const defaultVideoList = [
     {
       id: "tJhzVg7Nq4g",
       title: "Profil Utama SMKN 3 Yogyakarta",
@@ -72,10 +73,25 @@ export default function VideoTheater() {
     },
   ];
 
-  const [activeVid, setActiveVid] = useState(videoList[0]);
+  const videoList = videos.length
+    ? videos.map((video, index) => ({
+        ...(defaultVideoList[index % defaultVideoList.length] || defaultVideoList[0]),
+        id: video.id,
+        title: video.title,
+        subtitle: video.subtitle,
+        fullTitle: video.title,
+        description: video.description,
+      }))
+    : defaultVideoList;
+  const [activeVideoKey, setActiveVideoKey] = useState(activeVideoId);
+  const activeVid = videoList.find((video) => video.id === activeVideoKey) || videoList[0];
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const watchUrl = `https://www.youtube.com/watch?v=${activeVid.id}`;
+
+  useEffect(() => {
+    setActiveVideoKey(activeVideoId);
+  }, [activeVideoId]);
 
   // Viewport Observer to defer iframe loading until scrolled near the theater
   useEffect(() => {
@@ -213,7 +229,7 @@ export default function VideoTheater() {
               return (
                 <button
                   key={vid.id}
-                  onClick={() => setActiveVid(vid)}
+                  onClick={() => setActiveVideoKey(vid.id)}
                   className={`w-full text-left p-3 rounded-2xl flex items-center gap-3 transition btn-bounce ${
                     isSelected
                       ? "bg-emerald-950/60 border-2 border-emerald-500 text-white"

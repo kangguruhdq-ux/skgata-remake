@@ -9,6 +9,7 @@ import ImageUploadInput from "@/components/admin/ImageUploadInput";
 export default function AdminJurusanPage() {
   const { majors, updateMajors } = useCMS();
   const [editingMajor, setEditingMajor] = useState<MajorData | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
 
   const [form, setForm] = useState({
     name: "",
@@ -19,6 +20,7 @@ export default function AdminJurusanPage() {
   });
 
   const handleEditClick = (major: MajorData) => {
+    setIsCreating(false);
     setEditingMajor(major);
     setForm({
       name: major.name,
@@ -29,49 +31,69 @@ export default function AdminJurusanPage() {
     });
   };
 
+  const handleCreateClick = () => {
+    setIsCreating(true);
+    setEditingMajor({
+      ...majors[0],
+      id: "",
+      code: "BARU",
+      name: "",
+      slug: "",
+      tagline: "",
+      description: "",
+      totalStudents: 0,
+      coverImage: "",
+      gallery: [],
+      competencies: [],
+      careerProspects: [],
+      industryPartners: [],
+      facilities: [],
+      studentWorks: [],
+    });
+    setForm({ name: "", tagline: "", description: "", totalStudents: 0, coverImage: "" });
+  };
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!editingMajor) return;
-
-    const updated = majors.map((m) =>
-      m.id === editingMajor.id
-        ? {
-            ...m,
-            name: form.name,
-            tagline: form.tagline,
-            description: form.description,
-            totalStudents: Number(form.totalStudents),
-            coverImage: form.coverImage,
-          }
-        : m
-    );
-
-    updateMajors(updated);
+    if (!editingMajor || !form.name.trim()) return;
+    const changes = { name: form.name.trim(), tagline: form.tagline.trim(), description: form.description.trim(), totalStudents: Number(form.totalStudents) || 0, coverImage: form.coverImage };
+    if (isCreating) {
+      const slug = form.name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      const code = slug.split("-").map((part) => part[0]).join("").slice(0, 5).toUpperCase() || `M${majors.length + 1}`;
+      updateMajors([...majors, { ...editingMajor, ...changes, id: `major-${Date.now()}`, code, slug }]);
+    } else {
+      updateMajors(majors.map((m) => (m.id === editingMajor.id ? { ...m, ...changes } : m)));
+    }
     setEditingMajor(null);
+    setIsCreating(false);
+  };
+
+  const handleDelete = (id: string) => {
+    if (majors.length <= 1) return;
+    if (confirm("Hapus program keahlian ini dari seluruh halaman web?")) updateMajors(majors.filter((major) => major.id !== id));
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-        <h1 className="font-display font-black text-2xl text-slate-900">
-          Manajemen 8 Program Keahlian
-        </h1>
-        <p className="text-xs text-slate-500 mt-1">
-          Sesuaikan profil kompetensi, deskripsi, foto fasilitas bengkel, dan data taruna masing-masing jurusan.
-        </p>
+      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="font-display font-black text-2xl text-slate-900">Manajemen Program Keahlian</h1>
+          <p className="text-xs text-slate-500 mt-1">Kelola nama, deskripsi, foto, dan jumlah taruna setiap program keahlian.</p>
+        </div>
+        <button onClick={handleCreateClick} className="px-4 py-2.5 bg-skagata-700 hover:bg-skagata-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm w-fit"><span className="text-base leading-none">+</span>Tambah Jurusan</button>
       </div>
 
       {/* Edit Modal */}
       {editingMajor && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-xl w-full border border-slate-200 shadow-2xl space-y-4">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto border border-slate-200 shadow-2xl space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <h2 className="font-display font-bold text-base text-slate-900">
-                Edit Jurusan: {editingMajor.name} ({editingMajor.code})
+                {isCreating ? "Tambah Program Keahlian" : `Edit Jurusan: ${editingMajor.name} (${editingMajor.code})`}
               </h2>
-              <button
-                onClick={() => setEditingMajor(null)}
+                <button
+                  onClick={() => { setEditingMajor(null); setIsCreating(false); }}
                 className="text-slate-400 hover:text-slate-700"
               >
                 <X className="w-5 h-5" />
@@ -135,7 +157,7 @@ export default function AdminJurusanPage() {
               <div className="pt-3 flex justify-end gap-2">
                 <button
                   type="button"
-                  onClick={() => setEditingMajor(null)}
+                  onClick={() => { setEditingMajor(null); setIsCreating(false); }}
                   className="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold transition text-slate-600"
                 >
                   Batal
@@ -188,6 +210,7 @@ export default function AdminJurusanPage() {
               <Edit3 className="w-3.5 h-3.5" />
               <span>Edit Data Jurusan</span>
             </button>
+            <button onClick={() => handleDelete(major.id)} className="mt-2 w-full py-2 text-rose-600 hover:bg-rose-50 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 border border-rose-100"><span>×</span>Hapus Jurusan</button>
           </div>
         ))}
       </div>

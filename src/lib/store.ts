@@ -276,6 +276,12 @@ export function useCMS() {
     saveCMSState(next);
   };
 
+  const updateVideos = (newVideos: VideoData[]) => {
+    const next = { ...state, videos: newVideos };
+    setState(next);
+    saveCMSState(next);
+  };
+
   const updateServices = (newServices: ServiceData[]) => {
     const next = { ...state, services: newServices };
     setState(next);
@@ -388,6 +394,7 @@ export function useCMS() {
     updateMajors,
     updateTeachers,
     updateJobs,
+    updateVideos,
     updateServices,
     updateTimeline,
     updateArchivePhotos,

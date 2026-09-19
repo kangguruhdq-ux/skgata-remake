@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import {
   X,
@@ -26,6 +27,13 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
+  }, [isOpen]);
+
   return (
     <>
       {/* Backdrop */}
@@ -39,7 +47,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
       {/* Slide-out Drawer */}
       <aside
-        className={`fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[88vw] bg-white dark:bg-slate-900 dark:text-slate-100 z-50 shadow-2xl border-l border-slate-200 dark:border-slate-800 transform transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between overflow-y-auto will-change-transform ${
+        className={`fixed top-0 right-0 w-[310px] sm:w-[350px] max-w-[88vw] h-[100dvh] bg-white dark:bg-slate-900 dark:text-slate-100 z-50 shadow-2xl border-l border-slate-200 dark:border-slate-800 transform transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between overflow-y-auto overscroll-contain will-change-transform safe-bottom ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

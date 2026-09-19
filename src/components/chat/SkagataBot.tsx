@@ -32,6 +32,13 @@ export default function SkagataBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; };
+  }, [isOpen]);
+
   // Initialize first greeting when loaded
   useEffect(() => {
     if (messages.length === 0 && chatbotSettings?.greeting) {
@@ -268,7 +275,7 @@ export default function SkagataBot() {
 
       {/* Chat Window Modal */}
       {isOpen && (
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[410px] max-h-[85vh] h-[620px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl animate-fade-in-up">
+        <div className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-2 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-1rem)] sm:w-[410px] max-w-[410px] max-h-[min(85dvh,620px)] h-[min(620px,85dvh)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl animate-fade-in-up">
           {/* Header */}
           <div className="px-4 py-3.5 bg-gradient-to-r from-skagata-900 via-slate-900 to-emerald-950 text-white border-b border-slate-800 flex items-center justify-between relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px] opacity-15 pointer-events-none" />

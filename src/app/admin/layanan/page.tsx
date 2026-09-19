@@ -7,6 +7,7 @@ import { ServiceData } from "@/lib/data-initial";
 
 export default function AdminLayananPage() {
   const { services, updateServices } = useCMS();
+  const [isAdding, setIsAdding] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
 
   const [form, setForm] = useState({
@@ -14,7 +15,15 @@ export default function AdminLayananPage() {
     badge: "Sistem Baru",
     description: "",
     url: "https://",
+    icon: "Laptop",
+    category: "Administrasi" as ServiceData["category"],
   });
+
+  const resetForm = () => {
+    setForm({ name: "", badge: "Sistem Baru", description: "", url: "https://", icon: "Laptop", category: "Administrasi" });
+    setEditingId(null);
+    setIsAdding(false);
+  };
 
   const handleEdit = (s: ServiceData) => {
     setForm({
@@ -22,40 +31,49 @@ export default function AdminLayananPage() {
       badge: s.badge,
       description: s.description,
       url: s.url,
+      icon: s.icon,
+      category: s.category,
     });
     setEditingId(s.id);
+    setIsAdding(true);
+  };
+
+  const handleDelete = (id: string) => {
+    if (confirm("Hapus layanan ini dari seluruh halaman web?")) updateServices(services.filter((service) => service.id !== id));
   };
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!editingId) return;
-
-    updateServices(
-      services.map((s) => (s.id === editingId ? { ...s, ...form } : s))
-    );
-    setEditingId(null);
+    if (editingId) {
+      updateServices(services.map((s) => (s.id === editingId ? { ...s, ...form } : s)));
+    } else {
+      updateServices([
+        ...services,
+        { id: `service-${Date.now()}`, ...form, bgGradient: "from-emerald-600 to-teal-700" },
+      ]);
+    }
+    resetForm();
   };
 
   return (
     <div className="space-y-6">
-      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-        <h1 className="font-display font-black text-2xl text-slate-900">
-          Manajemen Tautan Portal & Layanan Kampus
-        </h1>
-        <p className="text-xs text-slate-500 mt-1">
-          Konfigurasi alamat server eksternal (LMS Kelasiber Moodle, OPAC Widura, Rapot RSPK, Cloud, Whistleblowing System).
-        </p>
+      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="font-display font-black text-2xl text-slate-900">Manajemen Tautan Portal & Layanan Kampus</h1>
+          <p className="text-xs text-slate-500 mt-1">Tambah, ubah, nonaktifkan, atau hapus tautan layanan yang tampil di web publik.</p>
+        </div>
+        {!isAdding && <button onClick={() => setIsAdding(true)} className="px-4 py-2.5 bg-skagata-700 hover:bg-skagata-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm w-fit"><Plus className="w-4 h-4" />Tambah Layanan</button>}
       </div>
 
       {/* Edit Modal */}
-      {editingId && (
+      {isAdding && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-slate-200 shadow-2xl space-y-4">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full max-h-[calc(100dvh-2rem)] overflow-y-auto border border-slate-200 shadow-2xl space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <h2 className="font-display font-bold text-base text-slate-900">
-                Ubah Tautan Portal Layanan
+                {editingId ? "Ubah Tautan Portal Layanan" : "Tambah Tautan Portal Layanan"}
               </h2>
-              <button onClick={() => setEditingId(null)} className="text-slate-400 hover:text-slate-700">
+              <button onClick={resetForm} className="text-slate-400 hover:text-slate-700">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -70,6 +88,19 @@ export default function AdminLayananPage() {
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
                 />
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="font-semibold text-slate-700 block mb-1">Kategori</label>
+                  <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value as ServiceData["category"] })} className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none">
+                    {(["LMS", "Nilai", "Perpustakaan", "Cloud", "Aspirasi", "Data", "Akademik", "Administrasi"] as const).map((category) => <option key={category}>{category}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label className="font-semibold text-slate-700 block mb-1">Ikon Lucide</label>
+                  <input type="text" value={form.icon} onChange={(e) => setForm({ ...form, icon: e.target.value })} className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none" placeholder="Laptop" />
+                </div>
               </div>
 
               <div>
@@ -108,7 +139,7 @@ export default function AdminLayananPage() {
               <div className="pt-2 flex justify-end gap-2">
                 <button
                   type="button"
-                  onClick={() => setEditingId(null)}
+                  onClick={resetForm}
                   className="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold transition text-slate-600"
                 >
                   Batal
@@ -161,8 +192,9 @@ export default function AdminLayananPage() {
               className="mt-4 w-full py-2 bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 border border-slate-200/80"
             >
               <Edit3 className="w-3.5 h-3.5" />
-              <span>Ubah URL Layanan</span>
-            </button>
+                <span>Ubah URL Layanan</span>
+              </button>
+              <button onClick={() => handleDelete(srv.id)} className="mt-2 w-full py-2 text-rose-600 hover:bg-rose-50 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 border border-rose-100"><Trash2 className="w-3.5 h-3.5" />Hapus Layanan</button>
           </div>
         ))}
       </div>
