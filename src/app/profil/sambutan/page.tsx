@@ -44,13 +44,13 @@ export default function SambutanPage() {
 
               <div className="mt-4 space-y-1">
                 <h3 className="font-display font-extrabold text-base text-slate-900 dark:text-white">
-                  {greeting.subtitle}
+                  Widada, S.Pd, M.Pd
                 </h3>
                 <p className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold">
-                  Kepala SMK Negeri 3 Yogyakarta
+                  Kepala Sekolah SMK Negeri 3 Yogyakarta
                 </p>
                 <p className="text-[11px] text-slate-400 font-mono">
-                  NIP. 19680512 199403 1 008
+                  Pusat Keunggulan STM 2 Jetis
                 </p>
               </div>
 
@@ -60,47 +60,58 @@ export default function SambutanPage() {
                   <span>Prinsip Kepemimpinan:</span>
                 </div>
                 <p className="text-[11.5px] leading-relaxed text-slate-600 dark:text-slate-300">
-                  "Mengharmonisasikan kecakapan teknologi industri 4.0, kedisiplinan berkarakter taruna, dan budi pekerti luhur keistimewaan D.I. Yogyakarta."
+                  "Kerja keras, kerja cerdas, kerja tuntas, kerja berkualitas dan kerja ikhlas untuk mensukseskan masa depan peserta didik."
                 </p>
               </div>
             </div>
 
             {/* Editorial Speech Body */}
-            <div className="flex-1 space-y-5 text-slate-700 dark:text-slate-200 leading-relaxed text-sm sm:text-base font-light">
+            <div className="flex-1 space-y-5 text-slate-700 dark:text-slate-200 leading-relaxed text-sm sm:text-base font-normal">
               <div className="border-b border-slate-100 dark:border-slate-800 pb-4">
                 <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400 bg-emerald-100/70 dark:bg-emerald-950/60 px-3 py-1 rounded-md border border-emerald-200/60 dark:border-emerald-800/40">
                   Editorial Sambutan
                 </span>
                 <h1 className="font-display font-black text-2xl sm:text-3xl text-slate-900 dark:text-white mt-2">
-                  {greeting.title}
+                  Sambutan Kepala Sekolah
                 </h1>
               </div>
 
-              <div className="relative pl-6 italic text-slate-600 dark:text-slate-300 border-l-2 border-emerald-500 text-sm">
+              <div className="relative pl-6 italic font-medium text-slate-800 dark:text-slate-100 border-l-3 border-emerald-500 text-sm sm:text-base bg-emerald-50/40 dark:bg-emerald-950/20 py-3 pr-4 rounded-r-xl">
                 <Quote className="w-5 h-5 text-emerald-500 absolute -top-1 -left-2.5 fill-emerald-500" />
-                "Assalamu’alaikum Warahmatullahi Wabarakatuh, Salam Sejahtera, Rahayu, Berkah Dalem."
+                <p className="font-semibold text-emerald-800 dark:text-emerald-300">
+                  Assalamualaikum Warrahmatullahi Wabarakatuh
+                </p>
+                <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm mt-0.5">
+                  Salam sejahtera bagi kita semua
+                </p>
               </div>
 
-              {greeting.content.map((par, i) => (
-                <p key={i} className="leading-relaxed">
-                  {par}
-                </p>
-              ))}
+              <p className="leading-relaxed">
+                Era revolusi Industri 4.0 menuju ke 5.0 dengan ditandainya kemajuan ilmu pengetahuan dan teknologi digital yang pesat serta perubahannya dalam hitungan detik akan berimbas pada aspek kehidupan masyarakat, karenanya harus ada upaya sungguh-sungguh untuk mengantisipasinya dan mengikutinya.
+              </p>
 
-              <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <p className="leading-relaxed">
+                Dunia pendidikan mempunyai tanggung jawab yang besar untuk menyiapkan sumber daya manusia yang mumpuni, kompetitif dan unggul sehingga mampu hidup dengan perubahan yang ada tetap menjaga nilai-nilai kearifan budaya lokal.
+              </p>
+
+              <p className="leading-relaxed">
+                Pendidikan investasi masa depan, sekolah sebagai sarana untuk mengembangkan minat, bakat dan potensi serta membekali karakter, pengetahuan dan keterampilan untuk menyongsong permasalahan kekinian. Mari kita Kerja keras, kerja cerdas, kerja tuntas, kerja berkualitas dan kerja ikhlas untuk mensukseskan masa depan peserta didik.
+              </p>
+
+              <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <p className="font-bold text-slate-900 dark:text-white text-sm">
-                    Wassalamu’alaikum Warahmatullahi Wabarakatuh.
+                  <p className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+                    Wassalamualaikum Warrahmatullahi Wabarakatuh
                   </p>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    Yogyakarta, Kampus STM 2 Jetis
+                    Yogyakarta, SMK Negeri 3 Yogyakarta
                   </p>
                 </div>
-                <div className="text-right">
-                  <span className="font-serif italic font-bold text-skagata-700 dark:text-emerald-400 text-base sm:text-lg block">
-                    {greeting.subtitle}
+                <div className="text-left sm:text-right">
+                  <span className="text-xs text-slate-400 block">Kepala Sekolah</span>
+                  <span className="font-display font-black text-slate-900 dark:text-emerald-300 text-base sm:text-lg block">
+                    Widada, S.Pd, M.Pd
                   </span>
-                  <span className="text-[10px] text-slate-400">Kepala SMKN 3 Yogyakarta</span>
                 </div>
               </div>
             </div>

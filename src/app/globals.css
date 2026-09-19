@@ -142,60 +142,65 @@ body {
 
 /* 3D Stack Card Container & Positions */
 .card-stack-container {
-  perspective: 1400px;
-  min-height: 420px;
+  perspective: 1200px;
+  min-height: 440px;
   position: relative;
   transform-style: preserve-3d;
+  padding-top: 28px;
 }
 
 .stack-card {
   position: absolute;
-  top: 0;
+  top: 28px;
   left: 0;
   width: 100%;
-  height: 100%;
-  border-radius: 1.75rem;
-  transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  height: calc(100% - 28px);
+  border-radius: 2rem;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1), filter 0.42s ease, box-shadow 0.42s ease;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   user-select: none;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .stack-card.pos-0 {
   z-index: 30;
-  transform: translateZ(60px) translateY(0px) scale(1) rotate(0deg);
+  transform: translate3d(0, 0, 40px) scale(1);
   opacity: 1;
   pointer-events: auto;
-  box-shadow: 0 35px 65px -15px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.35);
 }
 
 .stack-card.pos-1 {
   z-index: 20;
-  transform: translateZ(30px) translateY(20px) scale(0.95) rotate(-3deg);
-  opacity: 0.88;
+  transform: translate3d(0, -14px, 15px) scale(0.96);
+  opacity: 0.85;
   pointer-events: none;
-  box-shadow: 0 25px 45px -15px rgba(0, 0, 0, 0.35);
+  filter: brightness(0.85);
+  box-shadow: 0 25px 45px -15px rgba(0, 0, 0, 0.45);
 }
 
 .stack-card.pos-2 {
   z-index: 10;
-  transform: translateZ(0px) translateY(40px) scale(0.9) rotate(3deg);
+  transform: translate3d(0, -28px, -10px) scale(0.92);
   opacity: 0.65;
   pointer-events: none;
-  box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.25);
+  filter: brightness(0.7);
+  box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.35);
 }
 
 .stack-card.pos-hidden {
   z-index: 5;
-  transform: translateZ(-30px) translateY(60px) scale(0.85) rotate(0deg);
+  transform: translate3d(0, -42px, -35px) scale(0.88);
   opacity: 0;
   pointer-events: none;
 }
 
 .stack-card.swapping-out {
-  transform: translateZ(90px) translateY(-140px) rotate(-18deg) scale(0.92);
+  transform: translate3d(0, -75px, 80px) rotateX(8deg) scale(0.96);
   opacity: 0;
+  filter: blur(1px);
 }
 
 /* 3D Card Hover & Elevate */
@@ -244,11 +249,8 @@ body {
   box-shadow: 0 25px 45px -12px rgba(4, 120, 87, 0.25);
 }
 
-/* Safe Vertical-Only Progressive Scroll Reveal System (Zero Horizontal Overflow) */
-.reveal-up,
-.reveal-left,
-.reveal-right,
-.reveal-zoom {
+/* Safe, Diverse & High-Performance Progressive Scroll Reveal System */
+.reveal-up {
   opacity: 0;
   transform: translate3d(0, 24px, 0);
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
@@ -262,9 +264,37 @@ body {
   will-change: opacity, transform;
 }
 
+.reveal-zoom {
+  opacity: 0;
+  transform: scale3d(0.92, 0.92, 1) translate3d(0, 12px, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-pop {
+  opacity: 0;
+  transform: scale3d(0.88, 0.88, 1) translate3d(0, 14px, 0);
+  transition: opacity 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translate3d(-24px, 0, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translate3d(24px, 0, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
 .revealed {
   opacity: 1 !important;
-  transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1) !important;
   will-change: auto !important;
 }
 
@@ -283,16 +313,30 @@ body {
 /* Mobile Performance & Responsiveness Overrides */
 @media (max-width: 768px) {
   /* Smooth vertical travel for mobile screens with zero horizontal overflow */
-  .reveal-up,
-  .reveal-left,
-  .reveal-right,
-  .reveal-zoom {
+  .reveal-up {
     transform: translate3d(0, 16px, 0);
     transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1), transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-down {
     transform: translate3d(0, -14px, 0);
+    transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1), transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-zoom {
+    transform: scale3d(0.95, 0.95, 1) translate3d(0, 10px, 0);
+    transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1), transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-pop {
+    transform: scale3d(0.92, 0.92, 1) translate3d(0, 8px, 0);
+    transition: opacity 0.48s cubic-bezier(0.175, 0.885, 0.32, 1.2), transform 0.48s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  }
+
+  /* Keep left and right transforms purely vertical/scale on mobile to eliminate any horizontal screen breach */
+  .reveal-left,
+  .reveal-right {
+    transform: translate3d(0, 14px, 0) scale3d(0.97, 0.97, 1);
     transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1), transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -312,27 +356,117 @@ body {
     transition: transform 0.15s ease-out;
   }
   
-  /* Prevent 3D card tilt blowout on small screens */
+  /* Physical layered card deck on mobile */
   .card-stack-container {
     perspective: none !important;
-    min-height: 380px !important;
-    overflow: hidden !important;
+    min-height: 400px !important;
+    overflow: visible !important;
     max-width: 100% !important;
+    padding-top: 22px !important;
   }
   
   .stack-card {
+    top: 22px !important;
+    height: calc(100% - 22px) !important;
+    border-radius: 1.5rem !important;
     max-width: 100% !important;
   }
 
+  .stack-card.pos-0 {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    opacity: 1 !important;
+  }
+
   .stack-card.pos-1 {
-    transform: translateY(16px) scale(0.96) !important;
-    rotate: 0deg !important;
+    transform: translate3d(0, -10px, 0) scale(0.96) !important;
+    opacity: 0.82 !important;
+    filter: brightness(0.85) !important;
   }
   
   .stack-card.pos-2 {
-    transform: translateY(32px) scale(0.92) !important;
-    rotate: 0deg !important;
+    transform: translate3d(0, -20px, 0) scale(0.92) !important;
+    opacity: 0.6 !important;
+    filter: brightness(0.7) !important;
   }
+
+  .stack-card.swapping-out {
+    transform: translate3d(0, -45px, 0) scale(0.92) !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Ambient & Aesthetic Keyframe Effects */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4.5s ease-in-out infinite;
+}
+
+@keyframes heroDrift {
+  0% {
+    transform: scale(1.03) translateY(0);
+  }
+  50% {
+    transform: scale(1.06) translateY(-5px);
+  }
+  100% {
+    transform: scale(1.03) translateY(0);
+  }
+}
+
+.animate-hero-drift {
+  animation: heroDrift 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes ambientGlowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
+}
+
+.animate-ambient-glow {
+  animation: ambientGlowPulse 4s ease-in-out infinite;
+}
+
+/* Mobile Drawer Staggered Cascade Keyframes */
+@keyframes drawerItemSlide {
+  from {
+    opacity: 0;
+    transform: translate3d(18px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.drawer-item-1 { animation: drawerItemSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.04s both; }
+.drawer-item-2 { animation: drawerItemSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both; }
+.drawer-item-3 { animation: drawerItemSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+.drawer-item-4 { animation: drawerItemSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both; }
+.drawer-item-5 { animation: drawerItemSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both; }
+.drawer-item-6 { animation: drawerItemSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both; }
+
+/* Smooth Global Theme Switch Animation */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *:before,
+html.theme-transitioning *:after {
+  transition: background-color 0.25s ease-out, border-color 0.25s ease-out, color 0.2s ease-out !important;
+  transition-delay: 0s !important;
 }
 
 /* Dedicated Slow Logo Emergence from Below */

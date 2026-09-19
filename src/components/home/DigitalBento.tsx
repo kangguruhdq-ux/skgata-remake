@@ -15,7 +15,7 @@ export default function DigitalBento() {
       actionText: "Buka portal",
       url: "https://kelulusansmk.my.id",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white shadow-md hover:shadow-xl interactive-card flex flex-col justify-between group reveal-up delay-1",
+        "portal-card p-5 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white shadow-md hover:shadow-xl interactive-card flex flex-col justify-between group reveal-zoom delay-1",
       iconBox:
         "w-11 h-11 rounded-xl bg-white/15 flex items-center justify-center text-lg backdrop-blur-sm",
       icon: "fa-solid fa-graduation-cap",
@@ -30,7 +30,7 @@ export default function DigitalBento() {
       actionText: "Login Moodle",
       url: "http://kelasiber.skagata.sch.id",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-slate-900 text-white shadow-md hover:shadow-xl interactive-card flex flex-col justify-between group reveal-up delay-2",
+        "portal-card p-5 rounded-2xl bg-slate-900 text-white shadow-md hover:shadow-xl interactive-card flex flex-col justify-between group reveal-pop delay-2",
       iconBox:
         "w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg",
       icon: "fa-solid fa-chalkboard-user",
@@ -45,7 +45,7 @@ export default function DigitalBento() {
       actionText: "Tonton Channel",
       url: "https://www.youtube.com/c/SkagataTV/videos",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-red-300 interactive-card flex flex-col justify-between group reveal-up delay-3",
+        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-red-300 interactive-card flex flex-col justify-between group reveal-zoom delay-3",
       iconBox:
         "w-11 h-11 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-lg group-hover:bg-red-600 group-hover:text-white transition",
       icon: "fa-solid fa-tv",
@@ -60,7 +60,7 @@ export default function DigitalBento() {
       actionText: "Telusuri Buku",
       url: "http://opac.smkn3jogja.sch.id:5776/",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-skagata-500 interactive-card flex flex-col justify-between group reveal-up delay-4",
+        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-skagata-500 interactive-card flex flex-col justify-between group reveal-pop delay-4",
       iconBox:
         "w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg group-hover:bg-amber-600 group-hover:text-white transition",
       icon: "fa-solid fa-book-open",
@@ -75,7 +75,7 @@ export default function DigitalBento() {
       actionText: "Akses Server",
       url: "http://sia.smkn3jogja.sch.id:5774",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 interactive-card flex flex-col justify-between group reveal-up delay-1",
+        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 interactive-card flex flex-col justify-between group reveal-zoom delay-1",
       iconBox:
         "w-11 h-11 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg group-hover:bg-blue-600 group-hover:text-white transition",
       icon: "fa-solid fa-database",
@@ -90,7 +90,7 @@ export default function DigitalBento() {
       actionText: "Buka RSPK",
       url: "http://sia.smkn3jogja.sch.id:7252",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-teal-300 interactive-card flex flex-col justify-between group reveal-up delay-2",
+        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-teal-300 interactive-card flex flex-col justify-between group reveal-pop delay-2",
       iconBox:
         "w-11 h-11 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-lg group-hover:bg-teal-600 group-hover:text-white transition",
       icon: "fa-solid fa-award",
@@ -105,7 +105,7 @@ export default function DigitalBento() {
       actionText: "Akses MPD",
       url: "http://sia.smkn3jogja.sch.id:3780/",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-purple-300 interactive-card flex flex-col justify-between group reveal-up delay-3",
+        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-purple-300 interactive-card flex flex-col justify-between group reveal-zoom delay-3",
       iconBox:
         "w-11 h-11 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-lg group-hover:bg-purple-600 group-hover:text-white transition",
       icon: "fa-solid fa-calculator",
@@ -120,7 +120,7 @@ export default function DigitalBento() {
       actionText: "Cloud Storage",
       url: "http://cloud.skagata.sch.id:9070/",
       cardClass:
-        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-emerald-300 interactive-card flex flex-col justify-between group reveal-up delay-4",
+        "portal-card p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl hover:border-emerald-300 interactive-card flex flex-col justify-between group reveal-pop delay-4",
       iconBox:
         "w-11 h-11 rounded-xl bg-emerald-100 text-skagata-700 flex items-center justify-center text-lg group-hover:bg-skagata-700 group-hover:text-white transition",
       icon: "fa-solid fa-cloud-arrow-up",

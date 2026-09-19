@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   FileText,
@@ -14,6 +14,7 @@ import {
   Maximize2,
   Shield,
   FileSignature,
+  Tv,
 } from "lucide-react";
 import TiltCard from "@/components/3d/TiltCard";
 import { useCMS } from "@/lib/store";
@@ -23,34 +24,75 @@ export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [haloActive, setHaloActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+  const [desktopReady, setDesktopReady] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   const videoId = activeVideoId || "tJhzVg7Nq4g";
+
+  // Check mobile screen size to selectively render lightweight cinematic poster vs iframe
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Defer desktop background looper until hero layout completes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDesktopReady(true);
+    }, 600);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Viewport Observer: Pause background iframe when user scrolls down away from Hero
+  useEffect(() => {
+    if (!heroRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleEmblemClick = () => {
     setHaloActive(true);
     setTimeout(() => setHaloActive(false), 1000);
   };
 
+  // Video looper should only run on desktop when in view and ready, saving 80% mobile GPU & memory
+  const shouldRenderVideoLooper = !isMobile && isInView && isPlaying && desktopReady;
+
   return (
     <section
       id="beranda"
+      ref={heroRef}
       className="relative min-h-[85vh] lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-hidden py-8 sm:py-16 transition-colors duration-300"
     >
-      {/* 1. IMMERSIVE VIDEO BACKGROUND (Sesuai Tampilan Asli smkn3jogja.sch.id) */}
+      {/* 1. IMMERSIVE VIDEO BACKGROUND (Lightweight on mobile, Cinema looper on desktop) */}
       <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
-        {/* Fallback & Poster Image */}
+        {/* High-Definition Poster Image with GPU-accelerated Ken-Burns ambient drift on mobile */}
         <img
           src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
           alt="Latar Video Kampus SMKN 3 Yogyakarta"
-          className="absolute inset-0 w-full h-full object-cover filter brightness-75 scale-105"
+          className={`absolute inset-0 w-full h-full object-cover filter brightness-75 ${
+            isMobile ? "animate-hero-drift scale-105" : "scale-105"
+          }`}
           onError={(e) => {
             e.currentTarget.src =
               "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-20-at-21.07.59-1-260x195.jpeg";
           }}
         />
 
-        {/* Video Looper via YouTube Iframe */}
-        {isPlaying && (
+        {/* Video Looper via YouTube Iframe (Active on desktop in-view, auto-paused when scrolled away) */}
+        {shouldRenderVideoLooper && (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=${videoId}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&enablejsapi=1`}
             title="Video Suasana Kampus SMKN 3 Yogyakarta"
@@ -59,7 +101,7 @@ export default function HeroSection() {
           />
         )}
 
-        {/* Cinematic Vignette Overlay (Sesuai Screenshot User media_1789807983313.png) */}
+        {/* Cinematic Vignette Overlay */}
         <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-[0.5px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/60" />
       </div>
@@ -67,7 +109,7 @@ export default function HeroSection() {
       {/* 2. FOREGROUND CONTENT: EMBLEM, TITLE, SUBTITLE & ORANGE SKAGATA MENDENGAR BUTTON */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto text-center flex flex-col items-center justify-center space-y-4 sm:space-y-7 w-full min-w-0">
         {/* Big Circular Emblem (Persis Screenshot media_1789807983313.png) */}
-        <div className="rounded-full overflow-visible">
+        <div className="rounded-full overflow-visible animate-float-gentle">
           <div
             className="relative cursor-pointer group emblem-rise-slow"
             onClick={handleEmblemClick}
@@ -75,7 +117,7 @@ export default function HeroSection() {
           >
             <div
               className={`absolute -inset-3 sm:-inset-4 bg-gradient-to-r from-amber-400/60 via-emerald-400/50 to-teal-400/60 rounded-full blur-xl sm:blur-2xl transition duration-700 ${
-                haloActive ? "opacity-100 scale-125" : "opacity-70 group-hover:opacity-100"
+                haloActive ? "opacity-100 scale-125" : "opacity-70 group-hover:opacity-100 animate-ambient-glow"
               }`}
             />
             {/* Authentic Circular Crest Container */}
@@ -133,28 +175,28 @@ export default function HeroSection() {
       {/* 3. BOTTOM STATS & CONTROLS SECTION */}
       <div className="max-w-screen-2xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full pt-6 sm:pt-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3.5 w-full">
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-1">
             <div className="font-display font-black text-lg sm:text-2xl text-emerald-300">
               8 Keahlian
             </div>
             <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Program Industri 4.0</p>
           </div>
 
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-2">
             <div className="font-display font-black text-lg sm:text-2xl text-teal-300">
               2.000+
             </div>
             <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Taruna-Taruni Aktif</p>
           </div>
 
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-3">
             <div className="font-display font-black text-lg sm:text-2xl text-amber-300">
               MODENA & Jepang
             </div>
             <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Mitra Industri Dunia</p>
           </div>
 
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-4">
             <div className="font-display font-black text-lg sm:text-2xl text-emerald-300">
               1952
             </div>

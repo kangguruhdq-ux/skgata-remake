@@ -1370,12 +1370,14 @@ export const INITIAL_FACILITIES: FacilityItem[] = [
 export const INITIAL_PROFILE: SchoolProfile = {
   headmasterGreeting: {
     title: "Sambutan Kepala Sekolah",
-    subtitle: "Drs. B. Sabri, M.Pd. — Kepala SMK Negeri 3 Yogyakarta",
+    subtitle: "Widada, S.Pd, M.Pd — Kepala SMK Negeri 3 Yogyakarta",
     photo: "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/kepala-sekolah.jpg",
     content: [
-      "Assalamu'alaikum Warahmatullahi Wabarakatuh, Salam Sejahtera bagi Kita Semua.",
-      "Selamat datang di portal resmi SMK Negeri 3 Yogyakarta (STM 2 Jetis). Sebagai SMK Pusat Keunggulan, kami berkomitmen teguh dalam menyelenggarakan pendidikan vokasi berkualitas internasional dengan memadukan kurikulum industri, teknologi modern, dan karakter luhur ketarunaan.",
-      "Lulusan SMK Negeri 3 Yogyakarta dirancang untuk menjadi teknisi handal, wirausahawan tangguh, atau melanjutkan ke jenjang perguruan tinggi dengan fondasi kompetensi yang teruji.",
+      "Assalamualaikum Warrahmatullahi Wabarakatuh, Salam sejahtera bagi kita semua.",
+      "Era revolusi Industri 4.0 menuju ke 5.0 dengan ditandainya kemajuan ilmu pengetahuan dan teknologi digital yang pesat serta perubahannya dalam hitungan detik akan berimbas pada aspek kehidupan masyarakat, karenanya harus ada upaya sungguh-sungguh untuk mengantisipasinya dan mengikutinya.",
+      "Dunia pendidikan mempunyai tanggung jawab yang besar untuk menyiapkan sumber daya manusia yang mumpuni, kompetitif dan unggul sehingga mampu hidup dengan perubahan yang ada tetap menjaga nilai-nilai kearifan budaya lokal.",
+      "Pendidikan investasi masa depan, sekolah sebagai sarana untuk mengembangkan minat, bakat dan potensi serta membekali karakter, pengetahuan dan keterampilan untuk menyongsong permasalahan kekinian. Mari kita Kerja keras, kerja cerdas, kerja tuntas, kerja berkualitas dan kerja ikhlas untuk mensukseskan masa depan peserta didik.",
+      "Wassalamualaikum Warrahmatullahi Wabarakatuh.",
     ],
   },
   vision: "Menjadi SMK Pusat Keunggulan yang menghasilkan tamatan beriman, bertakwa, berkarakter mulia, kompeten, berdaya saing global, dan berwawasan lingkungan.",

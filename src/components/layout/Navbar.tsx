@@ -19,7 +19,7 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 glass-nav border-b border-slate-200/90 transition-all duration-300 shadow-sm w-full max-w-full overflow-hidden">
+    <header className="sticky top-0 z-40 glass-nav border-b border-slate-200/90 transition-all duration-300 shadow-sm w-full max-w-full">
       <div className="max-w-screen-2xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-1.5 sm:gap-2 w-full min-w-0">
           {/* Brand Identity with authentic Skagata Jaya! badge */}
@@ -77,14 +77,16 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
                 <span>Profil</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    profileOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70"
+                    profileOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70 group-hover:rotate-180"
                   }`}
                 />
               </Link>
 
               <div
                 className={`absolute top-full left-0 w-72 pt-2 transition-all duration-200 z-50 ${
-                  profileOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                  profileOpen
+                    ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                    : "opacity-0 invisible -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto"
                 }`}
               >
                 <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 p-2.5 space-y-1">
@@ -155,14 +157,16 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
                 <span>Program Keahlian</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    majorsOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70"
+                    majorsOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70 group-hover:rotate-180"
                   }`}
                 />
               </Link>
 
               <div
                 className={`absolute top-full left-0 w-80 pt-2 transition-all duration-200 z-50 ${
-                  majorsOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                  majorsOpen
+                    ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                    : "opacity-0 invisible -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto"
                 }`}
               >
                 <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 p-2.5 grid grid-cols-2 gap-1">
@@ -254,14 +258,16 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
                 <span>Pokja & Unit Penunjang</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    pokjaOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70"
+                    pokjaOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70 group-hover:rotate-180"
                   }`}
                 />
               </button>
 
               <div
                 className={`absolute top-full left-0 w-72 pt-2 transition-all duration-200 z-50 ${
-                  pokjaOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                  pokjaOpen
+                    ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                    : "opacity-0 invisible -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto"
                 }`}
               >
                 <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 p-2 space-y-0.5 text-xs">
@@ -354,14 +360,16 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
                 <span>Layanan Digital</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    servicesOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70"
+                    servicesOpen ? "rotate-180 text-skagata-700 dark:text-emerald-400" : "opacity-70 group-hover:rotate-180"
                   }`}
                 />
               </button>
 
               <div
                 className={`absolute top-full left-0 w-64 pt-2 transition-all duration-200 z-50 ${
-                  servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                  servicesOpen
+                    ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                    : "opacity-0 invisible -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto"
                 }`}
               >
                 <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 p-2 space-y-0.5 text-xs">

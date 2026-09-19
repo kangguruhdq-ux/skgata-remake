@@ -15,7 +15,7 @@ export default function ScrollRevealObserver() {
 
         // Select all reveal elements
         const revealTargets = document.querySelectorAll<HTMLElement>(
-          ".reveal-up:not(.revealed), .reveal-down:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed), .reveal-zoom:not(.revealed)"
+          ".reveal-up:not(.revealed), .reveal-down:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed), .reveal-zoom:not(.revealed), .reveal-pop:not(.revealed)"
         );
 
         if (revealTargets.length === 0) return;

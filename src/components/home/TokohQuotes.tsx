@@ -47,7 +47,7 @@ export default function TokohQuotes() {
         </div>
 
         {/* Featured Quote Card & Carousel */}
-        <div className="max-w-4xl mx-auto reveal-up delay-2">
+        <div className="max-w-4xl mx-auto reveal-zoom delay-2">
           <div className="relative bg-white dark:bg-gradient-to-br dark:from-skagata-900/95 dark:to-slate-900/95 rounded-3xl border border-slate-200 dark:border-skagata-700/80 p-6 sm:p-10 shadow-xl dark:shadow-2xl backdrop-blur-xl transition-all duration-300">
             {/* Top Quote Icon & Badge & Navigation */}
             <div className="flex items-center justify-between mb-6 pb-6 border-b border-slate-100 dark:border-skagata-800">
@@ -134,7 +134,7 @@ export default function TokohQuotes() {
         </div>
 
         {/* Quick Cards Below for Desktop Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 max-w-4xl mx-auto reveal-up delay-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 max-w-4xl mx-auto reveal-pop delay-3">
           {quotesList.map((t, idx) => (
             <button
               key={t.id}

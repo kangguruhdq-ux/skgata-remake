@@ -28,7 +28,7 @@ export default function MajorsGrid() {
         {/* Grid 8 Jurusan */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
           {MAJORS_DATA.map((major, idx) => {
-            const revealClass = `reveal-up delay-${(idx % 4) + 1}`;
+            const revealClass = `reveal-zoom delay-${(idx % 4) + 1}`;
 
             const majorIcons: Record<string, string> = {
               BP: "fa-solid fa-video",
@@ -116,7 +116,7 @@ export default function MajorsGrid() {
         </div>
 
         {/* Smart Major Matcher Banner */}
-        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-skagata-950 via-slate-900 to-emerald-950 border border-emerald-500/30 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 reveal-up">
+        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-skagata-950 via-slate-900 to-emerald-950 border border-emerald-500/30 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 reveal-pop">
           <div className="space-y-2 text-center md:text-left max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Play,
   ExternalLink,
@@ -73,11 +73,29 @@ export default function VideoTheater() {
   ];
 
   const [activeVid, setActiveVid] = useState(videoList[0]);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const watchUrl = `https://www.youtube.com/watch?v=${activeVid.id}`;
+
+  // Viewport Observer to defer iframe loading until scrolled near the theater
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { rootMargin: "250px" }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
       id="video-theater"
+      ref={sectionRef}
       className="py-14 lg:py-24 bg-slate-900 text-white relative overflow-hidden w-full max-w-full"
     >
       <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:28px_28px]" />
@@ -125,17 +143,36 @@ export default function VideoTheater() {
               </a>
             </div>
 
-            {/* Video Frame Container */}
+            {/* Video Frame Container (Lazy-mounted iframe or crisp click-to-play poster) */}
             <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-inner bg-black relative group">
-              <iframe
-                key={activeVid.id}
-                className="w-full h-full"
-                src={`https://www.youtube-nocookie.com/embed/${activeVid.id}?rel=0&modestbranding=1`}
-                title={activeVid.fullTitle}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+              {isInView ? (
+                <iframe
+                  key={activeVid.id}
+                  className="w-full h-full"
+                  src={`https://www.youtube-nocookie.com/embed/${activeVid.id}?rel=0&modestbranding=1`}
+                  title={activeVid.fullTitle}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              ) : (
+                <div
+                  onClick={() => setIsInView(true)}
+                  className="w-full h-full relative cursor-pointer group flex items-center justify-center bg-slate-950"
+                >
+                  <img
+                    src={`https://img.youtube.com/vi/${activeVid.id}/maxresdefault.jpg`}
+                    alt={activeVid.title}
+                    className="w-full h-full object-cover filter brightness-85 group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-slate-950/30 backdrop-blur-[1px] flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] group-hover:scale-110 transition-transform">
+                      <Play className="w-7 h-7 fill-white ml-1" />
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Fallback Information Bar below screen if embedded player is blocked by YouTube's Error 153 */}
               <div className="absolute bottom-2 left-2 right-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 flex items-center justify-between text-[11px] text-slate-400 opacity-90 hover:opacity-100 transition">

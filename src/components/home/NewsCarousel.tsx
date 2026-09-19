@@ -121,7 +121,7 @@ export default function NewsCarousel() {
 
         {/* Tab Content: BERITA (Horizontal Carousel) */}
         {activeTab === "berita" && (
-          <div className="tab-content">
+          <div className="tab-content reveal-zoom delay-1">
             <div
               ref={carouselRef}
               className="flex gap-5 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory"

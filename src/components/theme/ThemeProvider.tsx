@@ -35,9 +35,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
-  const applyTheme = (t: Theme) => {
+  const applyTheme = (t: Theme, animate = false) => {
     if (typeof document === "undefined") return;
     const root = document.documentElement;
+    if (animate) {
+      root.classList.add("theme-transitioning");
+      setTimeout(() => {
+        root.classList.remove("theme-transitioning");
+      }, 350);
+    }
     if (t === "dark") {
       root.classList.add("dark");
       root.style.colorScheme = "dark";
@@ -51,7 +57,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setThemeState(newTheme);
     try {
       localStorage.setItem("skagata_theme", newTheme);
-      applyTheme(newTheme);
+      applyTheme(newTheme, true);
       window.dispatchEvent(new CustomEvent("skagata_theme_changed", { detail: newTheme }));
     } catch (e) {
       console.error(e);

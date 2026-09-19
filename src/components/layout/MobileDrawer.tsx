@@ -39,14 +39,14 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
 
       {/* Slide-out Drawer */}
       <aside
-        className={`fixed top-0 right-0 bottom-0 w-[310px] sm:w-[340px] max-w-[85vw] bg-white dark:bg-slate-900 dark:text-slate-100 z-50 shadow-2xl border-l border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto ${
+        className={`fixed top-0 right-0 bottom-0 w-[310px] sm:w-[350px] max-w-[88vw] bg-white dark:bg-slate-900 dark:text-slate-100 z-50 shadow-2xl border-l border-slate-200 dark:border-slate-800 transform transition-transform duration-350 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between overflow-y-auto will-change-transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
-        <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/80 dark:bg-slate-950/80">
+        <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/90 dark:bg-slate-950/90 sticky top-0 z-10 backdrop-blur-md">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-skagata-900 text-white flex items-center justify-center p-1">
+            <div className="w-8 h-8 rounded-lg bg-skagata-900 text-white flex items-center justify-center p-1 shadow-sm">
               <img
                 src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
                 alt="Logo"
@@ -68,31 +68,36 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5">
-            <ThemeToggle className="!p-1.5" />
-            <button
-              onClick={onClose}
-              className="w-8 h-8 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center justify-center transition"
-              aria-label="Tutup Menu"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white flex items-center justify-center transition active:scale-95"
+            aria-label="Tutup Menu"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
 
-        {/* Navigation Links */}
-        <div className="p-4 space-y-1.5 text-xs sm:text-sm flex-1">
-          <Link
-            href="/"
-            onClick={onClose}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-skagata-800 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100/70 transition"
-          >
-            <Home className="w-4 h-4 text-skagata-600 dark:text-emerald-400" />
-            <span>Beranda</span>
-          </Link>
+        {/* Navigation Links with Staggered Cascading Animations */}
+        <div className="p-4 space-y-3 text-xs sm:text-sm flex-1">
+          {/* 1. Dedicated Mode Gelap / Terang (Dark Mode Toggle) */}
+          <div className={isOpen ? "drawer-item-1" : ""}>
+            <ThemeToggle variant="row" />
+          </div>
+
+          {/* 2. Beranda Quick Link */}
+          <div className={isOpen ? "drawer-item-2" : ""}>
+            <Link
+              href="/"
+              onClick={onClose}
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-skagata-800 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100/70 transition"
+            >
+              <Home className="w-4 h-4 text-skagata-600 dark:text-emerald-400" />
+              <span>Beranda Utama</span>
+            </Link>
+          </div>
 
           {/* Section Profil */}
-          <div className="pt-2">
+          <div className={`pt-2 ${isOpen ? "drawer-item-3" : ""}`}>
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
               Profil Sekolah
             </span>
@@ -139,7 +144,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           </div>
 
           {/* Section Program Keahlian */}
-          <div className="pt-2">
+          <div className={`pt-2 ${isOpen ? "drawer-item-4" : ""}`}>
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
               Akademik & Karir
             </span>
@@ -170,7 +175,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           </div>
 
           {/* Section Pokja & Unit Penunjang (Sesuai Web Asli) */}
-          <div className="pt-2">
+          <div className={`pt-2 ${isOpen ? "drawer-item-5" : ""}`}>
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
               Pokja & Unit Penunjang
             </span>
@@ -239,7 +244,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           </div>
 
           {/* Section Layanan Digital (Sesuai Web Asli) */}
-          <div className="pt-2">
+          <div className={`pt-2 ${isOpen ? "drawer-item-6" : ""}`}>
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
               Layanan Digital Resmi
             </span>
@@ -294,7 +299,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+        <div className={`p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 ${isOpen ? "drawer-item-6" : ""}`}>
           <Link
             href="/kabar?category=SPMB"
             onClick={onClose}

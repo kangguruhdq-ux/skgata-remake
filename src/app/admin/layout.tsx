@@ -171,14 +171,42 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </header>
 
+      {/* Mobile Backdrop Overlay */}
+      {sidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
+          aria-hidden="true"
+        />
+      )}
+
       {/* Main Admin Body */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden relative">
         {/* Sidebar */}
         <aside
-          className={`fixed md:static top-16 bottom-0 left-0 w-64 bg-slate-900 text-slate-300 z-30 border-r border-slate-800 p-4 flex flex-col justify-between transform transition-transform duration-300 ease-in-out md:translate-x-0 ${
-            sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          className={`fixed md:static top-0 md:top-auto bottom-0 left-0 w-72 max-w-[85vw] h-full bg-slate-900 text-slate-300 z-50 md:z-auto border-r border-slate-800 p-4 flex flex-col justify-between transform transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto md:translate-x-0 ${
+            sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
           }`}
         >
+          {/* Mobile Drawer Top Bar with Close Button */}
+          <div className="flex md:hidden items-center justify-between pb-3 mb-2 border-b border-slate-800">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-xs">
+                SK
+              </div>
+              <span className="font-display font-bold text-xs text-white">
+                Navigasi CMS
+              </span>
+            </div>
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition active:scale-95"
+              aria-label="Tutup Menu"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
           <div className="space-y-1">
             <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">
               Menu Navigasi CMS
