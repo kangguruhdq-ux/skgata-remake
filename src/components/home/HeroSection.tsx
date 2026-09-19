@@ -34,10 +34,10 @@ export default function HeroSection() {
   return (
     <section
       id="beranda"
-      className="relative min-h-[90vh] lg:min-h-[96vh] flex flex-col justify-between text-white overflow-hidden py-12 sm:py-16 transition-colors duration-300"
+      className="relative min-h-[85vh] lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-hidden py-8 sm:py-16 transition-colors duration-300"
     >
       {/* 1. IMMERSIVE VIDEO BACKGROUND (Sesuai Tampilan Asli smkn3jogja.sch.id) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
         {/* Fallback & Poster Image */}
         <img
           src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
@@ -55,7 +55,7 @@ export default function HeroSection() {
             src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=${videoId}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&enablejsapi=1`}
             title="Video Suasana Kampus SMKN 3 Yogyakarta"
             allow="autoplay; encrypted-media"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160vw] h-[160vh] min-w-full min-h-full object-cover pointer-events-none opacity-60 filter brightness-90 contrast-110 scale-125 transition-opacity duration-1000"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vh] max-w-none min-w-full min-h-full object-cover pointer-events-none opacity-60 filter brightness-90 contrast-110 scale-110 transition-opacity duration-1000"
           />
         )}
 
@@ -65,21 +65,21 @@ export default function HeroSection() {
       </div>
 
       {/* 2. FOREGROUND CONTENT: EMBLEM, TITLE, SUBTITLE & ORANGE SKAGATA MENDENGAR BUTTON */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto text-center flex flex-col items-center justify-center space-y-6 sm:space-y-7">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto text-center flex flex-col items-center justify-center space-y-4 sm:space-y-7 w-full min-w-0">
         {/* Big Circular Emblem (Persis Screenshot media_1789807983313.png) */}
-        <TiltCard className="rounded-full !overflow-visible">
+        <div className="rounded-full overflow-visible">
           <div
             className="relative cursor-pointer group emblem-rise-slow"
             onClick={handleEmblemClick}
             title="Klik untuk interaksi lambang kebanggaan Skagata"
           >
             <div
-              className={`absolute -inset-4 bg-gradient-to-r from-amber-400/60 via-emerald-400/50 to-teal-400/60 rounded-full blur-2xl transition duration-700 ${
+              className={`absolute -inset-3 sm:-inset-4 bg-gradient-to-r from-amber-400/60 via-emerald-400/50 to-teal-400/60 rounded-full blur-xl sm:blur-2xl transition duration-700 ${
                 haloActive ? "opacity-100 scale-125" : "opacity-70 group-hover:opacity-100"
               }`}
             />
             {/* Authentic Circular Crest Container */}
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full bg-skagata-950/95 border-4 border-amber-400 shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex items-center justify-center p-3.5 backdrop-blur-md group-hover:scale-105 transition-transform duration-300">
+            <div className="relative w-28 h-28 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full bg-skagata-950/95 border-2 sm:border-4 border-amber-400 shadow-[0_15px_45px_rgba(0,0,0,0.8)] flex items-center justify-center p-2 sm:p-3.5 backdrop-blur-md group-hover:scale-105 transition-transform duration-300">
               <img
                 src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-1024x1024.png"
                 alt="Logo Resmi SMK Negeri 3 Yogyakarta"
@@ -87,34 +87,34 @@ export default function HeroSection() {
               />
             </div>
           </div>
-        </TiltCard>
+        </div>
 
         {/* Text Group */}
-        <div className="space-y-2.5 max-w-3xl">
-          <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl tracking-wide text-white uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)] hero-animate-title">
+        <div className="space-y-2 max-w-3xl w-full px-2">
+          <h1 className="font-display font-black text-2xl sm:text-5xl md:text-6xl tracking-tight sm:tracking-wide text-white uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)] hero-animate-title break-words">
             SMK N 3 YOGYAKARTA
           </h1>
-          <p className="text-sm sm:text-lg md:text-xl text-slate-100 font-semibold tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] max-w-2xl mx-auto leading-relaxed hero-animate-desc">
+          <p className="text-xs sm:text-lg md:text-xl text-slate-100 font-semibold tracking-normal sm:tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] max-w-2xl mx-auto leading-relaxed hero-animate-desc">
             Sekolah Berbasis Ketarunaan, Kewirausahaan, Teknologi, dan Budaya
           </p>
         </div>
 
         {/* Primary Orange Button: SKAGATA MENDENGAR (Persis Screenshot media_1789807983313.png) */}
-        <div className="pt-1 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-xl hero-animate-cta">
+        <div className="pt-1 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full max-w-xl hero-animate-cta">
           <a
             href="https://kamimendengar.skagata.sch.id/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-7 py-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-black rounded-xl shadow-[0_10px_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 text-sm sm:text-base border border-amber-300/40 btn-bounce"
+            className="w-full sm:w-auto px-5 sm:px-7 py-3 sm:py-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-black rounded-xl shadow-[0_10px_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 text-xs sm:text-base border border-amber-300/40 btn-bounce"
           >
-            <FileText className="w-5 h-5 fill-white/20" />
+            <FileText className="w-4 h-4 sm:w-5 sm:h-5 fill-white/20" />
             <span>Skagata Mendengar</span>
           </a>
 
           {/* Secondary Quick Actions */}
           <Link
             href="/kabar?category=SPMB"
-            className="w-full sm:w-auto px-5 py-3.5 bg-emerald-600/90 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg shadow-emerald-950/40 hover:scale-105 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm border border-emerald-400/40 backdrop-blur-md btn-bounce"
+            className="w-full sm:w-auto px-4 sm:px-5 py-3 sm:py-3.5 bg-emerald-600/90 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg shadow-emerald-950/40 hover:scale-105 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm border border-emerald-400/40 backdrop-blur-md btn-bounce"
           >
             <FileSignature className="w-4 h-4" />
             <span>Info SPMB 2026</span>
@@ -122,7 +122,7 @@ export default function HeroSection() {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="w-full sm:w-auto px-4 py-3.5 bg-white/15 hover:bg-white/25 text-white font-semibold rounded-xl backdrop-blur-md border border-white/25 hover:scale-105 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm btn-bounce"
+            className="w-full sm:w-auto px-4 py-3 sm:py-3.5 bg-white/15 hover:bg-white/25 text-white font-semibold rounded-xl backdrop-blur-md border border-white/25 hover:scale-105 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm btn-bounce"
           >
             <Play className="w-4 h-4 fill-white" />
             <span>Putar Video Lengkap</span>
@@ -131,43 +131,35 @@ export default function HeroSection() {
       </div>
 
       {/* 3. BOTTOM STATS & CONTROLS SECTION */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
-          <TiltCard className="rounded-2xl">
-            <div className="bg-slate-900/60 hover:bg-slate-900/80 p-4 rounded-2xl border border-white/15 backdrop-blur-md transition shadow-lg flex flex-col justify-between">
-              <div className="font-display font-black text-xl sm:text-2xl text-emerald-300">
-                8 Keahlian
-              </div>
-              <p className="text-[11px] text-slate-300 mt-1">Program Industri 4.0</p>
+      <div className="max-w-screen-2xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full pt-6 sm:pt-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3.5 w-full">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+            <div className="font-display font-black text-lg sm:text-2xl text-emerald-300">
+              8 Keahlian
             </div>
-          </TiltCard>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Program Industri 4.0</p>
+          </div>
 
-          <TiltCard className="rounded-2xl">
-            <div className="bg-slate-900/60 hover:bg-slate-900/80 p-4 rounded-2xl border border-white/15 backdrop-blur-md transition shadow-lg flex flex-col justify-between">
-              <div className="font-display font-black text-xl sm:text-2xl text-teal-300">
-                2.000+
-              </div>
-              <p className="text-[11px] text-slate-300 mt-1">Taruna-Taruni Aktif</p>
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+            <div className="font-display font-black text-lg sm:text-2xl text-teal-300">
+              2.000+
             </div>
-          </TiltCard>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Taruna-Taruni Aktif</p>
+          </div>
 
-          <TiltCard className="rounded-2xl">
-            <div className="bg-slate-900/60 hover:bg-slate-900/80 p-4 rounded-2xl border border-white/15 backdrop-blur-md transition shadow-lg flex flex-col justify-between">
-              <div className="font-display font-black text-xl sm:text-2xl text-amber-300">
-                MODENA & Jepang
-              </div>
-              <p className="text-[11px] text-slate-300 mt-1">Mitra Industri Dunia</p>
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+            <div className="font-display font-black text-lg sm:text-2xl text-amber-300">
+              MODENA & Jepang
             </div>
-          </TiltCard>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Mitra Industri Dunia</p>
+          </div>
 
-          <TiltCard className="rounded-2xl">
-            <div className="bg-slate-900/60 hover:bg-slate-900/80 p-4 rounded-2xl border border-white/15 backdrop-blur-md transition shadow-lg flex flex-col justify-between">
-              <div className="font-display font-black text-xl sm:text-2xl text-emerald-300">
-                1952
-              </div>
-              <p className="text-[11px] text-slate-300 mt-1">Tradisi Teknik Tertua</p>
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between">
+            <div className="font-display font-black text-lg sm:text-2xl text-emerald-300">
+              1952
             </div>
-          </TiltCard>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Tradisi Teknik Tertua</p>
+          </div>
         </div>
 
         {/* Video Control Bar at Bottom */}

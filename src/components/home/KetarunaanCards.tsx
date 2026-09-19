@@ -143,11 +143,11 @@ export default function KetarunaanCards() {
   return (
     <section
       id="portal-ketarunaan"
-      className="py-12 sm:py-16 bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800/80 relative z-20"
+      className="py-10 sm:py-16 bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800/80 relative z-20 w-full max-w-full overflow-hidden"
     >
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* 4 Portal Icons Bar - Clean Minimalist Style exactly matching media_1789809408746.png */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-10 max-w-5xl mx-auto w-full">
           {portalItems.map((item, idx) => (
             <Link
               key={item.id}

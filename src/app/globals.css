@@ -9,12 +9,18 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
   background-color: #f8fafc;
   color: #1e293b;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
   font-family: var(--font-sans);
 }
 
@@ -238,36 +244,31 @@ body {
   box-shadow: 0 25px 45px -12px rgba(4, 120, 87, 0.25);
 }
 
-/* Multi-Directional Scroll Reveal System */
+/* Safe Multi-Directional Scroll Reveal System without horizontal screen breach */
 .reveal-up {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(18px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-down {
   opacity: 0;
-  transform: translateY(-30px);
-  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(-15px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-left {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(14px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-right {
   opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translateY(14px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-zoom {
   opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: scale(0.96);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .revealed {
@@ -275,17 +276,54 @@ body {
   transform: translate(0, 0) scale(1) !important;
 }
 
-/* Staggered Delay Tokens */
-.delay-1 { transition-delay: 0.12s; }
-.delay-2 { transition-delay: 0.24s; }
-.delay-3 { transition-delay: 0.36s; }
-.delay-4 { transition-delay: 0.48s; }
-.delay-5 { transition-delay: 0.6s; }
-.delay-6 { transition-delay: 0.72s; }
-.delay-7 { transition-delay: 0.84s; }
-.delay-8 { transition-delay: 0.96s; }
-.delay-9 { transition-delay: 1.1s; }
-.delay-10 { transition-delay: 1.25s; }
+/* Staggered Delay Tokens - Lightweight & Fast */
+.delay-1 { transition-delay: 0.05s; }
+.delay-2 { transition-delay: 0.1s; }
+.delay-3 { transition-delay: 0.15s; }
+.delay-4 { transition-delay: 0.2s; }
+.delay-5 { transition-delay: 0.25s; }
+.delay-6 { transition-delay: 0.3s; }
+.delay-7 { transition-delay: 0.35s; }
+.delay-8 { transition-delay: 0.4s; }
+.delay-9 { transition-delay: 0.45s; }
+.delay-10 { transition-delay: 0.5s; }
+
+/* Mobile Performance & Responsiveness Overrides */
+@media (max-width: 768px) {
+  /* Immediately visible on mobile so no blank delays when scrolling */
+  .reveal-up,
+  .reveal-down,
+  .reveal-left,
+  .reveal-right,
+  .reveal-zoom {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  
+  /* Prevent 3D card tilt blowout on small screens */
+  .card-stack-container {
+    perspective: none !important;
+    min-height: 380px !important;
+    overflow: hidden !important;
+    max-width: 100% !important;
+  }
+  
+  .stack-card {
+    max-width: 100% !important;
+  }
+
+  .stack-card.pos-1 {
+    transform: translateY(16px) scale(0.96) !important;
+    rotate: 0deg !important;
+  }
+  
+  .stack-card.pos-2 {
+    transform: translateY(32px) scale(0.92) !important;
+    rotate: 0deg !important;
+  }
+}
 
 /* Dedicated Slow Logo Emergence from Below */
 @keyframes emblemRiseSlow {

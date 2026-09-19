@@ -16,7 +16,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
         duration: 0.35,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="w-full flex-1 flex flex-col"
+      className="w-full max-w-full overflow-x-hidden flex-1 flex flex-col"
     >
       {children}
     </motion.div>

@@ -42,16 +42,13 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
     setIsInteracting(false);
   }, []);
 
-  // Desktop Mouse Events
+  // Only calculate tilt on desktop mice to keep mobile scrolling 100% smooth & native
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    calculateTilt(e.clientX, e.clientY);
-  };
-
-  // Mobile Touch Events
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches.length > 0) {
-      calculateTilt(e.touches[0].clientX, e.touches[0].clientY);
+    // Check if device is a fine pointer (desktop mouse)
+    if (typeof window !== "undefined" && window.matchMedia && !window.matchMedia("(pointer: fine)").matches) {
+      return;
     }
+    calculateTilt(e.clientX, e.clientY);
   };
 
   return (
@@ -59,18 +56,11 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={resetTilt}
-      onTouchStart={(e) => {
-        if (e.touches.length > 0) calculateTilt(e.touches[0].clientX, e.touches[0].clientY);
-      }}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={resetTilt}
-      onTouchCancel={resetTilt}
       style={{
-        transform,
-        transition: isInteracting ? "transform 0.12s cubic-bezier(0.16, 1, 0.3, 1)" : "transform 0.5s ease-out",
-        transformStyle: "preserve-3d",
+        transform: transform || undefined,
+        transition: isInteracting ? "transform 0.12s cubic-bezier(0.16, 1, 0.3, 1)" : "transform 0.4s ease-out",
       }}
-      className={`relative overflow-hidden group ${className}`}
+      className={`relative overflow-hidden max-w-full group ${className}`}
     >
       {children}
 

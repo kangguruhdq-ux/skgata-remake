@@ -26,17 +26,9 @@ export default function MajorsGrid() {
         </div>
 
         {/* Grid 8 Jurusan */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
           {MAJORS_DATA.map((major, idx) => {
-            // Alternating reveal animation classes from user HTML
-            const revealClass =
-              idx % 4 === 0
-                ? "reveal-left delay-1"
-                : idx % 4 === 1
-                ? "reveal-left delay-2"
-                : idx % 4 === 2
-                ? "reveal-right delay-1"
-                : "reveal-right delay-2";
+            const revealClass = `reveal-up delay-${(idx % 4) + 1}`;
 
             const majorIcons: Record<string, string> = {
               BP: "fa-solid fa-video",
@@ -63,10 +55,10 @@ export default function MajorsGrid() {
             return (
               <TiltCard
                 key={major.id}
-                className={`bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group ${revealClass}`}
+                className={`bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group w-full ${revealClass}`}
               >
-                {/* Image Header with 3D Floating Badge */}
-                <div className="relative h-44 overflow-hidden bg-slate-900" style={{ transformStyle: "preserve-3d" }}>
+                {/* Image Header with Badge */}
+                <div className="relative h-44 overflow-hidden bg-slate-900">
                   <img
                     src={major.coverImage}
                     alt={major.name}
@@ -74,9 +66,8 @@ export default function MajorsGrid() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 
-                  {/* 3D Popping Badge */}
+                  {/* Badge */}
                   <span
-                    style={{ transform: "translateZ(30px)" }}
                     className={`absolute top-3 right-3 text-white text-[11px] font-black tracking-wide px-2.5 py-1 rounded-lg shadow-lg backdrop-blur-sm border border-white/20 ${major.colorBadge}`}
                   >
                     <i className={`${majorIcons[major.code] || "fa-solid fa-gear"} mr-1.5`} />
@@ -85,35 +76,31 @@ export default function MajorsGrid() {
 
                   {/* Program Number Pill */}
                   <span
-                    style={{ transform: "translateZ(20px)" }}
                     className="absolute bottom-2.5 left-3 text-[10px] font-mono font-bold bg-slate-950/80 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/30"
                   >
                     KONSENTRASI #{idx + 1}
                   </span>
                 </div>
 
-                {/* Content Body with 3D Depth & High Contrast */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between" style={{ transformStyle: "preserve-3d" }}>
+                {/* Content Body */}
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
                   <div>
                     <h3
-                      style={{ transform: "translateZ(22px)" }}
                       className="font-display font-black text-base text-slate-900 dark:text-white group-hover:text-skagata-700 dark:group-hover:text-emerald-400 transition"
                     >
                       <Link href={`/jurusan/${major.slug}`}>{major.name}</Link>
                     </h3>
 
                     <p
-                      style={{ transform: "translateZ(15px)" }}
                       className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed line-clamp-3"
                     >
                       {major.description}
                     </p>
                   </div>
 
-                  {/* Footer Link with 3D Depth */}
+                  {/* Footer Link */}
                   <Link
                     href={`/jurusan/${major.slug}`}
-                    style={{ transform: "translateZ(20px)" }}
                     className="pt-3 mt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-skagata-700 dark:text-emerald-400 group-hover:text-skagata-900 dark:group-hover:text-emerald-300 transition"
                   >
                     <span className="flex items-center gap-1">

@@ -137,8 +137,8 @@ export default function DigitalBento() {
   );
 
   return (
-    <section id="layanan-digital" className="py-16 lg:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="layanan-digital" className="py-14 lg:py-24 bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 w-full max-w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header with search */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 reveal-up">
           <div>
@@ -169,7 +169,7 @@ export default function DigitalBento() {
         </div>
 
         {/* Bento Grid Cards */}
-        <div id="portalGrid" className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div id="portalGrid" className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
           {filteredPortals.map((portal) => (
             <TiltCard key={portal.id} className="rounded-2xl h-full">
               <a

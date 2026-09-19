@@ -83,11 +83,11 @@ export default function PillarStack() {
   ];
 
   return (
-    <section id="pilar" className="py-16 -mt-8 relative z-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
+    <section id="pilar" className="py-12 sm:py-16 -mt-4 sm:-mt-8 relative z-20 w-full max-w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid lg:grid-cols-12 gap-8 items-center w-full">
           {/* Left Explainer & Controls */}
-          <div className="lg:col-span-5 space-y-4 reveal-left">
+          <div className="lg:col-span-5 space-y-4 reveal-up">
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100/80 px-3 py-1 rounded-lg">
               <i className="fa-solid fa-layer-group" />
               <span>Swap Stack Interaktif</span>
@@ -118,7 +118,7 @@ export default function PillarStack() {
           </div>
 
           {/* Right: 3D Stack Cards Container */}
-          <div className="lg:col-span-7 relative card-stack-container reveal-right">
+          <div className="lg:col-span-7 relative card-stack-container reveal-up w-full max-w-full overflow-hidden">
             {stackCards.map((pilar, idx) => (
               <div
                 key={pilar.id}

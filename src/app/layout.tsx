@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
@@ -15,6 +15,13 @@ const outfit = Outfit({
   variable: "--font-display",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "SMK Negeri 3 Yogyakarta – Konsisten Mencetak Teknisi Unggul (STM 2 Jetis)",
@@ -43,7 +50,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" suppressHydrationWarning className={`scroll-smooth ${plusJakartaSans.variable} ${outfit.variable}`}>
+    <html
+      lang="id"
+      suppressHydrationWarning
+      className={`scroll-smooth overflow-x-hidden w-full max-w-full ${plusJakartaSans.variable} ${outfit.variable}`}
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -72,7 +83,7 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className="font-sans antialiased overflow-x-hidden selection:bg-skagata-500 selection:text-white bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+      <body className="font-sans antialiased overflow-x-hidden w-full max-w-full selection:bg-skagata-500 selection:text-white bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
         <ThemeProvider>
           <AppShell>{children}</AppShell>
         </ThemeProvider>

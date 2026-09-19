@@ -9,7 +9,6 @@ import SearchModal from "./SearchModal";
 import Footer from "./Footer";
 import ScrollRevealObserver from "./ScrollRevealObserver";
 import PageTransition from "./PageTransition";
-import SplashScreen from "./SplashScreen";
 import SkagataBot from "@/components/chat/SkagataBot";
 import { usePathname } from "next/navigation";
 
@@ -25,8 +24,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-skagata-500 selection:text-white">
-      <SplashScreen />
+    <div className="flex flex-col min-h-screen w-full max-w-full overflow-x-hidden bg-slate-50 text-slate-800 antialiased selection:bg-skagata-500 selection:text-white">
       <ScrollRevealObserver />
       <Topbar />
       <AnnouncementBanner />
@@ -43,7 +41,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
       />
-      <main className="flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col w-full max-w-full overflow-x-hidden">
         <PageTransition>{children}</PageTransition>
       </main>
       <Footer />

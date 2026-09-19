@@ -185,12 +185,12 @@ export default function SkagataPetCompanion({
   return (
     <div
       ref={petRef}
-      className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none pointer-events-auto"
+      className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none pointer-events-auto max-w-[calc(100vw-24px)]"
     >
       {/* Floating Speech Bubble (Bisa Ngomong) */}
       <div
         onClick={onOpenChat}
-        className="mb-2 max-w-[210px] sm:max-w-[240px] cursor-pointer group"
+        className="mb-2 max-w-[195px] sm:max-w-[240px] cursor-pointer group"
         title="Klik untuk membuka asisten AI"
       >
         <div className="relative p-2.5 sm:p-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl rounded-br-xs border border-emerald-500/30 shadow-xl shadow-emerald-950/15 text-slate-800 dark:text-slate-100 text-[11px] leading-snug transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500">

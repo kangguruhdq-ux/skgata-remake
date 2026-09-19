@@ -19,12 +19,12 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 glass-nav border-b border-slate-200/90 transition-all duration-300 shadow-sm">
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-2">
+    <header className="sticky top-0 z-40 glass-nav border-b border-slate-200/90 transition-all duration-300 shadow-sm w-full max-w-full overflow-hidden">
+      <div className="max-w-screen-2xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-1.5 sm:gap-2 w-full min-w-0">
           {/* Brand Identity with authentic Skagata Jaya! badge */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-skagata-900 border border-emerald-500/30 text-white flex items-center justify-center p-1.5 shadow-md group-hover:rotate-6 group-hover:scale-105 transition-all duration-300">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink min-w-0">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-skagata-900 border border-emerald-500/30 text-white flex items-center justify-center p-1 sm:p-1.5 shadow-md group-hover:rotate-6 group-hover:scale-105 transition-all duration-300 shrink-0">
               <img
                 src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
                 alt="Logo SMKN 3 Yogyakarta"
@@ -35,19 +35,20 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
                 }}
               />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-display font-black text-base sm:text-lg text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-skagata-700 transition whitespace-nowrap">
-                  SMK NEGERI 3 YOGYAKARTA
+            <div className="min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                <span className="font-display font-black text-xs sm:text-base lg:text-lg text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-skagata-700 transition truncate">
+                  <span className="sm:hidden">SMKN 3 YOGYAKARTA</span>
+                  <span className="hidden sm:inline">SMK NEGERI 3 YOGYAKARTA</span>
                 </span>
-                <span className="font-serif italic font-black text-red-600 dark:text-red-400 text-xs sm:text-sm tracking-wide whitespace-nowrap">
+                <span className="font-serif italic font-black text-red-600 dark:text-red-400 text-[10px] sm:text-xs lg:text-sm tracking-wide shrink-0">
                   Skagata Jaya !
                 </span>
-                <span className="hidden 2xl:inline-block text-[10px] font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950 text-skagata-800 dark:text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 whitespace-nowrap">
+                <span className="hidden 2xl:inline-block text-[10px] font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950 text-skagata-800 dark:text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 shrink-0">
                   STM 2 Jetis
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium tracking-wide mt-1 hidden 2xl:block">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium tracking-wide mt-0.5 hidden 2xl:block">
                 Pusat Keunggulan • Ketarunaan & Teknologi
               </p>
             </div>
@@ -425,14 +426,14 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
           </nav>
 
           {/* Right Action: ThemeToggle + Search + SPMB + Mobile Trigger */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             {/* Dark/Light Mode Switcher */}
             <ThemeToggle />
 
             {/* Unified Search Button */}
             <button
               onClick={onOpenSearch}
-              className="w-10 h-10 rounded-xl text-slate-600 dark:text-slate-300 hover:text-skagata-700 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 border border-transparent hover:border-emerald-200 dark:hover:border-emerald-700 flex items-center justify-center transition btn-bounce"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl text-slate-600 dark:text-slate-300 hover:text-skagata-700 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 border border-transparent hover:border-emerald-200 dark:hover:border-emerald-700 flex items-center justify-center transition"
               title="Cari portal, jurusan, berita atau guru (Ctrl+K)"
               aria-label="Cari"
             >
@@ -451,22 +452,22 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
             {/* Morphing Hamburger Button */}
             <button
               onClick={onToggleDrawer}
-              className="xl:hidden w-10 h-10 rounded-xl text-slate-700 hover:bg-slate-100 flex items-center justify-center focus:outline-none transition p-2.5"
+              className="xl:hidden w-8 h-8 sm:w-10 sm:h-10 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center focus:outline-none transition p-1.5 sm:p-2.5"
               aria-label="Buka Menu Navigasi"
             >
               <div className="w-5 h-4 flex flex-col justify-between relative">
                 <span
-                  className={`block h-0.5 w-full bg-slate-800 rounded-full transition-all duration-300 ${
+                  className={`block h-0.5 w-full bg-slate-800 dark:bg-slate-200 rounded-full transition-all duration-300 ${
                     isDrawerOpen ? "translate-y-1.5 rotate-45" : ""
                   }`}
                 />
                 <span
-                  className={`block h-0.5 w-full bg-slate-800 rounded-full transition-all duration-300 ${
+                  className={`block h-0.5 w-full bg-slate-800 dark:bg-slate-200 rounded-full transition-all duration-300 ${
                     isDrawerOpen ? "opacity-0 scale-x-0" : ""
                   }`}
                 />
                 <span
-                  className={`block h-0.5 w-full bg-slate-800 rounded-full transition-all duration-300 ${
+                  className={`block h-0.5 w-full bg-slate-800 dark:bg-slate-200 rounded-full transition-all duration-300 ${
                     isDrawerOpen ? "-translate-y-2 -rotate-45" : ""
                   }`}
                 />

@@ -28,7 +28,7 @@ export default function AnnouncementBanner() {
   const currentTheme = announcement.theme || "emerald";
 
   return (
-    <div className={`py-2 px-4 text-xs relative z-30 transition-all ${themeStyles[currentTheme]}`}>
+    <div className={`py-2 px-3 sm:px-4 text-xs relative z-30 transition-all w-full max-w-full overflow-hidden ${themeStyles[currentTheme]}`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
         <div className="flex items-center gap-2.5 flex-1 min-w-0">
           <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border flex-shrink-0 ${badgeStyles[currentTheme]}`}>

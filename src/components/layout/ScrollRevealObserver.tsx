@@ -11,23 +11,18 @@ export default function ScrollRevealObserver() {
 
     const setupObserver = () => {
       try {
-        // 1. Tag any un-tagged interactive sections or cards
-        const autoTargets = document.querySelectorAll(
-          "article:not(.reveal-up):not(.reveal-left):not(.reveal-right):not(.reveal-zoom):not(.revealed), " +
-          ".interactive-card:not(.reveal-up):not(.reveal-left):not(.reveal-right):not(.reveal-zoom):not(.revealed), " +
-          ".timeline-item:not(.reveal-up):not(.revealed)"
-        );
+        const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
-        autoTargets.forEach((el, index) => {
-          el.classList.add("reveal-up");
-          const delayNum = (index % 4) + 1;
-          el.classList.add(`delay-${delayNum}`);
-        });
-
-        // 2. Select all reveal elements across the page
+        // 1. Select all reveal elements
         const revealTargets = document.querySelectorAll(
           ".reveal-up:not(.revealed), .reveal-down:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed), .reveal-zoom:not(.revealed)"
         );
+
+        // On mobile, reveal everything immediately with 0 delay and zero jank
+        if (isMobile) {
+          revealTargets.forEach((el) => el.classList.add("revealed"));
+          return;
+        }
 
         if (revealTargets.length === 0) return;
 
@@ -48,8 +43,8 @@ export default function ScrollRevealObserver() {
             },
             {
               root: null,
-              rootMargin: "0px 0px -40px 0px",
-              threshold: 0.08,
+              rootMargin: "0px 0px 120px 0px", // Reveal 120px in advance so user never sees blank pop-in
+              threshold: 0.01,
             }
           );
         }

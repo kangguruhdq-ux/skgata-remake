@@ -9,8 +9,8 @@ export default function Footer() {
   const { schoolInfo, socialLinks } = useCMS();
 
   return (
-    <footer className="bg-slate-950 text-slate-400 pt-16 pb-8 border-t border-slate-800">
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-slate-950 text-slate-400 pt-14 pb-8 border-t border-slate-800 w-full max-w-full overflow-hidden">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-800/80 reveal-up">
           {/* Identity & Bio */}
           <div className="lg:col-span-4 space-y-4">

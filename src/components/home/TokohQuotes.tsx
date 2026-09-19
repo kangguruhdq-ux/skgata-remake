@@ -26,13 +26,13 @@ export default function TokohQuotes() {
   const active = quotesList[safeIndex];
 
   return (
-    <section className="py-16 sm:py-24 relative overflow-hidden bg-slate-50 dark:bg-skagata-950 text-slate-900 dark:text-white border-b border-slate-200 dark:border-skagata-800 transition-colors duration-300">
+    <section className="py-14 sm:py-20 relative overflow-hidden w-full max-w-full bg-slate-50 dark:bg-skagata-950 text-slate-900 dark:text-white border-b border-slate-200 dark:border-skagata-800 transition-colors duration-300">
       {/* Background Decorative Pattern & Gradient Orbs */}
       <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
       <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-emerald-500/10 dark:bg-emerald-600/15 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-amber-500/10 dark:bg-amber-600/15 blur-3xl pointer-events-none" />
 
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 reveal-up delay-1">
           <span className="font-serif text-skagata-700 dark:text-skagata-goldlight text-lg tracking-widest block mb-1 font-semibold">

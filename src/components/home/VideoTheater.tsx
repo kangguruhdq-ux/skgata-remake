@@ -78,11 +78,11 @@ export default function VideoTheater() {
   return (
     <section
       id="video-theater"
-      className="py-16 lg:py-24 bg-slate-900 text-white relative overflow-hidden"
+      className="py-14 lg:py-24 bg-slate-900 text-white relative overflow-hidden w-full max-w-full"
     >
       <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:28px_28px]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-10 reveal-up">
           <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest bg-emerald-500/15 px-3 py-1 rounded-full border border-emerald-500/25 inline-flex items-center gap-1.5">

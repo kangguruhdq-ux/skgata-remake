@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function CareerBanner() {
   return (
-    <section id="karir" className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="karir" className="py-14 bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 w-full max-w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="bg-gradient-to-r from-skagata-900 via-skagata-800 to-teal-900 rounded-3xl p-7 sm:p-10 text-white relative overflow-hidden shadow-2xl reveal-up">
           <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-10 translate-y-10">
             <i className="fa-solid fa-briefcase text-9xl text-white" />
