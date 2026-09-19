@@ -244,62 +244,72 @@ body {
   box-shadow: 0 25px 45px -12px rgba(4, 120, 87, 0.25);
 }
 
-/* Safe Multi-Directional Scroll Reveal System without horizontal screen breach */
-.reveal-up {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal-down {
-  opacity: 0;
-  transform: translateY(-15px);
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal-left {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal-right {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* Safe Vertical-Only Progressive Scroll Reveal System (Zero Horizontal Overflow) */
+.reveal-up,
+.reveal-left,
+.reveal-right,
 .reveal-zoom {
   opacity: 0;
-  transform: scale(0.96);
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-down {
+  opacity: 0;
+  transform: translate3d(0, -20px, 0);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .revealed {
   opacity: 1 !important;
-  transform: translate(0, 0) scale(1) !important;
+  transform: translate3d(0, 0, 0) !important;
+  will-change: auto !important;
 }
 
-/* Staggered Delay Tokens - Lightweight & Fast */
-.delay-1 { transition-delay: 0.05s; }
-.delay-2 { transition-delay: 0.1s; }
-.delay-3 { transition-delay: 0.15s; }
-.delay-4 { transition-delay: 0.2s; }
-.delay-5 { transition-delay: 0.25s; }
-.delay-6 { transition-delay: 0.3s; }
-.delay-7 { transition-delay: 0.35s; }
-.delay-8 { transition-delay: 0.4s; }
-.delay-9 { transition-delay: 0.45s; }
-.delay-10 { transition-delay: 0.5s; }
+/* Staggered Delay Tokens for Fluid Cascading Cards */
+.delay-1 { transition-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; }
+.delay-6 { transition-delay: 0.48s; }
+.delay-7 { transition-delay: 0.56s; }
+.delay-8 { transition-delay: 0.64s; }
+.delay-9 { transition-delay: 0.72s; }
+.delay-10 { transition-delay: 0.80s; }
 
 /* Mobile Performance & Responsiveness Overrides */
 @media (max-width: 768px) {
-  /* Immediately visible on mobile so no blank delays when scrolling */
+  /* Smooth vertical travel for mobile screens with zero horizontal overflow */
   .reveal-up,
-  .reveal-down,
   .reveal-left,
   .reveal-right,
   .reveal-zoom {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-    will-change: auto !important;
+    transform: translate3d(0, 16px, 0);
+    transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1), transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-down {
+    transform: translate3d(0, -14px, 0);
+    transition: opacity 0.48s cubic-bezier(0.16, 1, 0.3, 1), transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Snappier delays on mobile for responsive cascading */
+  .delay-1 { transition-delay: 0.04s; }
+  .delay-2 { transition-delay: 0.08s; }
+  .delay-3 { transition-delay: 0.12s; }
+  .delay-4 { transition-delay: 0.16s; }
+  .delay-5 { transition-delay: 0.20s; }
+  .delay-6 { transition-delay: 0.24s; }
+  .delay-7 { transition-delay: 0.28s; }
+  .delay-8 { transition-delay: 0.32s; }
+
+  /* Tactile touch feedback on mobile without blocking native scroll */
+  .interactive-card:active {
+    transform: scale(0.985);
+    transition: transform 0.15s ease-out;
   }
   
   /* Prevent 3D card tilt blowout on small screens */

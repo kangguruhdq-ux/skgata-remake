@@ -54,32 +54,42 @@ export default function SkagataPetCompanion({
 
   const [currentDialogue, setCurrentDialogue] = useState(defaultDialogues[0]);
 
-  // Eye tracking: Follow cursor anywhere on screen with smooth clamping
+  // Eye tracking: Follow cursor anywhere on screen with smooth rAF throttling
   useEffect(() => {
+    let rAFId: number | null = null;
+
     const handleMouseMove = (e: MouseEvent) => {
-      if (!petRef.current) return;
+      if (rAFId) return;
 
-      const rect = petRef.current.getBoundingClientRect();
-      const petCenterX = rect.left + rect.width / 2;
-      const petCenterY = rect.top + rect.height / 2 - 10;
+      rAFId = requestAnimationFrame(() => {
+        rAFId = null;
+        if (!petRef.current) return;
 
-      const dx = e.clientX - petCenterX;
-      const dy = e.clientY - petCenterY;
-      const angle = Math.atan2(dy, dx);
-      const distance = Math.hypot(dx, dy);
+        const rect = petRef.current.getBoundingClientRect();
+        const petCenterX = rect.left + rect.width / 2;
+        const petCenterY = rect.top + rect.height / 2 - 10;
 
-      // Max eye travel radius is 5.5 pixels
-      const maxRadius = 5.5;
-      const travel = Math.min(maxRadius, distance / 35);
+        const dx = e.clientX - petCenterX;
+        const dy = e.clientY - petCenterY;
+        const angle = Math.atan2(dy, dx);
+        const distance = Math.hypot(dx, dy);
 
-      setPupilOffset({
-        x: Math.cos(angle) * travel,
-        y: Math.sin(angle) * travel,
+        // Max eye travel radius is 5.5 pixels
+        const maxRadius = 5.5;
+        const travel = Math.min(maxRadius, distance / 35);
+
+        setPupilOffset({
+          x: Math.cos(angle) * travel,
+          y: Math.sin(angle) * travel,
+        });
       });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rAFId) cancelAnimationFrame(rAFId);
+    };
   }, []);
 
   // Natural Blinking Cycle (every 4 - 6 seconds)

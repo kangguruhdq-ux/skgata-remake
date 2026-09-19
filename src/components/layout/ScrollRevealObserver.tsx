@@ -13,19 +13,14 @@ export default function ScrollRevealObserver() {
       try {
         const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
-        // 1. Select all reveal elements
-        const revealTargets = document.querySelectorAll(
+        // Select all reveal elements
+        const revealTargets = document.querySelectorAll<HTMLElement>(
           ".reveal-up:not(.revealed), .reveal-down:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed), .reveal-zoom:not(.revealed)"
         );
 
-        // On mobile, reveal everything immediately with 0 delay and zero jank
-        if (isMobile) {
-          revealTargets.forEach((el) => el.classList.add("revealed"));
-          return;
-        }
-
         if (revealTargets.length === 0) return;
 
+        // Fallback for browsers without IntersectionObserver
         if (!("IntersectionObserver" in window)) {
           revealTargets.forEach((el) => el.classList.add("revealed"));
           return;
@@ -43,21 +38,32 @@ export default function ScrollRevealObserver() {
             },
             {
               root: null,
-              rootMargin: "0px 0px 120px 0px", // Reveal 120px in advance so user never sees blank pop-in
-              threshold: 0.01,
+              // On mobile: -20px bottom margin triggers fluid reveal as element enters screen
+              // On desktop: -40px bottom margin
+              rootMargin: isMobile ? "0px 0px -20px 0px" : "0px 0px -40px 0px",
+              threshold: 0.04,
             }
           );
         }
 
-        revealTargets.forEach((el) => observer!.observe(el));
+        revealTargets.forEach((el) => {
+          // If already scrolled past, reveal immediately so it doesn't stay hidden when scrolling up
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom < 0) {
+            el.classList.add("revealed");
+          } else {
+            observer!.observe(el);
+          }
+        });
       } catch (err) {
         console.warn("Scroll reveal observer setup:", err);
       }
     };
 
-    // Run on mount with staggered ticks
-    const t1 = setTimeout(setupObserver, 60);
-    const t2 = setTimeout(setupObserver, 350);
+    // Staggered ticks to capture dynamic & hydrated components
+    const t1 = setTimeout(setupObserver, 50);
+    const t2 = setTimeout(setupObserver, 250);
+    const t3 = setTimeout(setupObserver, 650);
 
     // Also re-run on custom CMS updates
     window.addEventListener("skagata_cms_updated", setupObserver);
@@ -65,6 +71,7 @@ export default function ScrollRevealObserver() {
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
+      clearTimeout(t3);
       window.removeEventListener("skagata_cms_updated", setupObserver);
       if (observer) {
         observer.disconnect();
