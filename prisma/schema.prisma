@@ -1,0 +1,117 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  role      String   @default("ADMIN") // SUPERADMIN, ADMIN, EDITOR
+  password  String   @default("skagata2026")
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  category    String   // Berita, Pengumuman, Artikel, SPMB
+  coverImage  String
+  author      String   @default("Humas SMKN 3 Yogyakarta")
+  views       Int      @default(0)
+  isFeatured  Boolean  @default(false)
+  isPublished Boolean  @default(true)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Major {
+  id             String   @id @default(cuid())
+  code           String   @unique // BP, TJKT, DPIB, TKP, TE, TITL, TKRO, TP
+  name           String
+  slug           String   @unique
+  colorBadge     String
+  tagline        String
+  description    String
+  curriculum     String   // text or JSON
+  careerProspects String  // text or JSON
+  industryPartners String // text or JSON
+  facilities     String   // text or JSON
+  coverImage     String
+  headOfMajor    String?
+  totalStudents  Int      @default(250)
+  isFeatured     Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model TeacherStaff {
+  id        String   @id @default(cuid())
+  name      String
+  nip       String?
+  role      String   // Kepala Sekolah, Wakil Kepala Sekolah, Guru Produktif, Guru Normatif/Adaptif, Tenaga Kependidikan
+  department String? // Kejuruan atau Bagian
+  subject   String?  // Mata Pelajaran
+  photo     String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model JobVacancy {
+  id          String   @id @default(cuid())
+  title       String
+  company     String
+  location    String
+  type        String   // Full-Time, Magang Industri, Program Jepang
+  description String
+  requirements String
+  deadline    DateTime
+  linkApply   String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ServiceLink {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // Akademik, Penilaian, Perpustakaan, Pengaduan, Administrasi
+  description String
+  url         String
+  icon        String
+  badge       String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SiteSetting {
+  id               String   @id @default("default")
+  schoolName       String   @default("SMK Negeri 3 Yogyakarta")
+  tagline          String   @default("Konsisten Mencetak Teknisi Unggul, Berkarakter Taruna & Budaya")
+  phone            String   @default("(0274) 513503")
+  email            String   @default("humas@smkn3jogja.sch.id")
+  address          String   @default("Jl. R.W. Monginsidi No. 2, Jetis, Yogyakarta (STM 2 Jetis)")
+  activeVideoId    String   @default("tJhzVg7Nq4g")
+  spmbActive       Boolean  @default(true)
+  spmbUrl          String   @default("https://smkn3jogja.sch.id/pengumuman/")
+  updatedAt        DateTime @updatedAt
+}
+
+model CmsData {
+  id        String   @id @default("singleton")
+  data      String   // Full JSON snapshot of CMSState
+  updatedAt DateTime @updatedAt
+}
