@@ -148,7 +148,7 @@ export function getInitialCMSState(): CMSState {
         portalItems: parsed.portalItems || INITIAL_PORTAL_ITEMS,
         tokohQuotes: (parsed.tokohQuotes || INITIAL_TOKOH_QUOTES).map((t: TokohQuoteItem) => {
           const init = INITIAL_TOKOH_QUOTES.find((item) => item.id === t.id);
-          if (init && (t.image?.includes("unsplash.com") || !t.image)) {
+          if (init && (!t.image || t.image.includes("unsplash.com") || t.image.includes("wikimedia.org") || !t.image.startsWith("/media/school/"))) {
             return { ...t, image: init.image };
           }
           return t;

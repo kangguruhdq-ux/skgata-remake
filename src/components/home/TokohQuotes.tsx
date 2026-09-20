@@ -95,9 +95,24 @@ export default function TokohQuotes() {
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-amber-500 p-0.5 shadow-md shrink-0">
                   <div className="w-full h-full rounded-2xl bg-slate-100 dark:bg-skagata-900 overflow-hidden flex items-center justify-center">
                     <img
-                      src={active.image}
+                      src={
+                        active.id === "sultan"
+                          ? "/media/school/sultan.webp"
+                          : active.id === "wikan"
+                          ? "/media/school/wikan.webp"
+                          : active.id === "hanung"
+                          ? "/media/school/hanung.webp"
+                          : (active.image?.startsWith("/media/school/") ? active.image : "/media/school/staff-331f777f37.webp")
+                      }
                       alt={active.name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      onError={(e) => {
+                        if (active.id === "sultan") e.currentTarget.src = "/media/school/sultan.webp";
+                        else if (active.id === "wikan") e.currentTarget.src = "/media/school/wikan.webp";
+                        else if (active.id === "hanung") e.currentTarget.src = "/media/school/hanung.webp";
+                        else e.currentTarget.src = "/media/school/staff-331f777f37.webp";
+                      }}
                     />
                   </div>
                 </div>

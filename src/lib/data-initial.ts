@@ -101,7 +101,7 @@ export const SCHOOL_INFO = {
   email: "humas@smkn3jogja.sch.id",
   headmaster: "Widada, S.Pd., M.Pd.",
   mapsUrl: "https://maps.google.com/?q=SMK+Negeri+3+Yogyakarta",
-  embedMaps: "https://maps.google.com/maps?q=SMK%20Negeri%203%20Yogyakarta&t=&z=16&ie=UTF8&iwloc=&output=embed",
+  embedMaps: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31624.921533353023!2d110.366028!3d-7.777609!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x34bffdcc5d618a71!2sSMK%20Negeri%203%20Jogja!5e0!3m2!1sen!2sid!4v1627018081002!5m2!1sen!2sid",
   stats: [
     { label: "Program Keahlian", value: "8", sub: "Industri 4.0 Terakreditasi A" },
     { label: "Taruna Aktif", value: "2.000+", sub: "Disiplin & Berintegritas" },
@@ -1472,7 +1472,7 @@ export const INITIAL_TOKOH_QUOTES: TokohQuoteItem[] = [
     badge: "Amanat Pemimpin DIY",
     quote:
       "Pendidikan kejuruan di Daerah Istimewa Yogyakarta memegang peranan krusial sebagai kawah candradimuka generasi muda. Lulusan SMK dituntut tidak hanya menguasai kecakapan teknologi industri modern, melainkan juga memiliki keluhuran budi pekerti, kepemimpinan berkarakter ketarunaan, serta komitmen menjaga peradaban dan nilai budaya adiluhung Yogyakarta.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sultan_Hamengkubuwono_X%2C_Governor_of_Special_Region_of_Yogyakarta.jpg/800px-Sultan_Hamengkubuwono_X%2C_Governor_of_Special_Region_of_Yogyakarta.jpg",
+    image: "/media/school/sultan.webp",
   },
   {
     id: "wikan",
@@ -1482,7 +1482,7 @@ export const INITIAL_TOKOH_QUOTES: TokohQuoteItem[] = [
     badge: "Apresiasi Ditjen Vokasi",
     quote:
       "SMK Negeri 3 Yogyakarta adalah perwujudan nyata konsep 'Link and Match 8+i' yang paripurna. Dengan mengawinkan kurikulum industri global, pembelajaran berbasis proyek riil (TEFA & BLUD), sertifikasi kompetensi bertaraf internasional, serta kedisiplinan ketarunaan, tamatan Skagata menjadi incaran utama dunia kerja nasional maupun mancanegara.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Wikan_Sakarinto_PhD.jpg",
+    image: "/media/school/wikan.webp",
   },
   {
     id: "hanung",
@@ -1492,7 +1492,7 @@ export const INITIAL_TOKOH_QUOTES: TokohQuoteItem[] = [
     badge: "Inspirasi Sineas Nasional",
     quote:
       "Ruang kreasi perfilman dan teknologi broadcasting di SMK Negeri 3 Yogyakarta membuktikan bahwa anak-anak muda mampu melahirkan karya sinematik berkualitas tinggi dengan teknologi modern tanpa tercerabut dari akar kearifan lokal. Yogyakarta adalah panggung cerita nusantara, dan Skagata adalah salah satu pabrik talenta kreatif terdepannya.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Hanung_Bramantyo%2C_Jogja-Netpac_Asian_Film_Festival%2C_2017-12-04_02.jpg/800px-Hanung_Bramantyo%2C_Jogja-Netpac_Asian_Film_Festival%2C_2017-12-04_02.jpg",
+    image: "/media/school/hanung.webp",
   },
 ];
 

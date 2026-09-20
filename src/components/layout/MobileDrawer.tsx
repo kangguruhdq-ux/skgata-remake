@@ -18,6 +18,8 @@ import {
   Building,
   Settings,
   Compass,
+  Users,
+  Network,
 } from "lucide-react";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 
@@ -142,6 +144,25 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               <span>Visi, Misi & 4 Pilar</span>
             </Link>
             <Link
+              href="/profil/struktur-organisasi"
+              onClick={onClose}
+              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+            >
+              <Network className="w-4 h-4 text-slate-400" />
+              <span>Struktur Organisasi</span>
+            </Link>
+            <Link
+              href="/profil/sdm"
+              onClick={onClose}
+              className="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-50/50 dark:bg-emerald-950/30 hover:bg-emerald-100 dark:hover:bg-emerald-950 transition"
+            >
+              <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex items-center justify-between w-full">
+                <span>Pendidik & Tenaga Kependidikan</span>
+                <span className="text-[10px] bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 font-bold px-1.5 py-0.5 rounded">148 Guru</span>
+              </div>
+            </Link>
+            <Link
               href="/profil/fasilitas"
               onClick={onClose}
               className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
@@ -154,7 +175,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           {/* Section Program Keahlian */}
           <div className={`pt-2 ${isOpen ? "drawer-item-4" : ""}`}>
             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
-              Akademik & Karir
+              Akademik & 8 Jurusan
             </span>
             <Link
               href="/program-keahlian"
@@ -162,8 +183,69 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
             >
               <GraduationCap className="w-4 h-4 text-slate-400" />
-              <span>Program Keahlian (8 Jurusan)</span>
+              <span>Program Keahlian (Semua Jurusan)</span>
             </Link>
+
+            {/* Direct links to 8 Jurusan */}
+            <div className="grid grid-cols-2 gap-1 px-1 my-1">
+              <Link
+                href="/jurusan/broadcasting-perfilman"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Broadcasting (BP)
+              </Link>
+              <Link
+                href="/jurusan/teknik-jaringan-komputer-telekomunikasi"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Jaringan (TJKT)
+              </Link>
+              <Link
+                href="/jurusan/desain-pemodelan-informasi-bangunan"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Desain BIM (DPIB)
+              </Link>
+              <Link
+                href="/jurusan/teknik-konstruksi-perumahan"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Konstruksi (TKP)
+              </Link>
+              <Link
+                href="/jurusan/teknik-elektronika"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Elektronika (TE)
+              </Link>
+              <Link
+                href="/jurusan/teknik-ketenagalistrikan"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Listrik (TITL)
+              </Link>
+              <Link
+                href="/jurusan/teknik-kendaraan-ringan-otomotif"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Otomotif (TKRO)
+              </Link>
+              <Link
+                href="/jurusan/teknik-pemesinan"
+                onClick={onClose}
+                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+              >
+                • Pemesinan (TP)
+              </Link>
+            </div>
+
             <Link
               href="/kuis-jurusan"
               onClick={onClose}

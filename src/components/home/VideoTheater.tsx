@@ -154,25 +154,24 @@ export default function VideoTheater() {
               </a>
             </div>
 
-            {/* Video Frame Container (Lazy-mounted iframe or crisp click-to-play poster) */}
-            <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-inner bg-black relative group">
+            {/* Video Frame Container (Always strict 16:9 ratio across all screens) */}
+            <div className="relative w-full pb-[56.25%] h-0 rounded-2xl overflow-hidden shadow-inner bg-black group">
               {isInView ? (
                 <iframe
                   key={activeVid.id}
-                  className="w-full h-full"
+                  className="absolute inset-0 w-full h-full border-0"
                   src={`https://www.youtube-nocookie.com/embed/${activeVid.id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`}
                   title={activeVid.fullTitle}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                  loading="lazy"
                 />
               ) : (
                 <button
                   type="button"
                   aria-label={`Putar ${activeVid.title}`}
                   onClick={() => setIsInView(true)}
-                  className="w-full h-full relative cursor-pointer group flex items-center justify-center bg-slate-950 overflow-hidden text-left"
+                  className="absolute inset-0 w-full h-full cursor-pointer group flex items-center justify-center bg-slate-950 overflow-hidden text-left"
                 >
                   <img
                     src={activeVid.poster || "/media/school/video-profil.webp"}
@@ -180,23 +179,23 @@ export default function VideoTheater() {
                     className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-between p-4 sm:p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-between p-3 sm:p-5">
                     <div className="flex justify-end">
-                      <span className="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md text-emerald-300 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-white/10">
+                      <span className="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md text-emerald-300 text-[10px] sm:text-[11px] font-semibold px-2.5 py-0.5 sm:py-1 rounded-full border border-white/10">
                         <Play className="w-3 h-3 fill-emerald-400 text-emerald-400" />
                         <span>Putar Video</span>
                       </span>
                     </div>
                     <div className="flex items-center justify-center my-auto">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.6)] group-hover:scale-110 active:scale-95 transition-transform">
-                        <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white ml-1" />
+                      <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.6)] group-hover:scale-110 active:scale-95 transition-transform">
+                        <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-white ml-1" />
                       </div>
                     </div>
                     <div className="space-y-0.5">
                       <p className="text-white text-xs sm:text-sm font-bold line-clamp-1">
                         {activeVid.title}
                       </p>
-                      <p className="text-slate-300 text-[11px] line-clamp-1">
+                      <p className="text-slate-300 text-[10.5px] sm:text-[11px] line-clamp-1">
                         {activeVid.subtitle}
                       </p>
                     </div>

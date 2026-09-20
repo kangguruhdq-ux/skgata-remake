@@ -101,8 +101,7 @@ function KabarContent() {
                     alt={post.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
-                      e.currentTarget.src =
-                        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80";
+                      e.currentTarget.src = "/media/school/kegiatan-1.webp";
                     }}
                   />
                   <span className="absolute top-3 left-3 bg-skagata-700 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-md uppercase tracking-wider shadow">

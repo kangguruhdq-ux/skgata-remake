@@ -874,7 +874,7 @@ export default function AdminProfilPage() {
                     organization: "Instansi / Lembaga",
                     badge: "Pesan Inspiratif",
                     quote: "Kutipan sambutan atau apresiasi tokoh terhadap SMKN 3 Yogyakarta...",
-                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+                    image: "/media/school/staff-331f777f37.webp",
                   },
                 ]);
               }}

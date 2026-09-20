@@ -30,33 +30,20 @@ export default function HeroSection() {
   const [desktopReady, setDesktopReady] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   const videoId = activeVideoId || "tJhzVg7Nq4g";
 
-  // Check mobile screen size to selectively render lightweight cinematic poster vs iframe
   useEffect(() => {
-    const handleResize = () => {
-      const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-      setIsMobile(window.matchMedia('(max-width: 1023px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches || !!connection?.saveData);
-    };
     const handleVisibility = () => setPageVisible(!document.hidden);
-    handleResize();
-    window.addEventListener("resize", handleResize, { passive: true });
     document.addEventListener("visibilitychange", handleVisibility);
     return () => {
-      window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 
-  // Defer desktop background looper until hero layout completes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDesktopReady(true);
-    }, 600);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Viewport Observer: Pause background iframe when user scrolls down away from Hero
+  // Viewport Observer: Pause background video when user scrolls down away from Hero
   useEffect(() => {
     if (!heroRef.current) return;
     const observer = new IntersectionObserver(
@@ -69,12 +56,22 @@ export default function HeroSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Play / Pause video based on visibility and user state
+  useEffect(() => {
+    if (!videoRef.current) return;
+    videoRef.current.defaultMuted = true;
+    videoRef.current.muted = true;
+    if (isInView && pageVisible && isPlaying) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isInView, pageVisible, isPlaying]);
+
   const handleEmblemClick = () => {
     setHaloActive(true);
     setTimeout(() => setHaloActive(false), 1000);
   };
-
-  const shouldRenderVideoLooper = !isMobile && isInView && pageVisible && isPlaying && desktopReady;
 
   return (
     <section
@@ -82,33 +79,35 @@ export default function HeroSection() {
       ref={heroRef}
       className="relative min-h-[85svh] lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-hidden py-8 sm:py-16 transition-colors duration-300"
     >
-      {/* 1. IMMERSIVE VIDEO BACKGROUND (Lightweight on mobile, Cinema looper on desktop) */}
+      {/* 1. IMMERSIVE VIDEO BACKGROUND (Lightweight local video looper with poster fallback) */}
       <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
-        {/* High-Definition Poster Image with GPU-accelerated Ken-Burns ambient drift on mobile */}
+        {/* High-Definition Local Poster Image */}
         <img
-          src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+          src="/media/school/video-profil.webp"
           alt="Latar Video Kampus SMKN 3 Yogyakarta"
-          className={`absolute inset-0 w-full h-full object-cover filter brightness-75 ${
-            isMobile ? "animate-hero-drift scale-105" : "scale-105"
-          }`}
-          onError={(e) => {
-            e.currentTarget.src =
-              "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-20-at-21.07.59-1-260x195.jpeg";
-          }}
+          className="absolute inset-0 w-full h-full object-cover filter brightness-75 scale-105"
         />
 
-        {/* Video Looper via YouTube Iframe (Active on desktop in-view, auto-paused when scrolled away) */}
-        {shouldRenderVideoLooper && (
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&loop=1&playlist=${videoId}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&enablejsapi=1`}
-            title="Video Suasana Kampus SMKN 3 Yogyakarta"
-            allow="autoplay; encrypted-media"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140vw] h-[140vh] max-w-none min-w-full min-h-full object-cover pointer-events-none opacity-60 filter brightness-90 contrast-110 scale-110 transition-opacity duration-1000"
+        {/* Local HTML5 Video Looper (Autoplay, muted, loop, playsinline on both mobile and desktop) */}
+        {isPlaying && (
+          <video
+            ref={videoRef}
+            src="/media/school/hero-bg.mp4"
+            poster="/media/school/video-profil.webp"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className={`absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-75 contrast-105 scale-105 transition-opacity duration-1000 ${
+              videoLoaded ? "opacity-75" : "opacity-0"
+            }`}
+            onLoadedData={() => setVideoLoaded(true)}
           />
         )}
 
         {/* Cinematic Vignette Overlay */}
-        <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-slate-950/45 backdrop-blur-[0.5px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/60" />
       </div>
 

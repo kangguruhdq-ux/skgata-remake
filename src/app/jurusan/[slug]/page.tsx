@@ -227,7 +227,7 @@ export default function MajorDetailPage({ params }: { params: { slug: string } }
                 <img
                   src={
                     major.headOfMajorPhoto ||
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80"
+                    "/media/school/staff-331f777f37.webp"
                   }
                   alt={major.headOfMajor}
                   className="w-full h-full object-cover"
