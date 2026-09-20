@@ -56,7 +56,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-skagata-900 text-white flex items-center justify-center p-1 shadow-sm">
               <img
-                src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                src="/media/school/logo.webp"
                 alt="Logo"
                 className="w-full h-full object-contain"
               />

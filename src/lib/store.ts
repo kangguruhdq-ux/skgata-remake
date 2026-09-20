@@ -66,6 +66,8 @@ export interface CMSState {
 }
 
 const STORAGE_KEY = "skagata_cms_v2";
+let sharedServerState: CMSState | null = null;
+let sharedServerRequest: Promise<CMSState | null> | null = null;
 
 const DEFAULT_ANNOUNCEMENT: AnnouncementBanner = {
   enabled: true,
@@ -106,10 +108,14 @@ export function getInitialCMSState(): CMSState {
       const parsed = JSON.parse(cached);
       return {
         schoolInfo: parsed.schoolInfo || SCHOOL_INFO,
-        majors: parsed.majors || MAJORS_DATA,
+        majors: (parsed.majors && Array.isArray(parsed.majors) && !parsed.majors.some((m: any) => m.coverImage?.includes("unsplash.com") || m.gallery?.some((g: any) => g.url?.includes("unsplash.com"))))
+          ? parsed.majors
+          : MAJORS_DATA,
         services: parsed.services || SERVICES_DATA,
         posts: parsed.posts || POSTS_DATA,
-        teachers: parsed.teachers || TEACHERS_DATA,
+        teachers: (parsed.teachers && Array.isArray(parsed.teachers) && parsed.teachers.length > 10 && !parsed.teachers.some((t: any) => t.photo?.includes("unsplash.com")))
+          ? parsed.teachers
+          : TEACHERS_DATA,
         jobs: parsed.jobs || JOBS_DATA,
         videos: parsed.videos || VIDEOS_DATA,
         timeline: parsed.timeline || INITIAL_TIMELINE,
@@ -182,6 +188,9 @@ export function getInitialCMSState(): CMSState {
 
 export function saveCMSState(state: CMSState) {
   if (typeof window !== "undefined") {
+    // Keep every CMS consumer in the same tab on one in-memory snapshot. This
+    // prevents a homepage with many sections from issuing a request per section.
+    sharedServerState = state;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       window.dispatchEvent(new Event("skagata_cms_updated"));
@@ -200,6 +209,37 @@ export function saveCMSState(state: CMSState) {
   }
 }
 
+function fetchSharedCMSState(): Promise<CMSState | null> {
+  if (sharedServerState) return Promise.resolve(sharedServerState);
+  if (sharedServerRequest) return sharedServerRequest;
+
+  sharedServerRequest = fetch("/api/cms")
+    .then((res) => res.json())
+    .then((resData) => {
+      if (resData.status !== "success" || !resData.data) return null;
+      const base = getInitialCMSState();
+      const serverState: CMSState = {
+        ...base,
+        ...resData.data,
+        profile: {
+          ...INITIAL_PROFILE,
+          ...(resData.data.profile || {}),
+          identity: { ...INITIAL_PROFILE.identity, ...((resData.data.profile && resData.data.profile.identity) || {}) },
+          historyHero: { ...INITIAL_PROFILE.historyHero, ...((resData.data.profile && resData.data.profile.historyHero) || {}) },
+        },
+        chatbotSettings: { ...INITIAL_CHATBOT_SETTINGS, ...(resData.data.chatbotSettings || {}) },
+      };
+      sharedServerState = serverState;
+      return serverState;
+    })
+    .catch((err) => {
+      console.warn("Server CMS sync skipped, using local cache:", err);
+      return null;
+    });
+
+  return sharedServerRequest;
+}
+
 export function useCMS() {
   const [state, setState] = useState<CMSState>(getInitialCMSState);
 
@@ -208,45 +248,20 @@ export function useCMS() {
     setState(getInitialCMSState());
 
     // 2. Fetch latest server database state in background to ensure zero data loss on refresh/deploy
-    fetch("/api/cms")
-      .then((res) => res.json())
-      .then((resData) => {
-        if (resData.status === "success" && resData.data) {
-          const serverState: CMSState = {
-            ...getInitialCMSState(),
-            ...resData.data,
-            profile: {
-              ...INITIAL_PROFILE,
-              ...(resData.data.profile || {}),
-              identity: {
-                ...INITIAL_PROFILE.identity,
-                ...((resData.data.profile && resData.data.profile.identity) || {}),
-              },
-              historyHero: {
-                ...INITIAL_PROFILE.historyHero,
-                ...((resData.data.profile && resData.data.profile.historyHero) || {}),
-              },
-            },
-            chatbotSettings: {
-              ...INITIAL_CHATBOT_SETTINGS,
-              ...(resData.data.chatbotSettings || {}),
-            },
-          };
-
-          setState(serverState);
-          try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(serverState));
-          } catch (e) {
-            // ignore quota error
-          }
-        }
-      })
-      .catch((err) => {
-        console.warn("Server CMS sync skipped, using local cache:", err);
-      });
+    fetchSharedCMSState().then((serverState) => {
+      if (!serverState) return;
+      setState(serverState);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(serverState));
+      } catch (e) {
+        // ignore quota error
+      }
+    });
 
     const handleUpdate = () => {
-      setState(getInitialCMSState());
+      const next = getInitialCMSState();
+      sharedServerState = next;
+      setState(next);
     };
     window.addEventListener("skagata_cms_updated", handleUpdate);
     return () => window.removeEventListener("skagata_cms_updated", handleUpdate);

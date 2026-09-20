@@ -11,21 +11,30 @@ export default function SDMPage() {
 
   const departments = [
     "Semua",
-    "Pimpinan Sekolah",
-    "Manajemen Sekolah",
-    "Ketarunaan & Kesiswaan",
-    "Teknik Mesin (Pemesinan)",
-    "Teknik Jaringan Komputer & Telekomunikasi",
-    "Broadcasting & Perfilman",
+    "Pendidik (Guru)",
+    "Tenaga Kependidikan",
+    "Pimpinan & Manajemen",
+    "Instruktur Taruna",
   ];
 
   const filteredTeachers = TEACHERS_DATA.filter((teacher) => {
+    const term = searchTerm.toLowerCase();
     const matchesSearch =
-      teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      teacher.role.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      teacher.nip.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDept =
-      selectedDept === "Semua" || teacher.department === selectedDept;
+      teacher.name.toLowerCase().includes(term) ||
+      teacher.role.toLowerCase().includes(term) ||
+      (teacher.nip && teacher.nip.toLowerCase().includes(term));
+
+    let matchesDept = true;
+    if (selectedDept === "Pendidik (Guru)") {
+      matchesDept = teacher.department === "Pendidik";
+    } else if (selectedDept === "Tenaga Kependidikan") {
+      matchesDept = teacher.department === "Tenaga Kependidikan";
+    } else if (selectedDept === "Pimpinan & Manajemen") {
+      matchesDept = /kepala|waka|ka\./i.test(teacher.role);
+    } else if (selectedDept === "Instruktur Taruna") {
+      matchesDept = /taruna|instruktur/i.test(teacher.role);
+    }
+
     return matchesSearch && matchesDept;
   });
 
@@ -103,6 +112,7 @@ export default function SDMPage() {
                   src={teacher.photo}
                   alt={teacher.name}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
 
@@ -114,7 +124,9 @@ export default function SDMPage() {
                   {teacher.name}
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{teacher.role}</p>
-                <p className="text-[11px] text-slate-400 font-mono mt-1">NIP. {teacher.nip}</p>
+                <p className="text-[11px] text-slate-400 font-mono mt-1">
+                  {teacher.nip ? `NIP. ${teacher.nip}` : "SMKN 3 Yogyakarta"}
+                </p>
               </div>
             </div>
           ))}

@@ -62,7 +62,7 @@ export default function VisiMisiPage() {
             <div className="md:col-span-4">
               <div className="rounded-2xl overflow-hidden shadow-md border border-white/20 aspect-[4/3] bg-slate-950/80 group flex items-center justify-center p-6">
                 <img
-                  src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-1024x1024.png"
+                  src="/media/school/logo.webp"
                   alt="Lambang Kehormatan SMK Negeri 3 Yogyakarta"
                   className="w-full h-full object-contain filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500"
                 />

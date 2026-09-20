@@ -1,0 +1,1396 @@
+{
+  "assets": {
+    "logo": "/media/school/logo.webp",
+    "gerbang": "/media/school/gerbang.webp",
+    "organisasi": "/media/school/organisasi.webp",
+    "pendidik": "/media/school/pendidik.webp",
+    "bp-info-1": "/media/school/bp-info-1.webp",
+    "tjkt-info-1": "/media/school/tjkt-info-1.webp",
+    "dpib-info-1": "/media/school/dpib-info-1.webp",
+    "dpib-info-2": "/media/school/dpib-info-2.webp",
+    "dpib-info-3": "/media/school/dpib-info-3.webp",
+    "dpib-info-4": "/media/school/dpib-info-4.webp",
+    "tkp-info-1": "/media/school/tkp-info-1.webp",
+    "elektronika-info-1": "/media/school/elektronika-info-1.webp",
+    "listrik-info-1": "/media/school/listrik-info-1.webp",
+    "otomotif-info-1": "/media/school/otomotif-info-1.webp",
+    "mesin-info-1": "/media/school/mesin-info-1.webp",
+    "bp-cover": "/media/school/bp-cover.webp",
+    "tjkt-cover": "/media/school/tjkt-cover.webp",
+    "dpib-cover": "/media/school/dpib-cover.webp",
+    "tkp-cover": "/media/school/dpib-cover.webp",
+    "elektronika-cover": "/media/school/elektronika-cover.webp",
+    "listrik-cover": "/media/school/listrik-cover.webp",
+    "otomotif-cover": "/media/school/otomotif-cover.webp",
+    "mesin-cover": "/media/school/mesin-cover.webp",
+    "jepang-1": "/media/school/jepang-1.webp",
+    "jepang-2": "/media/school/jepang-2.webp",
+    "jepang-3": "/media/school/jepang-3.webp",
+    "budaya-1": "/media/school/budaya-1.webp",
+    "budaya-2": "/media/school/budaya-2.webp",
+    "budaya-3": "/media/school/budaya-3.webp",
+    "festa-1": "/media/school/festa-1.webp",
+    "festa-2": "/media/school/festa-2.webp",
+    "festa-3": "/media/school/festa-3.webp",
+    "modena-1": "/media/school/modena-1.webp",
+    "modena-2": "/media/school/modena-2.webp",
+    "modena-3": "/media/school/modena-3.webp",
+    "krida-1": "/media/school/krida-1.webp",
+    "krida-2": "/media/school/krida-2.webp",
+    "krida-3": "/media/school/krida-3.webp",
+    "paskibraka-1": "/media/school/paskibraka-1.webp",
+    "paskibraka-2": "/media/school/paskibraka-2.webp",
+    "paskibraka-3": "/media/school/paskibraka-3.webp",
+    "spmb-1": "/media/school/spmb-1.webp",
+    "spmb-2": "/media/school/spmb-2.webp",
+    "lks-1": "/media/school/lks-1.webp",
+    "lks-2": "/media/school/lks-2.webp",
+    "lks-3": "/media/school/lks-3.webp",
+    "karir-1": "/media/school/karir-1.webp",
+    "karir-2": "/media/school/karir-2.webp",
+    "karir-3": "/media/school/karir-3.webp",
+    "karir-4": "/media/school/karir-4.webp",
+    "workshop-bp-1": "/media/school/workshop-bp-1.webp",
+    "workshop-bp-2": "/media/school/workshop-bp-2.webp",
+    "staff-331f777f37": "/media/school/staff-331f777f37.webp",
+    "staff-596c0f3b81": "/media/school/staff-596c0f3b81.webp",
+    "staff-0fe38e6a47": "/media/school/staff-0fe38e6a47.webp",
+    "staff-fea8149740": "/media/school/staff-fea8149740.webp",
+    "staff-6ba7acbf0d": "/media/school/staff-6ba7acbf0d.webp",
+    "staff-b36682c359": "/media/school/staff-b36682c359.webp",
+    "staff-632be8be40": "/media/school/staff-632be8be40.webp",
+    "staff-617cf6b4a6": "/media/school/staff-617cf6b4a6.webp",
+    "staff-4472419f87": "/media/school/staff-4472419f87.webp",
+    "staff-bf70ba66ac": "/media/school/staff-bf70ba66ac.webp",
+    "staff-06935a244d": "/media/school/staff-06935a244d.webp",
+    "staff-e2cd63839b": "/media/school/staff-e2cd63839b.webp",
+    "staff-a6dcdc01c7": "/media/school/staff-a6dcdc01c7.webp",
+    "staff-17afc1cf9f": "/media/school/staff-17afc1cf9f.webp",
+    "staff-4c44b66dc5": "/media/school/staff-4c44b66dc5.webp",
+    "staff-2fd03f13d9": "/media/school/staff-2fd03f13d9.webp",
+    "staff-1f2d040b10": "/media/school/staff-1f2d040b10.webp",
+    "staff-9490d9a2cd": "/media/school/staff-9490d9a2cd.webp",
+    "staff-fe4facdb04": "/media/school/staff-fe4facdb04.webp",
+    "staff-e5f7f8ea72": "/media/school/staff-e5f7f8ea72.webp",
+    "staff-6167d7f6e5": "/media/school/staff-6167d7f6e5.webp",
+    "staff-fb901aff94": "/media/school/staff-fb901aff94.webp",
+    "staff-56382280ec": "/media/school/staff-56382280ec.webp",
+    "staff-c5d7963e80": "/media/school/staff-c5d7963e80.webp",
+    "staff-9fb582f12f": "/media/school/staff-9fb582f12f.webp",
+    "staff-5b763f80a3": "/media/school/staff-5b763f80a3.webp",
+    "staff-5886e13ab3": "/media/school/staff-5886e13ab3.webp",
+    "staff-cd493e5e35": "/media/school/staff-cd493e5e35.webp",
+    "staff-a6c962e26a": "/media/school/staff-a6c962e26a.webp",
+    "staff-9ffe0708f7": "/media/school/staff-9ffe0708f7.webp",
+    "staff-50bcef6d8a": "/media/school/staff-50bcef6d8a.webp",
+    "staff-a0faeac8d3": "/media/school/staff-a0faeac8d3.webp",
+    "staff-14845cc98f": "/media/school/staff-14845cc98f.webp",
+    "staff-a4afc17420": "/media/school/staff-a4afc17420.webp",
+    "staff-c5d343ad99": "/media/school/staff-c5d343ad99.webp",
+    "staff-3265e09b57": "/media/school/staff-3265e09b57.webp",
+    "staff-e17146a5fd": "/media/school/staff-e17146a5fd.webp",
+    "staff-1d03b522ab": "/media/school/staff-1d03b522ab.webp",
+    "staff-19710ccb0c": "/media/school/staff-19710ccb0c.webp",
+    "staff-75a9dd1d3c": "/media/school/staff-75a9dd1d3c.webp",
+    "staff-5b5f93adc6": "/media/school/staff-5b5f93adc6.webp",
+    "staff-f5153bbea6": "/media/school/staff-f5153bbea6.webp",
+    "staff-48ceaf811c": "/media/school/staff-48ceaf811c.webp",
+    "staff-bad899be88": "/media/school/staff-bad899be88.webp",
+    "staff-b1086a6ab2": "/media/school/staff-b1086a6ab2.webp",
+    "staff-d96fa6e8e5": "/media/school/staff-d96fa6e8e5.webp",
+    "staff-b01b29382f": "/media/school/staff-b01b29382f.webp",
+    "staff-866346b00e": "/media/school/staff-866346b00e.webp",
+    "staff-31d61b1f19": "/media/school/staff-31d61b1f19.webp",
+    "staff-353c170c69": "/media/school/staff-353c170c69.webp",
+    "staff-1dd9b12e6f": "/media/school/staff-1dd9b12e6f.webp",
+    "staff-ccef2fc827": "/media/school/staff-ccef2fc827.webp",
+    "staff-e59ddfadcc": "/media/school/staff-e59ddfadcc.webp",
+    "staff-f784269a0b": "/media/school/staff-f784269a0b.webp",
+    "staff-04fb41c7a5": "/media/school/staff-04fb41c7a5.webp",
+    "staff-2825b64577": "/media/school/staff-2825b64577.webp",
+    "staff-5dc6e41d1b": "/media/school/staff-5dc6e41d1b.webp",
+    "staff-1fb90bb48a": "/media/school/staff-1fb90bb48a.webp",
+    "staff-096f99403b": "/media/school/staff-096f99403b.webp",
+    "staff-5194e5e35e": "/media/school/staff-5194e5e35e.webp",
+    "staff-658dc03246": "/media/school/staff-658dc03246.webp",
+    "staff-bf1d4bfce1": "/media/school/staff-bf1d4bfce1.webp",
+    "staff-2ed8e62356": "/media/school/staff-2ed8e62356.webp",
+    "staff-f1972864ca": "/media/school/staff-f1972864ca.webp",
+    "staff-2add0e2a85": "/media/school/staff-2add0e2a85.webp",
+    "staff-0189b0306b": "/media/school/staff-0189b0306b.webp",
+    "staff-c4566cb0ef": "/media/school/staff-c4566cb0ef.webp",
+    "staff-50538ff261": "/media/school/staff-50538ff261.webp",
+    "staff-277459ec52": "/media/school/staff-277459ec52.webp",
+    "staff-2a9c400e0e": "/media/school/staff-2a9c400e0e.webp",
+    "staff-27d45748ef": "/media/school/staff-27d45748ef.webp",
+    "staff-a66b29cde0": "/media/school/staff-a66b29cde0.webp",
+    "staff-1d8f0361f1": "/media/school/staff-1d8f0361f1.webp",
+    "staff-d906e06ad8": "/media/school/staff-d906e06ad8.webp",
+    "staff-d4a6adec28": "/media/school/staff-d4a6adec28.webp",
+    "staff-dc8fb4a8a5": "/media/school/staff-dc8fb4a8a5.webp",
+    "staff-81db712db3": "/media/school/staff-81db712db3.webp",
+    "staff-4d4fcaf6f3": "/media/school/staff-4d4fcaf6f3.webp",
+    "staff-08302260b4": "/media/school/staff-08302260b4.webp",
+    "staff-628320e525": "/media/school/staff-628320e525.webp",
+    "staff-d9b5cd950e": "/media/school/staff-d9b5cd950e.webp",
+    "staff-040774694d": "/media/school/staff-040774694d.webp",
+    "staff-1d97ba9eec": "/media/school/staff-1d97ba9eec.webp",
+    "staff-ff9c2fd45f": "/media/school/staff-ff9c2fd45f.webp",
+    "staff-af41687286": "/media/school/staff-af41687286.webp",
+    "staff-d6ebc19088": "/media/school/staff-d6ebc19088.webp",
+    "staff-e0bb9113ca": "/media/school/staff-e0bb9113ca.webp",
+    "staff-497488f47a": "/media/school/staff-497488f47a.webp",
+    "staff-917a615c30": "/media/school/staff-917a615c30.webp",
+    "staff-c871d16654": "/media/school/staff-c871d16654.webp",
+    "staff-069f0410cd": "/media/school/staff-069f0410cd.webp",
+    "staff-a7900f4769": "/media/school/staff-a7900f4769.webp",
+    "staff-43e879043a": "/media/school/staff-43e879043a.webp",
+    "staff-62e6d26738": "/media/school/staff-62e6d26738.webp",
+    "staff-6a6bf27177": "/media/school/staff-6a6bf27177.webp",
+    "staff-77e0a3e3c5": "/media/school/staff-77e0a3e3c5.webp",
+    "staff-4608fbefbb": "/media/school/staff-4608fbefbb.webp",
+    "staff-c5d3aea4e1": "/media/school/staff-c5d3aea4e1.webp",
+    "staff-c57ea3de13": "/media/school/staff-c57ea3de13.webp",
+    "staff-b7c75c3a10": "/media/school/staff-b7c75c3a10.webp",
+    "staff-44a968a87d": "/media/school/staff-44a968a87d.webp",
+    "staff-d776e5897c": "/media/school/staff-d776e5897c.webp",
+    "staff-bbac80a5e5": "/media/school/staff-bbac80a5e5.webp",
+    "staff-201be00b58": "/media/school/staff-201be00b58.webp",
+    "staff-115467b7b9": "/media/school/staff-115467b7b9.webp",
+    "staff-76f8cb7f3b": "/media/school/staff-76f8cb7f3b.webp",
+    "staff-0d955fa9a3": "/media/school/staff-0d955fa9a3.webp",
+    "staff-8005c530e5": "/media/school/staff-8005c530e5.webp",
+    "staff-8200a23fe6": "/media/school/staff-8200a23fe6.webp",
+    "staff-0d2fbcdfc5": "/media/school/staff-0d2fbcdfc5.webp",
+    "staff-10e1c5423d": "/media/school/staff-10e1c5423d.webp",
+    "staff-aa437935fb": "/media/school/staff-aa437935fb.webp",
+    "staff-9bfa8ca5af": "/media/school/staff-9bfa8ca5af.webp",
+    "staff-7505a0d44a": "/media/school/staff-7505a0d44a.webp",
+    "staff-1a2031617e": "/media/school/staff-1a2031617e.webp",
+    "staff-bdbfd38b09": "/media/school/staff-bdbfd38b09.webp",
+    "staff-9367a6b3ac": "/media/school/staff-9367a6b3ac.webp",
+    "staff-2ee6990ae9": "/media/school/staff-2ee6990ae9.webp",
+    "staff-1851f41763": "/media/school/staff-1851f41763.webp",
+    "staff-09b431de8f": "/media/school/staff-09b431de8f.webp",
+    "staff-eea80aea48": "/media/school/staff-eea80aea48.webp",
+    "staff-95614b701d": "/media/school/staff-95614b701d.webp",
+    "staff-118a806140": "/media/school/staff-118a806140.webp",
+    "staff-936070cc10": "/media/school/staff-936070cc10.webp",
+    "staff-12e3ac8cfb": "/media/school/staff-12e3ac8cfb.webp",
+    "staff-6850af02c9": "/media/school/staff-6850af02c9.webp",
+    "staff-8f66d5c2f8": "/media/school/staff-8f66d5c2f8.webp",
+    "staff-8925047e6e": "/media/school/staff-8925047e6e.webp",
+    "staff-71f1744298": "/media/school/staff-71f1744298.webp",
+    "staff-ab245a279e": "/media/school/staff-ab245a279e.webp",
+    "staff-7d16f91629": "/media/school/staff-7d16f91629.webp",
+    "staff-a3562b68db": "/media/school/staff-a3562b68db.webp",
+    "staff-912ea4a60b": "/media/school/staff-912ea4a60b.webp",
+    "staff-d69ea6d8a1": "/media/school/staff-d69ea6d8a1.webp",
+    "staff-e55130b8ca": "/media/school/staff-e55130b8ca.webp",
+    "staff-3880e8c3a7": "/media/school/staff-3880e8c3a7.webp",
+    "staff-c281f07b34": "/media/school/staff-c281f07b34.webp",
+    "staff-a0642f30ec": "/media/school/staff-a0642f30ec.webp",
+    "staff-1692569ced": "/media/school/staff-1692569ced.webp",
+    "staff-0813473191": "/media/school/staff-0813473191.webp",
+    "staff-d7be9e3bab": "/media/school/staff-d7be9e3bab.webp",
+    "staff-712b592082": "/media/school/staff-712b592082.webp",
+    "staff-1cc57a34a8": "/media/school/staff-1cc57a34a8.webp",
+    "staff-b1783a20a2": "/media/school/staff-b1783a20a2.webp",
+    "staff-36c55a1b8e": "/media/school/staff-36c55a1b8e.webp",
+    "staff-5b0d5ed3e3": "/media/school/staff-5b0d5ed3e3.webp",
+    "staff-a393b236c1": "/media/school/staff-a393b236c1.webp",
+    "staff-c47e13ca08": "/media/school/staff-c47e13ca08.webp",
+    "video-profil": "/media/school/video-profil.webp",
+    "video-taruna-1": "/media/school/video-taruna-1.webp",
+    "video-taruna-2": "/media/school/video-taruna-2.webp",
+    "sultan": "/media/school/sultan.webp",
+    "wikan": "/media/school/wikan.webp",
+    "hanung": "/media/school/hanung.webp"
+  },
+  "teachers": [
+    {
+      "id": "staff-331f777f37",
+      "name": "WIDADA, S.Pd., M.Pd.",
+      "role": "Kepala Sekolah",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-331f777f37.webp"
+    },
+    {
+      "id": "staff-596c0f3b81",
+      "name": "BETTI SRI PURWANI, S.Pd, M.Eng",
+      "role": "Waka Sarana dan Prasarana",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-596c0f3b81.webp"
+    },
+    {
+      "id": "staff-0fe38e6a47",
+      "name": "FAIZ MUDHOKI, S.Pd",
+      "role": "Waka Hubungan Masyarakat",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-0fe38e6a47.webp"
+    },
+    {
+      "id": "staff-fea8149740",
+      "name": "Agung Hary Wibowo, S.ST",
+      "role": "Guru TKJ · KPK  T. Informatika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-fea8149740.webp"
+    },
+    {
+      "id": "staff-6ba7acbf0d",
+      "name": "AGUS MANAJI, S.Si",
+      "role": "Guru IPAS",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-6ba7acbf0d.webp"
+    },
+    {
+      "id": "staff-b36682c359",
+      "name": "AJI PANULAR SEJATI, S.P",
+      "role": "Guru IPAS",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-b36682c359.webp"
+    },
+    {
+      "id": "staff-632be8be40",
+      "name": "ALI ANTON SENOAJI, ST., M.Eng.",
+      "role": "Guru DPIB",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-632be8be40.webp"
+    },
+    {
+      "id": "staff-617cf6b4a6",
+      "name": "ARGA DANIATI, S.Pd",
+      "role": "Guru Matematika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-617cf6b4a6.webp"
+    },
+    {
+      "id": "staff-4472419f87",
+      "name": "ARPENI RAHMAWATI, S.Pd",
+      "role": "Guru Bahasa Jawa",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-4472419f87.webp"
+    },
+    {
+      "id": "staff-bf70ba66ac",
+      "name": "ASIH KARDIYONO, S.Pd",
+      "role": "Guru Penjaskes",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-bf70ba66ac.webp"
+    },
+    {
+      "id": "staff-06935a244d",
+      "name": "BAMBANG YUNIANTO, S.Pd",
+      "role": "KPK T. Listrik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-06935a244d.webp"
+    },
+    {
+      "id": "staff-e2cd63839b",
+      "name": "BEKTI SUTRISNA, S.Pd",
+      "role": "KPK T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-e2cd63839b.webp"
+    },
+    {
+      "id": "staff-a6dcdc01c7",
+      "name": "Dra. BRANGTYAMARI",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-a6dcdc01c7.webp"
+    },
+    {
+      "id": "staff-17afc1cf9f",
+      "name": "BUDI SUPRIHATIN, S.Pd",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-17afc1cf9f.webp"
+    },
+    {
+      "id": "staff-4c44b66dc5",
+      "name": "DAHONO SETYAWAN, S.Pd.T",
+      "role": "Guru T. Informatika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-4c44b66dc5.webp"
+    },
+    {
+      "id": "staff-2fd03f13d9",
+      "name": "DENI PUJI RAHAYU, S.T.",
+      "role": "Guru Multimedia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-2fd03f13d9.webp"
+    },
+    {
+      "id": "staff-1f2d040b10",
+      "name": "DIAN UNGKI YUNITA DEWI, S.Pd",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-1f2d040b10.webp"
+    },
+    {
+      "id": "staff-9490d9a2cd",
+      "name": "Dra. DWI ASTUTI MULATSIH",
+      "role": "Guru Produk Kreatif dan Kewirausahaan",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-9490d9a2cd.webp"
+    },
+    {
+      "id": "staff-fe4facdb04",
+      "name": "ERNA SETIAWATI,S.Pd",
+      "role": "Guru Bahasa Inggris",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-fe4facdb04.webp"
+    },
+    {
+      "id": "staff-e5f7f8ea72",
+      "name": "ETY AMBARSIH, S.Pd",
+      "role": "Guru Penjaskes",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-e5f7f8ea72.webp"
+    },
+    {
+      "id": "staff-6167d7f6e5",
+      "name": "FEBRIYANA, S.T.",
+      "role": "Guru T. Informatika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-6167d7f6e5.webp"
+    },
+    {
+      "id": "staff-fb901aff94",
+      "name": "HARNANTO, S.Pd, M.Si",
+      "role": "Guru Matematika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-fb901aff94.webp"
+    },
+    {
+      "id": "staff-56382280ec",
+      "name": "Drs. HERI SADWANTO",
+      "role": "Guru Penjaskes",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-56382280ec.webp"
+    },
+    {
+      "id": "staff-c5d7963e80",
+      "name": "HERU JATMIKO, S.Pd",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-c5d7963e80.webp"
+    },
+    {
+      "id": "staff-9fb582f12f",
+      "name": "HERU MULYONO, S.Pd",
+      "role": "Guru T. Listrik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-9fb582f12f.webp"
+    },
+    {
+      "id": "staff-5b763f80a3",
+      "name": "Drs. HERU WIDADA",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-5b763f80a3.webp"
+    },
+    {
+      "id": "staff-5886e13ab3",
+      "name": "IRFAN KRISNA SAPUTRA, S.Pd.T, M.Eng",
+      "role": "Guru DPIB",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-5886e13ab3.webp"
+    },
+    {
+      "id": "staff-cd493e5e35",
+      "name": "JUMARI, S.Pd.T, M.Eng",
+      "role": "Guru T. Elektronika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-cd493e5e35.webp"
+    },
+    {
+      "id": "staff-a6c962e26a",
+      "name": "KAKA DWI SAPTANA PUTRA, S.Pd",
+      "role": "Guru T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-a6c962e26a.webp"
+    },
+    {
+      "id": "staff-9ffe0708f7",
+      "name": "KUSAINI, S.Pd.",
+      "role": "Guru PPKn",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-9ffe0708f7.webp"
+    },
+    {
+      "id": "staff-50bcef6d8a",
+      "name": "MARILIA DWI RATNAWATI, S.Pd",
+      "role": "Guru Bahasa Indonesia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-50bcef6d8a.webp"
+    },
+    {
+      "id": "staff-a0faeac8d3",
+      "name": "MARYADI, S.Pd.T",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-a0faeac8d3.webp"
+    },
+    {
+      "id": "staff-14845cc98f",
+      "name": "MARYONO, S.Pd",
+      "role": "Waka Kesiswaan",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-14845cc98f.webp"
+    },
+    {
+      "id": "staff-a4afc17420",
+      "name": "MARYULI DARMAWAN, S.Pd,S.ST,M.Eng",
+      "role": "KPK T. Informatika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-a4afc17420.webp"
+    },
+    {
+      "id": "staff-c5d343ad99",
+      "name": "MOEHAMAT SYOFAN, S.Pd",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-c5d343ad99.webp"
+    },
+    {
+      "id": "staff-3265e09b57",
+      "name": "MUCH. WARSONO, S.S",
+      "role": "Guru Sejarah",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-3265e09b57.webp"
+    },
+    {
+      "id": "staff-e17146a5fd",
+      "name": "MUH NURKOLIS, S.Pd, MT",
+      "role": "Guru T. Mesin · LSP · Ketua LSP",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-e17146a5fd.webp"
+    },
+    {
+      "id": "staff-1d03b522ab",
+      "name": "Drs. MUHAMMAD HASANNUDDIN",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-1d03b522ab.webp"
+    },
+    {
+      "id": "staff-19710ccb0c",
+      "name": "MURAJIYONO, S.Pd",
+      "role": "KPK T. Pemesinan",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-19710ccb0c.webp"
+    },
+    {
+      "id": "staff-75a9dd1d3c",
+      "name": "NOORTRI KORNILAWATI, S.Pd",
+      "role": "Guru Matematika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-75a9dd1d3c.webp"
+    },
+    {
+      "id": "staff-5b5f93adc6",
+      "name": "NOR SAIS, S.Pd",
+      "role": "Guru Bahasa Inggris",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-5b5f93adc6.webp"
+    },
+    {
+      "id": "staff-f5153bbea6",
+      "name": "Dra. NUR FARIDA SURYANI",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-f5153bbea6.webp"
+    },
+    {
+      "id": "staff-48ceaf811c",
+      "name": "NUR INDARJI, S.Pd",
+      "role": "KPK T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-48ceaf811c.webp"
+    },
+    {
+      "id": "staff-bad899be88",
+      "name": "NUR WIDIYANTI EKO YUNIARTI, S.Pd",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-bad899be88.webp"
+    },
+    {
+      "id": "staff-b1086a6ab2",
+      "name": "Dra. NURLAILA MAHMUDAH, M.Pd.",
+      "role": "Guru Matematika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-b1086a6ab2.webp"
+    },
+    {
+      "id": "staff-d96fa6e8e5",
+      "name": "PUJI ASTUTI, S.Pd",
+      "role": "Guru Sejarah · Ka. Perpustakaan",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-d96fa6e8e5.webp"
+    },
+    {
+      "id": "staff-b01b29382f",
+      "name": "R. FESTY MAHANANI W, M.Pd",
+      "role": "Guru Seni Budaya",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-b01b29382f.webp"
+    },
+    {
+      "id": "staff-866346b00e",
+      "name": "RADEN ZUHAIR WASIQ, S.Pd",
+      "role": "Guru T. Listrik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-866346b00e.webp"
+    },
+    {
+      "id": "staff-31d61b1f19",
+      "name": "RADIYANTO, S.Pd",
+      "role": "Guru Multimedia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-31d61b1f19.webp"
+    },
+    {
+      "id": "staff-353c170c69",
+      "name": "RETNA HADIYATI, S.Pd",
+      "role": "Guru Matematika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-353c170c69.webp"
+    },
+    {
+      "id": "staff-1dd9b12e6f",
+      "name": "RIKA YULIASTUSTI, M.Pd",
+      "role": "Guru Bahasa Indonesia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-1dd9b12e6f.webp"
+    },
+    {
+      "id": "staff-ccef2fc827",
+      "name": "RISWANTA, S.Pd",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-ccef2fc827.webp"
+    },
+    {
+      "id": "staff-e59ddfadcc",
+      "name": "RIZKI DWI PANGASTUTI, S.Pd",
+      "role": "Guru Bahasa Indonesia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-e59ddfadcc.webp"
+    },
+    {
+      "id": "staff-f784269a0b",
+      "name": "Rr. RETNO DJUMIARSI, S.Pd",
+      "role": "Guru Matematika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-f784269a0b.webp"
+    },
+    {
+      "id": "staff-04fb41c7a5",
+      "name": "Dra. Rr. SRI HANDAYANI",
+      "role": "Guru Kimia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-04fb41c7a5.webp"
+    },
+    {
+      "id": "staff-2825b64577",
+      "name": "RUDI MUS INDRIYANINGSIH, S.Pd",
+      "role": "Guru T. Listrik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-2825b64577.webp"
+    },
+    {
+      "id": "staff-5dc6e41d1b",
+      "name": "SARBINI, S.Pd",
+      "role": "KPK T. Audio Video",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-5dc6e41d1b.webp"
+    },
+    {
+      "id": "staff-1fb90bb48a",
+      "name": "SITI NURJANAH, S.Ag",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-1fb90bb48a.webp"
+    },
+    {
+      "id": "staff-096f99403b",
+      "name": "SLAMET, S.Pd, M.SI",
+      "role": "Guru T. Elektronika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-096f99403b.webp"
+    },
+    {
+      "id": "staff-5194e5e35e",
+      "name": "SLAMET MULYANTO, S.Pd",
+      "role": "KPK DPIB & TKP",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-5194e5e35e.webp"
+    },
+    {
+      "id": "staff-658dc03246",
+      "name": "SRI PRAWATA UTAMI, S.Pd",
+      "role": "Guru Bahasa Inggris",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-658dc03246.webp"
+    },
+    {
+      "id": "staff-bf1d4bfce1",
+      "name": "SRI SETYOWATI, S.I.P",
+      "role": "Guru PPkn",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-bf1d4bfce1.webp"
+    },
+    {
+      "id": "staff-2ed8e62356",
+      "name": "SUHARNO, S.Pd",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-2ed8e62356.webp"
+    },
+    {
+      "id": "staff-f1972864ca",
+      "name": "SUHARTINI, S.Pd",
+      "role": "Guru DPIB",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-f1972864ca.webp"
+    },
+    {
+      "id": "staff-2add0e2a85",
+      "name": "SURYONO, S.Pd",
+      "role": "Guru T. Listrik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-2add0e2a85.webp"
+    },
+    {
+      "id": "staff-0189b0306b",
+      "name": "SUWARDI, S.Pd",
+      "role": "Guru Bahasa Inggris",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-0189b0306b.webp"
+    },
+    {
+      "id": "staff-c4566cb0ef",
+      "name": "SUWARSONO, S.Pd.T, M. Eng.",
+      "role": "Guru DPIB",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-c4566cb0ef.webp"
+    },
+    {
+      "id": "staff-50538ff261",
+      "name": "SYAHRINA RAMADINA, S.Pd.T",
+      "role": "Guru T. Elektronika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-50538ff261.webp"
+    },
+    {
+      "id": "staff-277459ec52",
+      "name": "TRI ASTUTI, S.Pd",
+      "role": "Guru DPIB",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-277459ec52.webp"
+    },
+    {
+      "id": "staff-2a9c400e0e",
+      "name": "UTOMO PUJO HARJONO, S.Pd",
+      "role": "Guru Penjaskes",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-2a9c400e0e.webp"
+    },
+    {
+      "id": "staff-27d45748ef",
+      "name": "WARNOTO, S.Pd",
+      "role": "Guru IPAS",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-27d45748ef.webp"
+    },
+    {
+      "id": "staff-a66b29cde0",
+      "name": "WIDYANTI WISNI ASIARTI, S.Pd",
+      "role": "Guru Kewirausahaan",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-a66b29cde0.webp"
+    },
+    {
+      "id": "staff-1d8f0361f1",
+      "name": "Drs. WINIH WICAKSONO",
+      "role": "Guru T. Listrik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-1d8f0361f1.webp"
+    },
+    {
+      "id": "staff-d906e06ad8",
+      "name": "WIWI WIARTI, S.Pd",
+      "role": "Guru Seni Budaya",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-d906e06ad8.webp"
+    },
+    {
+      "id": "staff-d4a6adec28",
+      "name": "Dra. SITI FATIMAH",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-d4a6adec28.webp"
+    },
+    {
+      "id": "staff-dc8fb4a8a5",
+      "name": "Wiharto, S.PdI, S.Sy, M.A",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-dc8fb4a8a5.webp"
+    },
+    {
+      "id": "staff-81db712db3",
+      "name": "TAUFIQ AFANDI, S.Pd",
+      "role": "Guru T. Elektronika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-81db712db3.webp"
+    },
+    {
+      "id": "staff-4d4fcaf6f3",
+      "name": "MEI WULANDARI, S.Pd",
+      "role": "Guru T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-4d4fcaf6f3.webp"
+    },
+    {
+      "id": "staff-08302260b4",
+      "name": "ISTU ALEX AGUS SAPUTRO, S.Pd",
+      "role": "Guru T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-08302260b4.webp"
+    },
+    {
+      "id": "staff-628320e525",
+      "name": "WAGIAN DIKKY Ag E., S.Pd",
+      "role": "Guru T. Konstruksi dan Properti",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-628320e525.webp"
+    },
+    {
+      "id": "staff-d9b5cd950e",
+      "name": "ANGGINI WINANDRA, S.Pd",
+      "role": "Guru T. Konstruksi dan Properti",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-d9b5cd950e.webp"
+    },
+    {
+      "id": "staff-040774694d",
+      "name": "NURING SEKAR WINAHYU, S.Pd",
+      "role": "Guru T. Konstruksi dan Properti",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-040774694d.webp"
+    },
+    {
+      "id": "staff-1d97ba9eec",
+      "name": "ROHMATUL KHASANAH, S.Pd",
+      "role": "Guru T. Konstruksi dan Properti",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-1d97ba9eec.webp"
+    },
+    {
+      "id": "staff-ff9c2fd45f",
+      "name": "M. NUR FAUZI IBRAHIM, S.Pd",
+      "role": "Guru T. Listrik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-ff9c2fd45f.webp"
+    },
+    {
+      "id": "staff-af41687286",
+      "name": "LUTHFI NUR INDRAWAN, S.Pd",
+      "role": "Guru T. Listik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-af41687286.webp"
+    },
+    {
+      "id": "staff-d6ebc19088",
+      "name": "GUNAWAN, S.Pd, M.M",
+      "role": "Waka Kurikulum",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-d6ebc19088.webp"
+    },
+    {
+      "id": "staff-e0bb9113ca",
+      "name": "BEKTI NURYAHNI, S.Pd",
+      "role": "Guru PPKN",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-e0bb9113ca.webp"
+    },
+    {
+      "id": "staff-497488f47a",
+      "name": "ENDAH KUSUMANINGRUM, S.Pd",
+      "role": "Guru Bahasa Indonesia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-497488f47a.webp"
+    },
+    {
+      "id": "staff-917a615c30",
+      "name": "HERMAWAN ROCHMADI, S.Pd",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-917a615c30.webp"
+    },
+    {
+      "id": "staff-c871d16654",
+      "name": "SINUNG KHOIRUDIN, S.Pd",
+      "role": "Guru T. Mesin",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-c871d16654.webp"
+    },
+    {
+      "id": "staff-069f0410cd",
+      "name": "SITI RAHMA, S.Pd, MT",
+      "role": "Guru T. Elektronika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-069f0410cd.webp"
+    },
+    {
+      "id": "staff-a7900f4769",
+      "name": "ALEK USMAN, S.Pd",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-a7900f4769.webp"
+    },
+    {
+      "id": "staff-43e879043a",
+      "name": "NUR AINI AYU PURWANINGSIH, S.Psi.",
+      "role": "Guru  Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-43e879043a.webp"
+    },
+    {
+      "id": "staff-62e6d26738",
+      "name": "ANGGREYANI PRADITIYA UTAMI, S.Pd.",
+      "role": "Guru Bahasa Indonesia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-62e6d26738.webp"
+    },
+    {
+      "id": "staff-6a6bf27177",
+      "name": "FANESIA DEBI, S.Pd.",
+      "role": "Guru Bahasa Indonesia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-6a6bf27177.webp"
+    },
+    {
+      "id": "staff-77e0a3e3c5",
+      "name": "HANA LINTANG PRABANINGTYAS, S.Pd.",
+      "role": "Guru Bahasa Inggris",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-77e0a3e3c5.webp"
+    },
+    {
+      "id": "staff-4608fbefbb",
+      "name": "SRI AMIYATUN, S.Pd.",
+      "role": "Guru Bahasa Inggris",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-4608fbefbb.webp"
+    },
+    {
+      "id": "staff-c5d3aea4e1",
+      "name": "ANIK PRATIWI, S.Pd",
+      "role": "Guru Bahasa Inggris",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-c5d3aea4e1.webp"
+    },
+    {
+      "id": "staff-c57ea3de13",
+      "name": "NUR AFIFAH, S.Pd",
+      "role": "Guru Bahasa Jawa",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-c57ea3de13.webp"
+    },
+    {
+      "id": "staff-b7c75c3a10",
+      "name": "RAMADHAN BAGAS LAKSONO",
+      "role": "Guru Bahasa Jawa",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-b7c75c3a10.webp"
+    },
+    {
+      "id": "staff-44a968a87d",
+      "name": "RISALATUL MUTHMAINAH, S.Pd.",
+      "role": "Guru Bahasa Jawa",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-44a968a87d.webp"
+    },
+    {
+      "id": "staff-d776e5897c",
+      "name": "MAKRINA LIRING DUKITA, S.Pd.",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-d776e5897c.webp"
+    },
+    {
+      "id": "staff-bbac80a5e5",
+      "name": "MUHAMMAD FATAHILLAH AKBAR, S.Pd.",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-bbac80a5e5.webp"
+    },
+    {
+      "id": "staff-201be00b58",
+      "name": "NAWANG PANGESTU, S.Pd.",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-201be00b58.webp"
+    },
+    {
+      "id": "staff-115467b7b9",
+      "name": "NILA AGUSTIN MAHARANI, S.Pd.",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-115467b7b9.webp"
+    },
+    {
+      "id": "staff-76f8cb7f3b",
+      "name": "PUTRI CAHYANINGSIH, S.Sos.",
+      "role": "Guru Bimbingan Konseling",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-76f8cb7f3b.webp"
+    },
+    {
+      "id": "staff-0d955fa9a3",
+      "name": "CHALIDIN SHALEH ZARKASYI, S.Pd., M.Pd.",
+      "role": "Guru IPAS",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-0d955fa9a3.webp"
+    },
+    {
+      "id": "staff-8005c530e5",
+      "name": "SAPTO ANGKASA, S.Si.",
+      "role": "Guru Multimedia",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-8005c530e5.webp"
+    },
+    {
+      "id": "staff-8200a23fe6",
+      "name": "CHAIRUL ANAS, S.Pd.",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-8200a23fe6.webp"
+    },
+    {
+      "id": "staff-0d2fbcdfc5",
+      "name": "FITRIYANA NUR KHASANAH, S.Pd.",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-0d2fbcdfc5.webp"
+    },
+    {
+      "id": "staff-10e1c5423d",
+      "name": "YARUDIN, S.Pd.I",
+      "role": "Guru Agama Islam",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-10e1c5423d.webp"
+    },
+    {
+      "id": "staff-aa437935fb",
+      "name": "AJUNG, S.Pd.",
+      "role": "Guru Agama Katolik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-aa437935fb.webp"
+    },
+    {
+      "id": "staff-9bfa8ca5af",
+      "name": "TITIK SETIANINGSEH, S.Pd",
+      "role": "Guru Agama Kristen",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-9bfa8ca5af.webp"
+    },
+    {
+      "id": "staff-7505a0d44a",
+      "name": "MARTHA FAJAR KURNIAWAN, S.Pd.T.",
+      "role": "Pendidik",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-7505a0d44a.webp"
+    },
+    {
+      "id": "staff-1a2031617e",
+      "name": "MEY WULANDARI, S.Pd.Si",
+      "role": "Guru T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-1a2031617e.webp"
+    },
+    {
+      "id": "staff-bdbfd38b09",
+      "name": "RR. RITA SULISTIANIK, S.Pd.",
+      "role": "Guru T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-bdbfd38b09.webp"
+    },
+    {
+      "id": "staff-9367a6b3ac",
+      "name": "TRUSTHA DWIRATNA, S.Pd.",
+      "role": "Guru T. Otomotif",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-9367a6b3ac.webp"
+    },
+    {
+      "id": "staff-2ee6990ae9",
+      "name": "BRAMA KURNIAWAN, S.Kom.",
+      "role": "Guru T. Informatika",
+      "department": "Pendidik",
+      "nip": "",
+      "photo": "/media/school/staff-2ee6990ae9.webp"
+    },
+    {
+      "id": "staff-1851f41763",
+      "name": "SANI ISMANTA, S.IP",
+      "role": "KEPALA TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-1851f41763.webp"
+    },
+    {
+      "id": "staff-09b431de8f",
+      "name": "DADI SUSANTO",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-09b431de8f.webp"
+    },
+    {
+      "id": "staff-eea80aea48",
+      "name": "DANI KURNIAWAN, A.Md",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-eea80aea48.webp"
+    },
+    {
+      "id": "staff-95614b701d",
+      "name": "DWI SUPARDI YANTO",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-95614b701d.webp"
+    },
+    {
+      "id": "staff-118a806140",
+      "name": "HARDIANTO",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-118a806140.webp"
+    },
+    {
+      "id": "staff-936070cc10",
+      "name": "JAGYANG SAPUTRA",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-936070cc10.webp"
+    },
+    {
+      "id": "staff-12e3ac8cfb",
+      "name": "JUWARNO",
+      "role": "TOOLMAN",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-12e3ac8cfb.webp"
+    },
+    {
+      "id": "staff-6850af02c9",
+      "name": "MASYHURI",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-6850af02c9.webp"
+    },
+    {
+      "id": "staff-8f66d5c2f8",
+      "name": "MUHAMMAD ROYAN WIRAWAN",
+      "role": "TOOLMAN",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-8f66d5c2f8.webp"
+    },
+    {
+      "id": "staff-8925047e6e",
+      "name": "NIKE RAHMAWATI HIDAYAT, S.Pd",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-8925047e6e.webp"
+    },
+    {
+      "id": "staff-71f1744298",
+      "name": "NURDIN SYAFEI",
+      "role": "TOOLMAN",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-71f1744298.webp"
+    },
+    {
+      "id": "staff-ab245a279e",
+      "name": "PURWANTO",
+      "role": "TOOLMAN",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-ab245a279e.webp"
+    },
+    {
+      "id": "staff-7d16f91629",
+      "name": "RAHARJO",
+      "role": "TOOLMAN",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-7d16f91629.webp"
+    },
+    {
+      "id": "staff-a3562b68db",
+      "name": "SRI MULYANI DANARWATI",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-a3562b68db.webp"
+    },
+    {
+      "id": "staff-912ea4a60b",
+      "name": "SRI WAHYUNI",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-912ea4a60b.webp"
+    },
+    {
+      "id": "staff-d69ea6d8a1",
+      "name": "SULASTRI HASTUTI, SE",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-d69ea6d8a1.webp"
+    },
+    {
+      "id": "staff-e55130b8ca",
+      "name": "SUPANA",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-e55130b8ca.webp"
+    },
+    {
+      "id": "staff-3880e8c3a7",
+      "name": "TRI ZULIANI",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-3880e8c3a7.webp"
+    },
+    {
+      "id": "staff-c281f07b34",
+      "name": "WIDODO",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-c281f07b34.webp"
+    },
+    {
+      "id": "staff-a0642f30ec",
+      "name": "AMIN AHYURI",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-a0642f30ec.webp"
+    },
+    {
+      "id": "staff-1692569ced",
+      "name": "ANIK NUR SALAFIYAH, S.P.",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-1692569ced.webp"
+    },
+    {
+      "id": "staff-0813473191",
+      "name": "CANDRA BUDI SAPUTRI, A.Md.",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-0813473191.webp"
+    },
+    {
+      "id": "staff-d7be9e3bab",
+      "name": "INTAN KURNIATI",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-d7be9e3bab.webp"
+    },
+    {
+      "id": "staff-712b592082",
+      "name": "MIFTAHUDIN ANGGA RAHARJA, S.Sos.",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-712b592082.webp"
+    },
+    {
+      "id": "staff-1cc57a34a8",
+      "name": "RUBIANTO",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-1cc57a34a8.webp"
+    },
+    {
+      "id": "staff-b1783a20a2",
+      "name": "VICTORRIA THELLU YUNI PRISMA, S.M.",
+      "role": "TU",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-b1783a20a2.webp"
+    },
+    {
+      "id": "staff-36c55a1b8e",
+      "name": "DHELA MUHAMMAD RIZKI",
+      "role": "INSTRUKTUR TARUNA",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-36c55a1b8e.webp"
+    },
+    {
+      "id": "staff-5b0d5ed3e3",
+      "name": "IRFAN RISKANANTO",
+      "role": "INSTRUKTUR TARUNA",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-5b0d5ed3e3.webp"
+    },
+    {
+      "id": "staff-a393b236c1",
+      "name": "MARIA AMELIA AMANDA PUSPITA",
+      "role": "INSTRUKTUR TARUNA",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-a393b236c1.webp"
+    },
+    {
+      "id": "staff-c47e13ca08",
+      "name": "SITI MUTIARA SAHID",
+      "role": "INSTRUKTUR TARUNA",
+      "department": "Tenaga Kependidikan",
+      "nip": "",
+      "photo": "/media/school/staff-c47e13ca08.webp"
+    }
+  ]
+}

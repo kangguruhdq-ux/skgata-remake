@@ -224,7 +224,7 @@ export default function AdminAiChatbotPage() {
         <div className="flex items-center gap-3.5">
           <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shadow-lg shadow-emerald-950/10 shrink-0">
             <img
-              src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+              src="/media/school/logo.webp"
               alt="Logo SMKN 3 Yogyakarta"
               className="w-full h-full object-contain"
             />
@@ -719,7 +719,7 @@ export default function AdminAiChatbotPage() {
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 rounded-md overflow-hidden shrink-0">
                   <img
-                    src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                    src="/media/school/logo.webp"
                     alt="SMKN 3 Yogyakarta"
                     className="w-full h-full object-contain"
                   />
@@ -752,7 +752,7 @@ export default function AdminAiChatbotPage() {
                   {m.sender === "bot" && (
                     <div className="w-6 h-6 rounded-md bg-white p-0.5 border border-emerald-300/40 shadow-xs flex items-center justify-center shrink-0 mt-0.5 overflow-hidden">
                       <img
-                        src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                        src="/media/school/logo.webp"
                         alt="SMKN 3"
                         className="w-full h-full object-contain"
                       />
@@ -781,7 +781,7 @@ export default function AdminAiChatbotPage() {
                 <div className="flex gap-2 justify-start">
                   <div className="w-6 h-6 rounded-md bg-white p-0.5 border border-emerald-300/40 shadow-xs flex items-center justify-center shrink-0 mt-0.5 overflow-hidden">
                     <img
-                      src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                      src="/media/school/logo.webp"
                       alt="SMKN 3"
                       className="w-full h-full object-contain"
                     />

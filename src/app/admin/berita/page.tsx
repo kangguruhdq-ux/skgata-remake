@@ -81,7 +81,7 @@ export default function AdminBeritaPage() {
         content: form.content,
         coverImage:
           form.coverImage ||
-          "https://smkn3jogja.sch.id/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-08-at-18.14.17-260x195.jpeg",
+          "/media/school/jepang-2.webp",
         author: form.author,
         publishedAt: new Date().toISOString().split("T")[0],
         views: 1,

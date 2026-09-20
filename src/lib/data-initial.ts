@@ -1,3 +1,4 @@
+import schoolMedia from "./school-media.json";
 export interface MajorGalleryItem {
   url: string;
   title: string;
@@ -233,31 +234,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-red-500/10 text-red-500 border-red-200",
     tagline: "Kreativitas Audio-Visual & Studio Siaran Digital",
     aksara: "ꦧꦿꦺꦴꦢ꧀ꦏꦱ꧀ꦠꦶꦁꦭꦤ꧀ꦥꦼꦂꦥ꦳ꦶꦭ꧀ꦩꦤ꧀",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/BP-1024x740.jpeg",
+    coverImage: "/media/school/bp-cover.webp",
     headOfMajor: "Tri Wibowo, S.Pd.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-331f777f37.webp",
     totalStudents: 216,
     accreditation: "A (Unggul) - LSP P1 BNSP",
     description:
       "Program Keahlian Broadcasting & Perfilman mendidik taruna dalam tata kelola produksi siaran televisi modern, sinematografi digital, manajemen multi-kamera live streaming, penulisan skenario naskah siaran, tata suara audio studio, dan pengoperasian stasiun digital Skagata TV.",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/BP-1024x740.jpeg",
+        url: "/media/school/bp-cover.webp",
         title: "Studio Broadcast & MCR Skagata TV",
         caption: "Studio kedap suara bertaraf broadcast profesional dengan kamera Cinema 4K dan switcher multi-channel.",
       },
       {
-        url: "https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/bp-info-1.webp",
         title: "Tata Kamera & Tata Cahaya Studio",
         caption: "Latihan sinematografi studio, pencahayaan 3-point lighting, dan pengoperasian teleprompter.",
       },
       {
-        url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/workshop-bp-1.webp",
         title: "Editing Suite Workstation",
         caption: "Ruang editing video non-linear berbasis DaVinci Resolve dan Adobe Premiere Pro dengan Apple Mac & RTX Workstation.",
       },
       {
-        url: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/workshop-bp-2.webp",
         title: "Audio Recording & Sound Mixing",
         caption: "Fasilitas rekaman vokal, sulih suara (dubbing), foley effects, dan mastering audio siaran.",
       },
@@ -294,12 +295,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Film Pendek Budaya Mangajapa",
         description: "Juara Festival Film Pelajar Nasional 2025",
-        image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/video-profil.webp",
       },
       {
         title: "Live Streaming Upacara Gagrag DIY",
         description: "Liputan multi-kamera ditonton 50.000+ viewers",
-        image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/hanung.webp",
       },
     ],
   },
@@ -312,31 +313,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-sky-500/10 text-sky-600 border-sky-200",
     tagline: "Infrastruktur Jaringan Fiber Optik & Cyber Cloud Enterprise",
     aksara: "ꦠꦺꦏ꧀ꦤꦶꦏ꧀ꦗꦫꦶꦔꦤ꧀ꦏꦺꦴꦩ꧀ꦥꦸꦠꦼꦂ",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/TJ-2023-1024x683.jpg",
+    coverImage: "/media/school/tjkt-cover.webp",
     headOfMajor: "Siti Rahmawati, S.T., M.Cs.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-fea8149740.webp",
     totalStudents: 288,
     accreditation: "A (Unggul) - MikroTik Academy Certified",
     description:
       "TJKT membekali taruna dengan penguasaan arsitektur jaringan komputer skala enterprise, routing dan switching kelas industri, instalasi dan penyambungan kabel fiber optik mutakhir, administrasi server Linux, cloud computing AWS/Google, serta pertahanan keamanan cyber.",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/TJ-2023-1024x683.jpg",
+        url: "/media/school/tjkt-cover.webp",
         title: "Laboratorium Komputer Jaringan Skagata",
         caption: "Siswa berlatih konfigurasi routing dan switching kelas industri menggunakan perangkat MikroTik dan Cisco.",
       },
       {
-        url: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/tjkt-info-1.webp",
         title: "Server Rack & Data Center Mini",
         caption: "Mini data center sekolah dengan server virtualization Proxmox dan cloud storage internal.",
       },
       {
-        url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/lks-1.webp",
         title: "Fiber Optic Fusion Splicing & OTDR",
         caption: "Praktek penyambungan kabel serat optik kecepatan tinggi dan pengukuran rugi daya transmisi.",
       },
       {
-        url: "https://images.unsplash.com/photo-1563770660941-20978e870e26?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/lks-2.webp",
         title: "Cyber Defense & Penetration Testing",
         caption: "Simulasi pertahanan jaringan terhadap ancaman cyber dan audit keamanan sistem informasi.",
       },
@@ -372,12 +373,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Implementasi Smart Wi-Fi 6 Kampus Skagata",
         description: "Desain jaringan nirkabel mencakup seluruh komplek sekolah",
-        image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/tjkt-info-1.webp",
       },
       {
         title: "Sertifikasi Internasional MTCNA 100% Lulus",
         description: "Capaian siswa kelas XI meraih sertifikasi MikroTik Eropa",
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/lks-3.webp",
       },
     ],
   },
@@ -390,31 +391,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-amber-500/10 text-amber-600 border-amber-200",
     tagline: "Arsitektur Digital 3D BIM & Rancang Bangun Masa Depan",
     aksara: "ꦢꦺꦱꦻꦤ꧀ꦥꦼꦩꦺꦴꦢꦺꦭꦤ꧀ꦧꦔꦸꦤꦤ꧀",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2022/04/WhatsApp-Image-2022-04-13-at-15.09.03-e1653536892633-1024x1024.jpeg",
+    coverImage: "/media/school/dpib-cover.webp",
     headOfMajor: "Drs. Agus Triyono, M.T.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-632be8be40.webp",
     totalStudents: 216,
     accreditation: "A (Unggul) - Autodesk Certified",
     description:
       "DPIB fokus pada pemodelan digital arsitektur dan struktur konstruksi bangunan menggunakan teknologi Building Information Modeling (BIM), gambar teknik 2D/3D AutoCAD & Revit, kalkulasi estimasi Rencana Anggaran Biaya (RAB), dan visualisasi render fotorealistik.",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2022/04/WhatsApp-Image-2022-04-13-at-15.09.03-e1653536892633-1024x1024.jpeg",
+        url: "/media/school/dpib-cover.webp",
         title: "Studio Perancangan Gambar Digital",
         caption: "Ruang kerja perancangan digital berfasilitas workstation grafis canggih dengan software Autodesk Revit dan AutoCAD.",
       },
       {
-        url: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/dpib-info-1.webp",
         title: "BIM 3D Architectural Modeling",
         caption: "Pemodelan terintegrasi struktur beton, MEP (mekanikal elektrikal plumbing), dan fasad gedung bertingkat.",
       },
       {
-        url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/dpib-info-2.webp",
         title: "Survey Pengukuran Tanah Total Station",
         caption: "Praktek pemetaan lahan kontur dan leveling topografi menggunakan instrumen optik digital modern.",
       },
       {
-        url: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/dpib-info-3.webp",
         title: "Plotting Gambar Kerja Arsitektur A0",
         caption: "Pencetakan gambar kerja konstruksi presisi tinggi untuk review kelayakan rancang bangun.",
       },
@@ -450,12 +451,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Desain Maket & 3D BIM Gedung Technopark",
         description: "Model perancangan gedung workshop 3 lantai bersertifikasi",
-        image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/dpib-info-4.webp",
       },
       {
         title: "Juara LKS CADD Building Bidang Konstruksi",
         description: "Medali Emas LKS Tingkat Provinsi DIY",
-        image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/dpib-info-1.webp",
       },
     ],
   },
@@ -468,31 +469,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-emerald-500/10 text-emerald-700 border-emerald-200",
     tagline: "Teknologi Beton Bertulang & Manajemen Proyek Konstruksi Hijau",
     aksara: "ꦠꦺꦏ꧀ꦤꦶꦏ꧀ꦏꦺꦴꦤ꧀ꦱ꧀ꦠꦿꦸꦏ꧀ꦱꦶꦭꦤ꧀ꦥꦼꦫꦸꦩꦲꦤ꧀",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/KP-768x1024.jpg",
+    coverImage: "/media/school/tkp-info-1.webp",
     headOfMajor: "Budi Santosa, S.Pd., M.Eng.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-596c0f3b81.webp",
     totalStudents: 144,
     accreditation: "A (Unggul) - BNSP Vokasi Konstruksi",
     description:
       "Program Keahlian Teknik Konstruksi dan Perumahan mencetak pelaksana konstruksi tangguh dalam pekerjaan pondasi, struktur beton bertulang, pekerjaan baja ringan, pemasangan batu bata dan plesteran presisi, plumbing sanitasi modern, serta penerapan Kesehatan & Keselamatan Kerja (K3).",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/KP-768x1024.jpg",
+        url: "/media/school/tkp-info-1.webp",
         title: "Bengkel Konstruksi Bangunan & Batu",
         caption: "Praktek pembuatan adukan plesteran presisi, pemasangan dinding bata, dan pembesian struktur beton bertulang.",
       },
       {
-        url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/dpib-info-2.webp",
         title: "Fabrikasi Rangka Atap Baja Ringan",
         caption: "Pemasangan kuda-kuda dan reng truss baja ringan dengan perhitungan sudut kemiringan standar PUPR.",
       },
       {
-        url: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/dpib-info-3.webp",
         title: "Laboratorium Uji Mutu Beton",
         caption: "Pengujian kuat tekan silinder beton umur 7, 14, dan 28 hari menggunakan mesin uji hidrolik berskala.",
       },
       {
-        url: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/dpib-cover.webp",
         title: "Finishing Keramik & Sanitasi Plumbing",
         caption: "Pemasangan ubin granit presisi dan instalasi pipa air bersih-kotor dengan sambungan standar SNI.",
       },
@@ -527,12 +528,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Gazebo Taman Budaya Konstruksi Kayu Kamper",
         description: "Proyek TEFA pesanan instansi pemerintah kota",
-        image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/tkp-info-1.webp",
       },
       {
         title: "Penyaluran Kerja Konstruksi Tokyo 2026",
         description: "Lulusan langsung diberangkatkan kontrak kerja resmi Jepang",
-        image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/dpib-info-4.webp",
       },
     ],
   },
@@ -545,31 +546,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-indigo-500/10 text-indigo-600 border-indigo-200",
     tagline: "Otomasi Industri, Robotika Sensorik & Smart IoT Terintegrasi",
     aksara: "ꦠꦺꦏ꧀ꦤꦶꦏ꧀ꦲꦺꦭꦺꦏ꧀ꦠꦿꦺꦴꦤꦶꦏ",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-11-at-08.33.41-576x1024.jpeg",
+    coverImage: "/media/school/elektronika-cover.webp",
     headOfMajor: "Ir. Bambang Haryadi, M.T.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-e17146a5fd.webp",
     totalStudents: 288,
     accreditation: "A (Unggul) - Kelas Industri Modena",
     description:
       "Teknik Elektronika SMKN 3 Yogyakarta mendidik taruna dalam rekayasa mikrokontroler Arduino/ESP32, pemrograman PLC industri (Omron/Siemens), perancangan sirkuit PCB otomatis, sistem sensorik robotika, smart home appliances bersama Modena, dan elektronika daya terapan.",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-11-at-08.33.41-576x1024.jpeg",
+        url: "/media/school/elektronika-cover.webp",
         title: "Modena Technical School Lab",
         caption: "Pusat pelatihan teknisi perlengkapan rumah tangga pintar (smart home appliances) bersama PT MODENA Indonesia.",
       },
       {
-        url: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/elektronika-info-1.webp",
         title: "Trainer PLC & Otomasi Pabrik",
         caption: "Pemrograman PLC Omron & Siemens untuk mengendalikan conveyor belt pneumatik dan aktuator industri.",
       },
       {
-        url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/modena-1.webp",
         title: "Robotika Mobile & Automated Guided Vehicle",
         caption: "Riset dan perakitan robot pembawa logistik otonom berbasis sensor ultrasonik dan mikroprosesor.",
       },
       {
-        url: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/modena-2.webp",
         title: "Laboratorium Desain & Soldering PCB",
         caption: "Perancangan skematik dan perakitan komponen elektronika SMD dengan stasiun pemanas digital.",
       },
@@ -605,12 +606,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Smart Energy Monitoring System IoT",
         description: "Perangkat pemantau daya listrik gedung real-time via smartphone",
-        image: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/elektronika-info-1.webp",
       },
       {
         title: "Robot Pengantar Logistik Pabrik AGV",
         description: "Robot otonom pemandu jalur sensorik magnetik",
-        image: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/modena-3.webp",
       },
     ],
   },
@@ -623,31 +624,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-yellow-500/10 text-yellow-600 border-yellow-200",
     tagline: "Distribusi Tenaga Listrik Tegangan Menengah & Panel Industri",
     aksara: "ꦠꦺꦏ꧀ꦤꦶꦏ꧀ꦏꦺꦠꦺꦤꦒꦭꦶꦱ꧀ꦠꦿꦶꦏꦤ꧀",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-06-at-08.46.54-576x1024.jpeg",
+    coverImage: "/media/school/listrik-cover.webp",
     headOfMajor: "Drs. Eko Prasetyo, M.T.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-632be8be40.webp",
     totalStudents: 288,
     accreditation: "A (Unggul) - Sertifikasi Standar PLN & KESDM",
     description:
       "TITL membekali taruna keahlian instalasi penerangan dan tenaga gedung bertingkat, perakitan panel kendali motor listrik 3 fasa, instalasi energi baru terbarukan (Pembangkit Listrik Tenaga Surya - PLTS), keselamatan kerja bahaya arus listrik, serta standarisasi PUIL.",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-06-at-08.46.54-576x1024.jpeg",
+        url: "/media/school/listrik-cover.webp",
         title: "Bengkel Panel Distribusi Tenaga 3 Fasa",
         caption: "Instalasi dan pengawatan panel listrik industri, kontaktor magnetik, thermal overload, dan busbar tembaga.",
       },
       {
-        url: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/listrik-info-1.webp",
         title: "Uji Kendali Motor Listrik & Inverter VFD",
         caption: "Pengendalian kecepatan motor induksi 3 fasa menggunakan Variable Frequency Drive dan Smart Relay.",
       },
       {
-        url: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/modena-3.webp",
         title: "Pembangkit Listrik Tenaga Surya (PLTS Rooftop)",
         caption: "Praktek instalasi solar cell on-grid/off-grid, inverter surya, dan pemantauan efisiensi energi terbarukan.",
       },
       {
-        url: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/lks-1.webp",
         title: "Instalasi Penerangan Gedung Sesuai PUIL",
         caption: "Pemasangan instalasi listrik gedung komersial dengan standar proteksi ELCB dan pentanahan grounding.",
       },
@@ -682,12 +683,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Instalasi PLTS Rooftop 10 kWp Kampus Skagata",
         description: "Pembangkit surya mandiri menyuplai listrik gedung utama",
-        image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/listrik-info-1.webp",
       },
       {
         title: "Panel Otomatisasi Pompa Air Terpadu",
         description: "Pesanan unit BLUD dari pengelola perumahan di Yogyakarta",
-        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/modena-1.webp",
       },
     ],
   },
@@ -700,31 +701,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-red-500/10 text-red-700 border-red-200",
     tagline: "Teknologi Kendaraan Modern, Sistem Injeksi EFI & Electric Vehicle",
     aksara: "ꦠꦺꦏ꧀ꦤꦶꦏ꧀ꦏꦼꦤ꧀ꦢꦫꦄꦤ꧀ꦫꦶꦔꦤ꧀",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-06-at-09.29.53-576x1024.jpeg",
+    coverImage: "/media/school/otomotif-cover.webp",
     headOfMajor: "Widodo, M.Pd.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-1a2031617e.webp",
     totalStudents: 288,
     accreditation: "A (Unggul) - Bengkel Resmi TEFA APM",
     description:
       "Teknik Otomotif mendidik taruna menguasai perawatan dan overhaul mesin bensin injeksi EFI, mesin diesel common rail, transmisi manual dan matic, sistem kelistrikan bodi mobil modern, AC digital kendaraan, spooring-balancing, serta dasar teknologi Electric Vehicle (EV).",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-06-at-09.29.53-576x1024.jpeg",
+        url: "/media/school/otomotif-cover.webp",
         title: "Bengkel Resmi TEFA Skagata Auto Service",
         caption: "Bengkel mobil standar APM dengan 4 unit car lift hidrolik, melayani tune-up, ganti oli, dan perbaikan umum masyarakat.",
       },
       {
-        url: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/otomotif-info-1.webp",
         title: "Overhaul Mesin Bensin EFI & Common Rail",
         caption: "Bongkar pasang kepala silinder, kalibrasi celah katup, dan pengukuran keausan poros engkol dengan mikrometer.",
       },
       {
-        url: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/karir-1.webp",
         title: "Komputerisasi Spooring 3D & Wheel Balancing",
         caption: "Penyetelan sudut camber, caster, dan toe-in roda kendaraan menggunakan kamera 3D sensorik berakurasi tinggi.",
       },
       {
-        url: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/karir-2.webp",
         title: "Diagnostik Engine Scanner OBD II",
         caption: "Pendeteksian error kode DTC (Diagnostic Trouble Code) dan analisis data live sensor mesin mobil terkini.",
       },
@@ -760,12 +761,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Mobil Listrik Riset Taruna Skagata EV-01",
         description: "Kendaraan prototipe listrik bertenaga baterai lithium",
-        image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/otomotif-info-1.webp",
       },
       {
         title: "Layanan Service Berkala TEFA Skagata Auto",
         description: "Melayani ratusan mobil konsumen umum setiap bulannya",
-        image: "https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/karir-3.webp",
       },
     ],
   },
@@ -778,31 +779,31 @@ export const MAJORS_DATA: MajorData[] = [
     badgeBg: "bg-slate-500/10 text-slate-800 border-slate-200",
     tagline: "Presisi Tinggi, Pemrograman CNC Machining & Rekayasa Manufaktur",
     aksara: "ꦠꦺꦏ꧀ꦤꦶꦏ꧀ꦥꦼꦩꦼꦱꦶꦤꦤ꧀",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-06-at-11.56.52-576x1024.jpeg",
+    coverImage: "/media/school/mesin-cover.webp",
     headOfMajor: "Ir. Bambang Haryadi, M.T.",
-    headOfMajorPhoto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80",
+    headOfMajorPhoto: "/media/school/staff-e17146a5fd.webp",
     totalStudents: 288,
     accreditation: "A (Unggul) - CNC Center Terakreditasi BNSP",
     description:
       "Teknik Pemesinan merupakan salah satu jurusan tertua dan paling prestisius di SMKN 3 Yogyakarta (STM 2 Jetis). Siswa dididik mengoperasikan mesin bubut konvensional presisi mikro, mesin frais horizontal/vertikal, pemrograman CNC Milling & Turning dengan CAD/CAM Mastercam, serta pengelasan SMAW/MIG/TIG.",
     gallery: [
       {
-        url: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-06-at-11.56.52-576x1024.jpeg",
+        url: "/media/school/mesin-cover.webp",
         title: "CNC Machining Center & Bengkel Bubut",
         caption: "Fasilitas bengkel manufaktur terbesar dengan 4 unit CNC Milling, 3 CNC Turning, dan 40+ mesin bubut presisi.",
       },
       {
-        url: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/mesin-info-1.webp",
         title: "Pemrograman CNC Mastercam CAD/CAM",
         caption: "Simulasi jalur pahat perkakas (toolpath) dan eksekusi pemesinan kontur 3D presisi toleransi 0.01 mm.",
       },
       {
-        url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/krida-1.webp",
         title: "Pemesinan Bubut & Frais Konvensional",
         caption: "Pembuatan poros bertingkat, ulir metrik/withworth, roda gigi heliks, dan alur pasak presisi tinggi.",
       },
       {
-        url: "https://images.unsplash.com/photo-1508873696983-2df57046475a?w=800&auto=format&fit=crop&q=80",
+        url: "/media/school/krida-2.webp",
         title: "Fabrikasi Pengelasan SMAW & TIG Argon",
         caption: "Pengelasan pipa dan pelat posisi 1G, 2G, 3G, hingga 6G dengan uji penetrasi las berstandar industri.",
       },
@@ -838,12 +839,12 @@ export const MAJORS_DATA: MajorData[] = [
       {
         title: "Komponen Presisi Pesanan Industri YPTI",
         description: "Produksi massal sparepart cetakan injeksi plastik berstandar ISO",
-        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/mesin-info-1.webp",
       },
       {
         title: "Medali Emas LKS Nasional CNC Milling",
         description: "Prestasi puncak taruna mesin mewakili D.I. Yogyakarta",
-        image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80",
+        image: "/media/school/krida-3.webp",
       },
     ],
   },
@@ -946,7 +947,7 @@ export const POSTS_DATA: PostData[] = [
       <p>"Karakter ketarunaan yang ditanamkan di SMKN 3 Yogyakarta membuat lulusannya memiliki ketahanan mental prima dan etos kerja yang sangat cocok dengan budaya kerja di Jepang," ujar perwakilan pimpinan industri Jepang.</p>
     `,
     category: "Berita",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-08-at-18.14.17-260x195.jpeg",
+    coverImage: "/media/school/jepang-2.webp",
     author: "Tim Humas Skagata",
     publishedAt: "2026-09-08",
     views: 1420,
@@ -977,7 +978,7 @@ export const POSTS_DATA: PostData[] = [
       <p>Melalui kurikulum khusus ini, siswa mempelajari langsung teknologi kompor induksi, smart refrigerator, oven digital, serta sistem pendingin hemat energi, dengan jaminan sertifikasi industri dan peluang rekrutmen kerja langsung di service center Modena seluruh Indonesia.</p>
     `,
     category: "Berita",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-19-at-19.49.05-1-260x195.jpeg",
+    coverImage: "/media/school/modena-2.webp",
     author: "Tim Humas & Hubin",
     publishedAt: "2026-08-19",
     views: 1150,
@@ -1006,7 +1007,7 @@ export const POSTS_DATA: PostData[] = [
       <p>Calon taruna diwajibkan melakukan daftar ulang secara daring dan verifikasi berkas fisik di aula sekolah sesuai jadwal yang ditentukan dengan membawa dokumen kelulusan asli.</p>
     `,
     category: "Pengumuman",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-1024x1024.png",
+    coverImage: "/media/school/logo.webp",
     author: "Panitia SPMB Skagata",
     publishedAt: "2026-06-26",
     views: 3450,
@@ -1020,7 +1021,7 @@ export const POSTS_DATA: PostData[] = [
       <p>YOGYAKARTA – SMK Negeri 3 Yogyakarta kembali dipercaya sebagai tuan rumah penyelenggaraan Lomba Keterampilan Siswa (LKS) SMK Tingkat Provinsi DIY. Bengkel CNC Machining Center dan Laboratorium Elektro Skagata menjadi saksi persaingan ketat para talenta vokasi terbaik se-DIY.</p>
     `,
     category: "Artikel",
-    coverImage: "https://smkn3jogja.sch.id/wp-content/uploads/2026/04/q-260x195.jpg",
+    coverImage: "/media/school/lks-1.webp",
     author: "Drs. Eko Prasetyo",
     publishedAt: "2026-04-08",
     views: 740,
@@ -1041,56 +1042,18 @@ export const POSTS_DATA: PostData[] = [
   },
 ];
 
-export const TEACHERS_DATA: TeacherStaffData[] = [
-  {
-    id: "tch-1",
-    name: "Widodo, M.Pd.",
-    nip: "19680512 199403 1 008",
-    role: "Kepala Sekolah",
-    department: "Pimpinan Sekolah",
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "tch-2",
-    name: "Drs. Agus Triyono, M.T.",
-    nip: "19710315 199702 1 003",
-    role: "Wakil Kepala Sekolah Bidang Kurikulum",
-    department: "Manajemen Sekolah",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "tch-3",
-    name: "Budi Santosa, S.Pd., M.Eng.",
-    nip: "19750820 200212 1 005",
-    role: "Wakil Kepala Sekolah Bidang Kesiswaan",
-    department: "Ketarunaan & Kesiswaan",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "tch-4",
-    name: "Siti Rahmawati, S.T., M.Cs.",
-    nip: "19801104 200604 2 012",
-    role: "Ketua Program Keahlian TJKT",
-    department: "Teknik Jaringan Komputer & Telekomunikasi",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "tch-5",
-    name: "Ir. Bambang Haryadi, M.T.",
-    nip: "19720918 200003 1 004",
-    role: "Ketua Program Keahlian Teknik Pemesinan",
-    department: "Teknik Mesin (Pemesinan)",
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80",
-  },
-  {
-    id: "tch-6",
-    name: "Tri Wibowo, S.Pd.",
-    nip: "19830422 200902 1 006",
-    role: "Ketua Program Keahlian Broadcasting & Perfilman",
-    department: "Broadcasting & Perfilman",
-    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80",
-  },
-];
+export const TEACHERS_DATA: TeacherStaffData[] = (schoolMedia.teachers && schoolMedia.teachers.length > 0)
+  ? (schoolMedia.teachers as TeacherStaffData[])
+  : [
+      {
+        id: "tch-1",
+        name: "WIDADA, S.Pd., M.Pd.",
+        nip: "19680512 199403 1 008",
+        role: "Kepala Sekolah",
+        department: "Pendidik",
+        photo: "/media/school/staff-331f777f37.webp",
+      },
+    ];
 
 export const JOBS_DATA: JobData[] = [
   {
@@ -1295,7 +1258,7 @@ export const INITIAL_ARCHIVE_PHOTOS: ArchivePhoto[] = [
     title: "Praktek Perbengkelan Pemesinan & CNC",
     caption: "Taruna mengoperasikan mesin bubut dan permesinan presisi di bengkel teknik STM 2 Jetis.",
     year: "Era Vokasi",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-11-at-08.33.41-576x1024.jpeg",
+    image: "/media/school/elektronika-cover.webp",
     tag: "Praktik Bengkel",
   },
   {
@@ -1311,7 +1274,7 @@ export const INITIAL_ARCHIVE_PHOTOS: ArchivePhoto[] = [
     title: "Kemitraan Kelas Industri Modena & DUDIKA",
     caption: "Penandatanganan kerja sama magang, sertifikasi industri, dan rekrutmen kerja alumni Skagata.",
     year: "Era Modern",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-19-at-19.49.05-1-260x195.jpeg",
+    image: "/media/school/modena-2.webp",
     tag: "Kerjasama Industri",
   },
 ];
@@ -1337,7 +1300,7 @@ export const INITIAL_FACILITIES: FacilityItem[] = [
     id: "fac-3",
     title: "Lab Fiber Optic & Cloud Computing Center",
     category: "Jaringan",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/TJ-2023-1024x683.jpg",
+    image: "/media/school/tjkt-cover.webp",
     desc: "Laboratorium berstandar MikroTik Certified Training Partner Eropa, alat sambung Fusion Splicer, alat ukur OTDR, rack server, dan mini data center.",
     equipment: ["MikroTik Routerboard CCR", "Fusion Splicer Fiber Optic", "OTDR Anritsu", "Mini Server Rack"],
   },
@@ -1345,7 +1308,7 @@ export const INITIAL_FACILITIES: FacilityItem[] = [
     id: "fac-4",
     title: "Modena Technical School & Otomasi Industri",
     category: "Elektronika",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-11-at-08.33.41-576x1024.jpeg",
+    image: "/media/school/elektronika-cover.webp",
     desc: "Laboratorium perakitan home appliances modern bersama PT MODENA Indonesia, trainer PLC Omron/Siemens, dan trainer robotika otonom.",
     equipment: ["Trainer Home Appliances MODENA", "PLC Omron Sysmac", "Trainer Robotika Autonomous", "Oscilloscope Digital"],
   },
@@ -1353,7 +1316,7 @@ export const INITIAL_FACILITIES: FacilityItem[] = [
     id: "fac-5",
     title: "Bengkel TEFA Skagata Auto Service & Spooring 3D",
     category: "Otomotif",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-06-at-09.29.53-576x1024.jpeg",
+    image: "/media/school/otomotif-cover.webp",
     desc: "Dilengkapi 4 unit car lift hidrolik, alat spooring 3D komputerisasi, tyre changer, engine scanner OBD II, dan unit uji emisi gas buang.",
     equipment: ["4 Car Lift Hidrolik", "Kamera Sensor Spooring 3D", "Engine Scanner OBD II", "Gas Analyzer Emisi"],
   },
@@ -1361,7 +1324,7 @@ export const INITIAL_FACILITIES: FacilityItem[] = [
     id: "fac-6",
     title: "Perpustakaan Widura Digital Library",
     category: "Fasilitas Umum",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/TJ-2023-1024x683.jpg",
+    image: "/media/school/tjkt-cover.webp",
     desc: "Katalog online OPAC Widura, ruang baca ber-AC yang nyaman, ribuan koleksi buku referensi vokasi teknik, dan akses e-journal ilmiah.",
     equipment: ["Katalog OPAC Komputer", "Akses Jurnal Ilmiah Online", "Ruang Diskusi Ber-AC", "10.000+ Judul Buku Teknik"],
   },
@@ -1371,7 +1334,7 @@ export const INITIAL_PROFILE: SchoolProfile = {
   headmasterGreeting: {
     title: "Sambutan Kepala Sekolah",
     subtitle: "Widada, S.Pd, M.Pd — Kepala SMK Negeri 3 Yogyakarta",
-    photo: "https://smkn3jogja.sch.id/wp-content/uploads/2025/03/Widada_KS-scaled.jpg",
+    photo: "/media/school/staff-331f777f37.webp",
     content: [
       "Assalamualaikum Warrahmatullahi Wabarakatuh, Salam sejahtera bagi kita semua.",
       "Era revolusi Industri 4.0 menuju ke 5.0 dengan ditandainya kemajuan ilmu pengetahuan dan teknologi digital yang pesat serta perubahannya dalam hitungan detik akan berimbas pada aspek kehidupan masyarakat, karenanya harus ada upaya sungguh-sungguh untuk mengantisipasinya dan mengikutinya.",

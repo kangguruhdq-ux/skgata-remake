@@ -24,7 +24,8 @@ export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [haloActive, setHaloActive] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
   const [isInView, setIsInView] = useState(true);
   const [desktopReady, setDesktopReady] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
@@ -34,11 +35,17 @@ export default function HeroSection() {
   // Check mobile screen size to selectively render lightweight cinematic poster vs iframe
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+      setIsMobile(window.matchMedia('(max-width: 1023px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches || !!connection?.saveData);
     };
+    const handleVisibility = () => setPageVisible(!document.hidden);
     handleResize();
     window.addEventListener("resize", handleResize, { passive: true });
-    return () => window.removeEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
   }, []);
 
   // Defer desktop background looper until hero layout completes
@@ -67,14 +74,13 @@ export default function HeroSection() {
     setTimeout(() => setHaloActive(false), 1000);
   };
 
-  // Video looper should only run on desktop when in view and ready, saving 80% mobile GPU & memory
-  const shouldRenderVideoLooper = !isMobile && isInView && isPlaying && desktopReady;
+  const shouldRenderVideoLooper = !isMobile && isInView && pageVisible && isPlaying && desktopReady;
 
   return (
     <section
       id="beranda"
       ref={heroRef}
-      className="relative min-h-[85vh] lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-hidden py-8 sm:py-16 transition-colors duration-300"
+      className="relative min-h-[85svh] lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-hidden py-8 sm:py-16 transition-colors duration-300"
     >
       {/* 1. IMMERSIVE VIDEO BACKGROUND (Lightweight on mobile, Cinema looper on desktop) */}
       <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
@@ -123,7 +129,7 @@ export default function HeroSection() {
             {/* Authentic Circular Crest Container */}
             <div className="relative w-28 h-28 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full bg-skagata-950/95 border-2 sm:border-4 border-amber-400 shadow-[0_15px_45px_rgba(0,0,0,0.8)] flex items-center justify-center p-2 sm:p-3.5 backdrop-blur-md group-hover:scale-105 transition-transform duration-300">
               <img
-                src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-1024x1024.png"
+                src="/media/school/logo.webp"
                 alt="Logo Resmi SMK Negeri 3 Yogyakarta"
                 className="w-full h-full object-contain filter drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]"
               />
@@ -215,12 +221,12 @@ export default function HeroSection() {
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setIsPlaying(!isPlaying)}
+            onClick={() => isMobile ? setIsModalOpen(true) : setIsPlaying(!isPlaying)}
               className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition flex items-center gap-1 text-[11px]"
               title={isPlaying ? "Jeda Background Video" : "Putar Background Video"}
             >
               {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 fill-white" />}
-              <span>{isPlaying ? "Jeda Video" : "Putar Video"}</span>
+              <span>{isMobile ? "Putar Video" : isPlaying ? "Jeda Video" : "Putar Video"}</span>
             </button>
             <a
               href="#jurusan"

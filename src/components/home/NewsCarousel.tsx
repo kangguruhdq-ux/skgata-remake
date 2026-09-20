@@ -25,7 +25,7 @@ const BERITA_ITEMS: NewsItem[] = [
     date: "8 September 2026",
     title: "SMKN 3 Yogyakarta Perluas Akses Kebekerjaan ke Jepang, Hadirkan Owner Perusahaan Konstruksi",
     excerpt: "Memperkuat jembatan penyaluran alumni teknik langsung bekerja di industri konstruksi Tokyo & Osaka, Jepang dengan visa kerja kejuruan khusus.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-08-at-18.14.17-260x195.jpeg",
+    image: "/media/school/jepang-2.webp",
     link: "/kabar/smkn-3-yogyakarta-perluas-akses-kebekerjaan-ke-jepang-hadirkan-owner-perusahaan-konstruksi",
   },
   {
@@ -58,7 +58,7 @@ const BERITA_ITEMS: NewsItem[] = [
     date: "19 Agustus 2026",
     title: "Perkuat Kemitraan Industri, Kelas MODENA Disiapkan Jadi Modena Technical School",
     excerpt: "Program link-and-match menghadirkan sertifikasi kompetensi industri appliances berstandar internasional dan serapan kerja alumni.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-19-at-19.49.05-1-260x195.jpeg",
+    image: "/media/school/modena-2.webp",
     link: "/kabar/perkuat-kemitraan-industri-kelas-modena-disiapkan-jadi-modena-technical-school",
   },
   {
@@ -94,7 +94,7 @@ const PENGUMUMAN_ITEMS: NewsItem[] = [
     date: "26 Juni 2026",
     title: "Pengumuman Hasil Seleksi SPMB 2026 SMK Negeri 3 Yogyakarta",
     excerpt: "Pengumuman Hasil Seleksi SPMB Tahun 2026 jalur zonasi, afirmasi, dan prestasi dapat diakses secara transparan melalui portal resmi.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png",
+    image: "/media/school/logo.webp",
     link: "https://smkn3jogja.sch.id/pengumuman/",
   },
   {
@@ -116,7 +116,7 @@ const PENGUMUMAN_ITEMS: NewsItem[] = [
     date: "5 Mei 2026",
     title: "Pengumuman Kelulusan Siswa Kelas XII SMKN 3 Yogyakarta TP 2025/2026",
     excerpt: "Kelulusan 100% siswa kelas XII dan prosedur layanan legalisasi ijazah daring serta panduan registrasi bursa kerja khusus (BKK).",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/09/WhatsApp-Image-2026-09-08-at-18.14.17-260x195.jpeg",
+    image: "/media/school/jepang-2.webp",
     link: "https://kelulusansmk.my.id",
   },
   {
@@ -152,7 +152,7 @@ const ARTIKEL_ITEMS: NewsItem[] = [
     date: "19 September 2025",
     title: "Career Day SMKN 3 Yogyakarta: Jembatani Pendidikan dengan Dunia Kerja",
     excerpt: "Wawancara kerja langsung oleh 40+ perusahaan manufaktur otomotif, konstruksi sipil, dan industri IT terkemuka nusantara.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-19-at-19.49.05-1-260x195.jpeg",
+    image: "/media/school/modena-2.webp",
     link: "/karir",
   },
   {

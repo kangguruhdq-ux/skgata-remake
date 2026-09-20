@@ -25,6 +25,7 @@ export default function VideoTheater() {
       description: "Gambaran menyeluruh keunggulan bengkel teknik, kurikulum industri, dan kehidupan taruna-taruni STM 2 Jetis Yogyakarta.",
       icon: "fa-solid fa-play",
       color: "emerald",
+      poster: "/media/school/video-profil.webp",
     },
     {
       id: "7OoOmmRb5Ek",
@@ -34,6 +35,7 @@ export default function VideoTheater() {
       description: "Dokumentasi pelaksanaan pembinaan fisik, mental, dan apel taruna di lapangan sekolah.",
       icon: "fa-solid fa-shield-halved",
       color: "slate",
+      poster: "/media/school/video-taruna-1.webp",
     },
     {
       id: "URLFZN5JZUg",
@@ -43,6 +45,7 @@ export default function VideoTheater() {
       description: "Lanjutan drill kedisiplinan dan pembentukan etos kerja tangguh siswa siap kerja.",
       icon: "fa-solid fa-person-military-rifle",
       color: "slate",
+      poster: "/media/school/video-taruna-2.webp",
     },
     {
       id: "o3Kzq2jUre0",
@@ -52,6 +55,7 @@ export default function VideoTheater() {
       description: "Pesan dan restu Gubernur DIY atas peran strategis SMKN 3 dalam mencerdaskan generasi teknik bangsa.",
       icon: "fa-solid fa-crown",
       color: "amber",
+      poster: "/media/school/sultan.webp",
     },
     {
       id: "72o_zv3jei4",
@@ -61,6 +65,7 @@ export default function VideoTheater() {
       description: "Pesan penting Wikan Sakarinto, Ph.D mengenai link-and-match dan karakter lulusan masa depan.",
       icon: "fa-solid fa-user-tie",
       color: "teal",
+      poster: "/media/school/wikan.webp",
     },
     {
       id: "-_1paxlaUfE",
@@ -70,18 +75,23 @@ export default function VideoTheater() {
       description: "Mengapa anak SMK keren: keunggulan praktek kerja nyata dan kemandirian profesional di lapangan.",
       icon: "fa-solid fa-film",
       color: "rose",
+      poster: "/media/school/hanung.webp",
     },
   ];
 
   const videoList = videos.length
-    ? videos.map((video, index) => ({
-        ...(defaultVideoList[index % defaultVideoList.length] || defaultVideoList[0]),
-        id: video.id,
-        title: video.title,
-        subtitle: video.subtitle,
-        fullTitle: video.title,
-        description: video.description,
-      }))
+    ? videos.map((video, index) => {
+        const fallback = defaultVideoList[index % defaultVideoList.length] || defaultVideoList[0];
+        return {
+          ...fallback,
+          id: video.id,
+          title: video.title,
+          subtitle: video.subtitle,
+          fullTitle: video.title,
+          description: video.description,
+          poster: (video as any).poster || fallback.poster,
+        };
+      })
     : defaultVideoList;
   const [activeVideoKey, setActiveVideoKey] = useState(activeVideoId);
   const activeVid = videoList.find((video) => video.id === activeVideoKey) || videoList[0];
@@ -92,21 +102,6 @@ export default function VideoTheater() {
   useEffect(() => {
     setActiveVideoKey(activeVideoId);
   }, [activeVideoId]);
-
-  // Viewport Observer to defer iframe loading until scrolled near the theater
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { rootMargin: "250px" }
-    );
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section
@@ -142,7 +137,7 @@ export default function VideoTheater() {
                 <span className="w-3 h-3 rounded-full bg-red-500" />
                 <span className="w-3 h-3 rounded-full bg-yellow-500" />
                 <span className="w-3 h-3 rounded-full bg-emerald-500" />
-                <span className="font-mono text-slate-400 pl-2 text-[11px] truncate max-w-[200px] sm:max-w-none">
+                <span className="font-mono text-slate-400 pl-2 text-[11px] truncate max-w-[180px] sm:max-w-none">
                   Now Playing: {activeVid.title}
                 </span>
               </div>
@@ -165,7 +160,7 @@ export default function VideoTheater() {
                 <iframe
                   key={activeVid.id}
                   className="w-full h-full"
-                  src={`https://www.youtube-nocookie.com/embed/${activeVid.id}?rel=0&modestbranding=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${activeVid.id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`}
                   title={activeVid.fullTitle}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -173,38 +168,41 @@ export default function VideoTheater() {
                   loading="lazy"
                 />
               ) : (
-                <div
+                <button
+                  type="button"
+                  aria-label={`Putar ${activeVid.title}`}
                   onClick={() => setIsInView(true)}
-                  className="w-full h-full relative cursor-pointer group flex items-center justify-center bg-slate-950"
+                  className="w-full h-full relative cursor-pointer group flex items-center justify-center bg-slate-950 overflow-hidden text-left"
                 >
                   <img
-                    src={`https://img.youtube.com/vi/${activeVid.id}/maxresdefault.jpg`}
+                    src={activeVid.poster || "/media/school/video-profil.webp"}
                     alt={activeVid.title}
-                    className="w-full h-full object-cover filter brightness-85 group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-slate-950/30 backdrop-blur-[1px] flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)] group-hover:scale-110 transition-transform">
-                      <Play className="w-7 h-7 fill-white ml-1" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-between p-4 sm:p-6">
+                    <div className="flex justify-end">
+                      <span className="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md text-emerald-300 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-white/10">
+                        <Play className="w-3 h-3 fill-emerald-400 text-emerald-400" />
+                        <span>Putar Video</span>
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-center my-auto">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.6)] group-hover:scale-110 active:scale-95 transition-transform">
+                        <Play className="w-7 h-7 sm:w-9 sm:h-9 fill-white ml-1" />
+                      </div>
+                    </div>
+                    <div className="space-y-0.5">
+                      <p className="text-white text-xs sm:text-sm font-bold line-clamp-1">
+                        {activeVid.title}
+                      </p>
+                      <p className="text-slate-300 text-[11px] line-clamp-1">
+                        {activeVid.subtitle}
+                      </p>
                     </div>
                   </div>
-                </div>
+                </button>
               )}
-
-              {/* Fallback Information Bar below screen if embedded player is blocked by YouTube's Error 153 */}
-              <div className="absolute bottom-2 left-2 right-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 flex items-center justify-between text-[11px] text-slate-400 opacity-90 hover:opacity-100 transition">
-                <span className="flex items-center gap-1.5">
-                  <i className="fa-solid fa-circle-info text-emerald-400" />
-                  <span>Jika player memunculkan Error 153 oleh YouTube:</span>
-                </span>
-                <a
-                  href={watchUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-emerald-300 hover:text-white font-bold underline flex items-center gap-1"
-                >
-                  Tonton di YouTube Resmi &rarr;
-                </a>
-              </div>
             </div>
 
             <div className="p-3 mt-1">
@@ -218,46 +216,59 @@ export default function VideoTheater() {
           </div>
 
           {/* Right: Playlist of All 6 Actual Videos */}
-          <div className="lg:col-span-4 space-y-2.5 reveal-right">
-            <div className="flex items-center justify-between pb-2 text-xs font-bold text-slate-300 uppercase tracking-wider">
-              <span>Daftar 6 Video Resmi</span>
-              <span className="text-emerald-400 text-[11px]">Pilih untuk Memutar</span>
+          <div className="lg:col-span-4 reveal-right">
+            <div className="flex items-center justify-between pb-2 text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+              <span>Daftar {videoList.length} Video Resmi</span>
+              <span className="text-emerald-400 text-[11px]">Pilih Video</span>
             </div>
 
-            {videoList.map((vid) => {
-              const isSelected = vid.id === activeVid.id;
-              return (
-                <button
-                  key={vid.id}
-                  onClick={() => setActiveVideoKey(vid.id)}
-                  className={`w-full text-left p-3 rounded-2xl flex items-center gap-3 transition btn-bounce ${
-                    isSelected
-                      ? "bg-emerald-950/60 border-2 border-emerald-500 text-white"
-                      : "bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white"
-                  }`}
-                >
-                  <div
-                    className={`w-9 h-9 rounded-xl flex-shrink-0 flex items-center justify-center text-sm ${
+            {/* Mobile: Horizontal swipeable strip | Desktop: Vertical list */}
+            <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible gap-2.5 pb-2 lg:pb-0 scroll-smooth snap-x snap-mandatory no-scrollbar">
+              {videoList.map((vid) => {
+                const isSelected = vid.id === activeVid.id;
+                return (
+                  <button
+                    key={vid.id}
+                    onClick={() => setActiveVideoKey(vid.id)}
+                    className={`text-left p-2.5 sm:p-3 rounded-2xl flex items-center gap-3 transition flex-shrink-0 w-[240px] sm:w-[280px] lg:w-full snap-start ${
                       isSelected
-                        ? "bg-emerald-500/30 text-emerald-400"
-                        : "bg-white/10 text-slate-400"
+                        ? "bg-emerald-950/70 border-2 border-emerald-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                        : "bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white"
                     }`}
                   >
-                    <i className={vid.icon} />
-                  </div>
-                  <div className="overflow-hidden flex-1">
-                    <p className="font-bold text-xs truncate">{vid.title}</p>
-                    <span
-                      className={`text-[10px] ${
-                        isSelected ? "text-emerald-300 font-semibold" : "text-slate-400"
-                      }`}
-                    >
-                      {vid.subtitle}
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
+                    {/* Small Poster Thumbnail */}
+                    <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-800 border border-white/10">
+                      <img
+                        src={vid.poster || "/media/school/video-profil.webp"}
+                        alt={vid.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                        <i className={`${vid.icon} text-white text-xs`} />
+                      </div>
+                    </div>
+
+                    <div className="overflow-hidden flex-1 min-w-0">
+                      <p className="font-bold text-xs truncate">{vid.title}</p>
+                      <span
+                        className={`text-[10.5px] truncate block ${
+                          isSelected
+                            ? "text-emerald-300 font-medium"
+                            : "text-slate-400"
+                        }`}
+                      >
+                        {vid.subtitle}
+                      </span>
+                    </div>
+
+                    {isSelected && (
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

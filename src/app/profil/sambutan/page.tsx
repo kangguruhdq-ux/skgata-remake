@@ -35,7 +35,7 @@ export default function SambutanPage() {
                   src={
                     greeting.photo && !greeting.photo.includes("unsplash.com")
                       ? greeting.photo
-                      : "https://smkn3jogja.sch.id/wp-content/uploads/2025/03/Widada_KS-scaled.jpg"
+                      : "/media/school/staff-331f777f37.webp"
                   }
                   alt="Widada, S.Pd, M.Pd - Kepala SMKN 3 Yogyakarta"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"

@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
           <div className="text-center space-y-2">
             <div className="w-16 h-16 rounded-2xl bg-skagata-900 border-2 border-emerald-500/60 p-2 mx-auto flex items-center justify-center shadow-lg shadow-emerald-950/80">
               <img
-                src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                src="/media/school/logo.webp"
                 alt="Logo SMKN 3 Yogyakarta"
                 className="w-full h-full object-contain filter drop-shadow"
               />

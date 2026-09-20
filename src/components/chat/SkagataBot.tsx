@@ -283,7 +283,7 @@ export default function SkagataBot() {
             <div className="relative z-10 flex items-center gap-3">
               <div className="relative w-9 h-9 rounded-xl bg-white/10 border border-white/20 p-1 flex items-center justify-center shadow overflow-hidden shrink-0">
                 <img
-                  src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                  src="/media/school/logo.webp"
                   alt="Logo SMKN 3 Yogyakarta"
                   className="w-full h-full object-contain"
                 />
@@ -360,7 +360,7 @@ export default function SkagataBot() {
                 {msg.sender === "bot" && (
                   <div className="w-7 h-7 rounded-lg bg-white dark:bg-slate-800 p-0.5 border border-emerald-300/40 shadow-xs flex items-center justify-center shrink-0 mt-0.5 overflow-hidden">
                     <img
-                      src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                      src="/media/school/logo.webp"
                       alt="SMKN 3 Yogyakarta"
                       className="w-full h-full object-contain"
                     />
@@ -397,7 +397,7 @@ export default function SkagataBot() {
               <div className="flex gap-2.5 justify-start">
                 <div className="w-7 h-7 rounded-lg bg-white dark:bg-slate-800 p-0.5 border border-emerald-300/40 shadow-xs flex items-center justify-center shrink-0 mt-0.5 overflow-hidden">
                   <img
-                    src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                    src="/media/school/logo.webp"
                     alt="SMKN 3 Yogyakarta"
                     className="w-full h-full object-contain"
                   />

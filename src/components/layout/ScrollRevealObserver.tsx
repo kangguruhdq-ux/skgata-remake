@@ -8,6 +8,7 @@ export default function ScrollRevealObserver() {
 
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
+    let setupFrame: number | null = null;
 
     const setupObserver = () => {
       try {
@@ -60,16 +61,27 @@ export default function ScrollRevealObserver() {
       }
     };
 
+    // Batch DOM mutations into one observer pass per frame. This avoids a
+    // query/loop storm on low-power Android devices while chat and CMS widgets
+    // hydrate at the same time.
+    const scheduleSetup = () => {
+      if (setupFrame !== null) return;
+      setupFrame = window.requestAnimationFrame(() => {
+        setupFrame = null;
+        setupObserver();
+      });
+    };
+
     // Staggered ticks to capture dynamic & hydrated components
-    const t1 = setTimeout(setupObserver, 50);
-    const t2 = setTimeout(setupObserver, 250);
-    const t3 = setTimeout(setupObserver, 650);
+    const t1 = setTimeout(scheduleSetup, 50);
+    const t2 = setTimeout(scheduleSetup, 250);
+    const t3 = setTimeout(scheduleSetup, 650);
 
     // MutationObserver to capture dynamically inserted or tab-switched elements
     let mutationObserver: MutationObserver | null = null;
     if (typeof window !== "undefined" && "MutationObserver" in window) {
       mutationObserver = new MutationObserver(() => {
-        setupObserver();
+        scheduleSetup();
       });
       mutationObserver.observe(document.body, {
         childList: true,
@@ -78,13 +90,14 @@ export default function ScrollRevealObserver() {
     }
 
     // Also re-run on custom CMS updates
-    window.addEventListener("skagata_cms_updated", setupObserver);
+    window.addEventListener("skagata_cms_updated", scheduleSetup);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
-      window.removeEventListener("skagata_cms_updated", setupObserver);
+      window.removeEventListener("skagata_cms_updated", scheduleSetup);
+      if (setupFrame !== null) window.cancelAnimationFrame(setupFrame);
       if (mutationObserver) {
         mutationObserver.disconnect();
       }

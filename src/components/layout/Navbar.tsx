@@ -26,7 +26,7 @@ export default function Navbar({ onOpenSearch, onToggleDrawer, isDrawerOpen }: N
           <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink min-w-0">
             <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-skagata-900 border border-emerald-500/30 text-white flex items-center justify-center p-1 sm:p-1.5 shadow-md group-hover:rotate-6 group-hover:scale-105 transition-all duration-300 shrink-0">
               <img
-                src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                src="/media/school/logo.webp"
                 alt="Logo SMKN 3 Yogyakarta"
                 className="w-full h-full object-contain"
                 onError={(e) => {

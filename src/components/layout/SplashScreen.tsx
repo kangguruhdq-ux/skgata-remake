@@ -104,7 +104,7 @@ export default function SplashScreen() {
           {/* Center Emblem Shield with 3D Depth */}
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-b from-skagata-900 to-slate-950 border-2 border-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.55)] flex items-center justify-center p-3 transition-transform duration-500 hover:scale-105">
             <img
-              src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-1024x1024.png"
+              src="/media/school/logo.webp"
               alt="Logo SMKN 3 Yogyakarta"
               className="w-full h-full object-contain filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
             />

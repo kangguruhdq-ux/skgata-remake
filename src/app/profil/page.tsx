@@ -100,7 +100,7 @@ ${identity.kompetensiKeahlian.map((k) => `- ${k}`).join("\n")}
             <div className="flex items-start gap-4 sm:gap-5">
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-skagata-900 border border-emerald-500/40 p-2 flex items-center justify-center flex-shrink-0 shadow-lg">
                 <img
-                  src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/logosmk3yk-300x300.png"
+                  src="/media/school/logo.webp"
                   alt="Logo SMKN 3 Yogyakarta"
                   className="w-full h-full object-contain"
                 />

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Sparkles, Heart } from "lucide-react";
+import { Sparkles, Heart, X } from "lucide-react";
 
 interface SkagataPetCompanionProps {
   onOpenChat: () => void;
@@ -28,6 +28,7 @@ export default function SkagataPetCompanion({
   const [pettingLevel, setPettingLevel] = useState(0); // 0 (idle) to 1 (happy petted)
   const [tiltAngle, setTiltAngle] = useState(0);
   const [particles, setParticles] = useState<SvgParticle[]>([]);
+  const [isBubbleDismissed, setIsBubbleDismissed] = useState(false);
 
   const petDecayTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastStrokeTimeRef = useRef(0);
@@ -122,6 +123,9 @@ export default function SkagataPetCompanion({
     const now = Date.now();
     setIsPetting(true);
     setPettingLevel(1);
+    if (isBubbleDismissed) {
+      setIsBubbleDismissed(false);
+    }
 
     // Calculate stroke delta & tilt direction
     let clientX = 0;
@@ -198,30 +202,46 @@ export default function SkagataPetCompanion({
       className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none pointer-events-auto max-w-[calc(100vw-24px)]"
     >
       {/* Floating Speech Bubble (Bisa Ngomong) */}
-      <div
-        onClick={onOpenChat}
-        className="mb-2 max-w-[195px] sm:max-w-[240px] cursor-pointer group"
-        title="Klik untuk membuka asisten AI"
-      >
-        <div className="relative p-2.5 sm:p-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl rounded-br-xs border border-emerald-500/30 shadow-xl shadow-emerald-950/15 text-slate-800 dark:text-slate-100 text-[11px] leading-snug transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500">
-          <p className="font-medium transition-opacity duration-500">
-            {currentDialogue}
-          </p>
+      {!isBubbleDismissed && (
+        <div
+          onClick={onOpenChat}
+          className="mb-2 max-w-[195px] sm:max-w-[240px] cursor-pointer group"
+          title="Klik untuk membuka asisten AI"
+        >
+          <div className="relative p-2.5 sm:p-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl rounded-br-xs border border-emerald-500/30 shadow-xl shadow-emerald-950/15 text-slate-800 dark:text-slate-100 text-[11px] leading-snug transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-500">
+            {/* Close / Dismiss button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsBubbleDismissed(true);
+              }}
+              className="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 flex items-center justify-center border border-slate-200 dark:border-slate-700 shadow-sm transition"
+              title="Tutup pesan"
+              aria-label="Tutup pesan"
+            >
+              <X className="w-2.5 h-2.5" />
+            </button>
 
-          <div className="mt-1 flex items-center justify-between text-[9px] text-emerald-600 dark:text-emerald-400 font-bold">
-            <span className="flex items-center gap-1">
-              <Sparkles className="w-2.5 h-2.5 text-emerald-500" />
-              <span>{botName}</span>
-            </span>
-            <span className="group-hover:translate-x-0.5 transition-transform">
-              Buka Chat &rarr;
-            </span>
+            <p className="font-medium transition-opacity duration-500 pr-1">
+              {currentDialogue}
+            </p>
+
+            <div className="mt-1 flex items-center justify-between text-[9px] text-emerald-600 dark:text-emerald-400 font-bold">
+              <span className="flex items-center gap-1">
+                <Sparkles className="w-2.5 h-2.5 text-emerald-500" />
+                <span>{botName}</span>
+              </span>
+              <span className="group-hover:translate-x-0.5 transition-transform">
+                Buka Chat &rarr;
+              </span>
+            </div>
+
+            {/* Pointer tail */}
+            <div className="absolute -bottom-2 right-6 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-white dark:border-t-slate-900" />
           </div>
-
-          {/* Pointer tail */}
-          <div className="absolute -bottom-2 right-6 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[8px] border-t-white dark:border-t-slate-900" />
         </div>
-      </div>
+      )}
 
       {/* Pure SVG Floating Particles */}
       <div className="relative w-full h-0 pointer-events-none">

@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { MapPin, Phone, Mail, ChevronRight, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { useCMS } from "@/lib/store";
 
 export default function Footer() {
+  const [showMap, setShowMap] = useState(false);
   const { schoolInfo, socialLinks } = useCMS();
 
   return (
@@ -327,12 +328,12 @@ export default function Footer() {
             </div>
 
             <div className="w-full h-40 rounded-2xl overflow-hidden border border-slate-800 shadow-lg relative group">
-              <iframe
+              {showMap ? <iframe
                 src={schoolInfo.embedMaps}
                 className="w-full h-full border-0"
                 loading="lazy"
                 title="Peta Lokasi SMKN 3 Yogyakarta"
-              />
+              /> : <button type="button" onClick={() => setShowMap(true)} className="w-full h-full bg-skagata-900 text-emerald-200 font-semibold text-sm flex flex-col items-center justify-center gap-2"><MapPin className="w-7 h-7" />Tampilkan peta sekolah</button>}
               <div className="absolute bottom-2 left-2 right-2 bg-slate-900/90 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/10 text-[10px] text-slate-300 flex items-center justify-between">
                 <span>Jetis, ± 1 Km utara Tugu Jogja</span>
                 <span className="text-emerald-400 font-semibold">Rute &rarr;</span>
