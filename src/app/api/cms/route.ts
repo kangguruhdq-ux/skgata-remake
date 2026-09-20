@@ -62,7 +62,29 @@ export async function GET() {
         where: { id: "singleton" },
       });
       if (record && record.data) {
-        const parsed = JSON.parse(record.data);
+        let parsed = JSON.parse(record.data);
+        const isStale =
+          !parsed.teachers ||
+          !Array.isArray(parsed.teachers) ||
+          parsed.teachers.length < 10 ||
+          parsed.teachers.some((t: any) => t.photo?.includes("unsplash.com") || t.photo?.includes("wikimedia.org"));
+
+        if (isStale) {
+          const defaultData = getDefaultState();
+          parsed = {
+            ...defaultData,
+            ...parsed,
+            teachers: TEACHERS_DATA,
+            majors: MAJORS_DATA,
+            tokohQuotes: INITIAL_TOKOH_QUOTES,
+          };
+          // Persist upgraded 148 teachers state back to Prisma
+          prisma.cmsData.update({
+            where: { id: "singleton" },
+            data: { data: JSON.stringify(parsed) },
+          }).catch((err) => console.warn("Background Prisma upgrade skipped:", err));
+        }
+
         return NextResponse.json({
           status: "success",
           source: "database",

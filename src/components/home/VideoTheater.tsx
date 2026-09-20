@@ -132,12 +132,14 @@ export default function VideoTheater() {
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left: Active Screen Cinema */}
           <div className="lg:col-span-8 bg-slate-950/90 rounded-3xl p-3 sm:p-4 border border-white/10 shadow-2xl backdrop-blur-md reveal-zoom">
-            <div className="flex items-center justify-between pb-2 mb-3 border-b border-white/10 px-2 text-xs">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-500" />
-                <span className="w-3 h-3 rounded-full bg-yellow-500" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500" />
-                <span className="font-mono text-slate-400 pl-2 text-[11px] truncate max-w-[180px] sm:max-w-none">
+            <div className="flex items-center justify-between gap-2 pb-2 mb-3 border-b border-white/10 px-1 sm:px-2 text-xs">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                </div>
+                <span className="font-mono text-slate-400 text-[10.5px] sm:text-[11px] truncate">
                   Now Playing: {activeVid.title}
                 </span>
               </div>
@@ -145,21 +147,26 @@ export default function VideoTheater() {
                 href={watchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-emerald-400 hover:text-emerald-300 font-semibold text-[11px] flex items-center gap-1.5 bg-emerald-950/70 border border-emerald-500/30 px-2.5 py-1 rounded-lg transition"
-                title="Tonton langsung di YouTube jika browser Anda memblokir pemutar"
+                className="text-emerald-400 hover:text-emerald-300 font-semibold text-[10.5px] sm:text-[11px] flex items-center gap-1.5 bg-emerald-950/70 border border-emerald-500/30 px-2 sm:px-2.5 py-1 rounded-lg transition shrink-0"
+                title="Tonton langsung di YouTube"
               >
                 <i className="fa-brands fa-youtube text-red-500" />
                 <span className="hidden sm:inline">Buka di YouTube</span>
+                <span className="sm:hidden">YouTube</span>
                 <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" />
               </a>
             </div>
 
             {/* Video Frame Container (Always strict 16:9 ratio across all screens) */}
-            <div className="relative w-full pb-[56.25%] h-0 rounded-2xl overflow-hidden shadow-inner bg-black group">
+            <div
+              className="relative w-full rounded-2xl overflow-hidden shadow-inner bg-black group"
+              style={{ aspectRatio: "16 / 9", width: "100%" }}
+            >
               {isInView ? (
                 <iframe
                   key={activeVid.id}
-                  className="absolute inset-0 w-full h-full border-0"
+                  className="w-full h-full border-0"
+                  style={{ width: "100%", height: "100%", border: 0 }}
                   src={`https://www.youtube-nocookie.com/embed/${activeVid.id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`}
                   title={activeVid.fullTitle}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -167,19 +174,25 @@ export default function VideoTheater() {
                   allowFullScreen
                 />
               ) : (
-                <button
-                  type="button"
+                <div
+                  role="button"
+                  tabIndex={0}
                   aria-label={`Putar ${activeVid.title}`}
                   onClick={() => setIsInView(true)}
-                  className="absolute inset-0 w-full h-full cursor-pointer group flex items-center justify-center bg-slate-950 overflow-hidden text-left"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setIsInView(true);
+                  }}
+                  className="w-full h-full cursor-pointer group relative overflow-hidden text-left select-none"
+                  style={{ width: "100%", height: "100%" }}
                 >
                   <img
                     src={activeVid.poster || "/media/school/video-profil.webp"}
                     alt={activeVid.title}
-                    className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-between p-3 sm:p-5">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-between p-3 sm:p-5 pointer-events-none">
                     <div className="flex justify-end">
                       <span className="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md text-emerald-300 text-[10px] sm:text-[11px] font-semibold px-2.5 py-0.5 sm:py-1 rounded-full border border-white/10">
                         <Play className="w-3 h-3 fill-emerald-400 text-emerald-400" />
@@ -187,8 +200,8 @@ export default function VideoTheater() {
                       </span>
                     </div>
                     <div className="flex items-center justify-center my-auto">
-                      <div className="w-14 h-14 sm:w-18 sm:h-18 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.6)] group-hover:scale-110 active:scale-95 transition-transform">
-                        <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-white ml-1" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.6)] group-hover:scale-110 active:scale-95 transition-transform">
+                        <Play className="w-5 h-5 sm:w-7 sm:h-7 fill-white ml-0.5" />
                       </div>
                     </div>
                     <div className="space-y-0.5">
@@ -200,7 +213,7 @@ export default function VideoTheater() {
                       </p>
                     </div>
                   </div>
-                </button>
+                </div>
               )}
             </div>
 

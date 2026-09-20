@@ -65,7 +65,7 @@ export interface CMSState {
   quizQuestions: QuizQuestion[];
 }
 
-const STORAGE_KEY = "skagata_cms_v2";
+const STORAGE_KEY = "skagata_cms_v3";
 let sharedServerState: CMSState | null = null;
 let sharedServerRequest: Promise<CMSState | null> | null = null;
 
@@ -216,19 +216,54 @@ function fetchSharedCMSState(): Promise<CMSState | null> {
   sharedServerRequest = fetch("/api/cms")
     .then((res) => res.json())
     .then((resData) => {
-      if (resData.status !== "success" || !resData.data) return null;
+      if (!resData || resData.status !== "success" || !resData.data) return null;
       const base = getInitialCMSState();
+      const isServerTeachersValid =
+        resData.data.teachers &&
+        Array.isArray(resData.data.teachers) &&
+        resData.data.teachers.length > 10 &&
+        !resData.data.teachers.some((t: any) => t.photo?.includes("unsplash.com") || t.photo?.includes("wikimedia.org"));
+
+      const isServerMajorsValid =
+        resData.data.majors &&
+        Array.isArray(resData.data.majors) &&
+        !resData.data.majors.some((m: any) => m.coverImage?.includes("unsplash.com") || m.gallery?.some((g: any) => g.url?.includes("unsplash.com")));
+
       const serverState: CMSState = {
         ...base,
         ...resData.data,
+        teachers: isServerTeachersValid ? resData.data.teachers : TEACHERS_DATA,
+        majors: isServerMajorsValid ? resData.data.majors : MAJORS_DATA,
+        tokohQuotes: (resData.data.tokohQuotes && !resData.data.tokohQuotes.some((t: any) => t.image?.includes("unsplash.com") || t.image?.includes("wikimedia.org")))
+          ? resData.data.tokohQuotes
+          : INITIAL_TOKOH_QUOTES,
         profile: {
           ...INITIAL_PROFILE,
           ...(resData.data.profile || {}),
+          headmasterGreeting: {
+            ...INITIAL_PROFILE.headmasterGreeting,
+            ...((resData.data.profile && resData.data.profile.headmasterGreeting) || {}),
+            photo:
+              (resData.data.profile?.headmasterGreeting?.photo?.includes("unsplash.com") ||
+               resData.data.profile?.headmasterGreeting?.photo === "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/kepala-sekolah.jpg")
+                ? INITIAL_PROFILE.headmasterGreeting.photo
+                : (resData.data.profile?.headmasterGreeting?.photo || INITIAL_PROFILE.headmasterGreeting.photo),
+          },
           identity: { ...INITIAL_PROFILE.identity, ...((resData.data.profile && resData.data.profile.identity) || {}) },
           historyHero: { ...INITIAL_PROFILE.historyHero, ...((resData.data.profile && resData.data.profile.historyHero) || {}) },
         },
         chatbotSettings: { ...INITIAL_CHATBOT_SETTINGS, ...(resData.data.chatbotSettings || {}) },
       };
+
+      if (!isServerTeachersValid) {
+        // Automatically sync the upgraded 148 teachers back to server DB
+        fetch("/api/cms", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ data: serverState }),
+        }).catch(() => {});
+      }
+
       sharedServerState = serverState;
       return serverState;
     })
