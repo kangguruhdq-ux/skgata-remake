@@ -132,34 +132,33 @@ export default function VideoTheater() {
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left: Active Screen Cinema */}
           <div className="lg:col-span-8 bg-slate-950/90 rounded-3xl p-3 sm:p-4 border border-white/10 shadow-2xl backdrop-blur-md reveal-zoom">
-            <div className="flex items-center justify-between gap-2 pb-2 mb-3 border-b border-white/10 px-1 sm:px-2 text-xs">
-              <div className="flex items-center gap-2 min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2 pb-2.5 mb-3 border-b border-white/10 px-2 text-xs">
+              <div className="flex items-center gap-2 min-w-0">
                 <div className="flex items-center gap-1.5 shrink-0">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                 </div>
-                <span className="font-mono text-slate-400 text-[10.5px] sm:text-[11px] truncate">
-                  Now Playing: {activeVid.title}
+                <span className="font-mono text-slate-400 text-xs font-semibold tracking-wide ml-1">
+                  Skagata TV Cinema
                 </span>
               </div>
               <a
                 href={watchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-emerald-400 hover:text-emerald-300 font-semibold text-[10.5px] sm:text-[11px] flex items-center gap-1.5 bg-emerald-950/70 border border-emerald-500/30 px-2 sm:px-2.5 py-1 rounded-lg transition shrink-0"
-                title="Tonton langsung di YouTube"
+                className="text-emerald-400 hover:text-emerald-300 font-semibold text-xs flex items-center gap-1.5 bg-emerald-950/70 border border-emerald-500/30 px-3 py-1 rounded-lg transition shrink-0 hover:bg-emerald-900/60"
+                title="Buka tayangan langsung di YouTube"
               >
                 <i className="fa-brands fa-youtube text-red-500" />
-                <span className="hidden sm:inline">Buka di YouTube</span>
-                <span className="sm:hidden">YouTube</span>
+                <span>Buka di YouTube</span>
                 <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" />
               </a>
             </div>
 
-            {/* Video Frame Container (Always strict 16:9 ratio across all screens) */}
+            {/* Video Frame Container (Always strict 16:9 landscape ratio across all screens) */}
             <div
-              className="relative w-full rounded-2xl overflow-hidden shadow-inner bg-black group"
+              className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-black group"
               style={{ aspectRatio: "16 / 9", width: "100%" }}
             >
               {isInView ? (
@@ -177,12 +176,12 @@ export default function VideoTheater() {
                 <div
                   role="button"
                   tabIndex={0}
-                  aria-label={`Putar ${activeVid.title}`}
+                  aria-label={`Putar ${activeVid.fullTitle}`}
                   onClick={() => setIsInView(true)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") setIsInView(true);
                   }}
-                  className="w-full h-full cursor-pointer group relative overflow-hidden text-left select-none"
+                  className="w-full h-full cursor-pointer group relative overflow-hidden text-left select-none bg-slate-950"
                   style={{ width: "100%", height: "100%" }}
                 >
                   <img
@@ -192,36 +191,36 @@ export default function VideoTheater() {
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent flex flex-col justify-between p-3 sm:p-5 pointer-events-none">
-                    <div className="flex justify-end">
-                      <span className="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md text-emerald-300 text-[10px] sm:text-[11px] font-semibold px-2.5 py-0.5 sm:py-1 rounded-full border border-white/10">
-                        <Play className="w-3 h-3 fill-emerald-400 text-emerald-400" />
-                        <span>Putar Video</span>
-                      </span>
+                  {/* Clean Center Play Button Overlay */}
+                  <div className="absolute inset-0 bg-slate-950/35 group-hover:bg-slate-950/20 transition-colors flex flex-col items-center justify-center gap-3 p-4 pointer-events-none">
+                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_40px_rgba(16,185,129,0.7)] group-hover:scale-110 active:scale-95 transition-transform">
+                      <Play className="w-6 h-6 sm:w-9 sm:h-9 fill-white ml-1" />
                     </div>
-                    <div className="flex items-center justify-center my-auto">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.6)] group-hover:scale-110 active:scale-95 transition-transform">
-                        <Play className="w-5 h-5 sm:w-7 sm:h-7 fill-white ml-0.5" />
-                      </div>
-                    </div>
-                    <div className="space-y-0.5">
-                      <p className="text-white text-xs sm:text-sm font-bold line-clamp-1">
-                        {activeVid.title}
-                      </p>
-                      <p className="text-slate-300 text-[10.5px] sm:text-[11px] line-clamp-1">
-                        {activeVid.subtitle}
-                      </p>
-                    </div>
+                    <span className="inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-md text-emerald-300 text-xs sm:text-sm font-bold px-3 py-1 rounded-full border border-white/20 shadow-lg">
+                      <Play className="w-3.5 h-3.5 fill-emerald-400 text-emerald-400" />
+                      <span>Putar Tayangan</span>
+                    </span>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="p-3 mt-1">
-              <h3 className="font-display font-bold text-base sm:text-xl text-white">
+            {/* Active Video Info Details - FULL TEXT, NEVER CUT OFF */}
+            <div className="p-3 sm:p-4 mt-1 space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-bold text-emerald-300 bg-emerald-950/90 border border-emerald-500/40 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                  {activeVid.subtitle}
+                </span>
+                <span className="text-xs text-slate-400 font-mono">
+                  Video {videoList.findIndex((v) => v.id === activeVid.id) + 1} dari {videoList.length}
+                </span>
+              </div>
+
+              <h3 className="font-display font-black text-base sm:text-2xl text-white leading-snug break-words">
                 {activeVid.fullTitle}
               </h3>
-              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal break-words">
                 {activeVid.description}
               </p>
             </div>
@@ -231,51 +230,56 @@ export default function VideoTheater() {
           <div className="lg:col-span-4 reveal-right">
             <div className="flex items-center justify-between pb-2 text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
               <span>Daftar {videoList.length} Video Resmi</span>
-              <span className="text-emerald-400 text-[11px]">Pilih Video</span>
+              <span className="text-emerald-400 text-[11px] font-semibold">Pilih untuk Memutar</span>
             </div>
 
-            {/* Mobile: Horizontal swipeable strip | Desktop: Vertical list */}
-            <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible gap-2.5 pb-2 lg:pb-0 scroll-smooth snap-x snap-mandatory no-scrollbar">
-              {videoList.map((vid) => {
+            {/* Clean responsive list - on mobile each item is clear and never clipped */}
+            <div className="flex flex-col gap-2 w-full">
+              {videoList.map((vid, idx) => {
                 const isSelected = vid.id === activeVid.id;
                 return (
                   <button
                     key={vid.id}
-                    onClick={() => setActiveVideoKey(vid.id)}
-                    className={`text-left p-2.5 sm:p-3 rounded-2xl flex items-center gap-3 transition flex-shrink-0 w-[240px] sm:w-[280px] lg:w-full snap-start ${
+                    onClick={() => {
+                      setActiveVideoKey(vid.id);
+                      setIsInView(true);
+                      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+                        sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
+                    }}
+                    className={`text-left p-2.5 sm:p-3 rounded-2xl flex items-center gap-3 transition w-full ${
                       isSelected
-                        ? "bg-emerald-950/70 border-2 border-emerald-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                        ? "bg-emerald-950/80 border-2 border-emerald-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.25)]"
                         : "bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white"
                     }`}
                   >
                     {/* Small Poster Thumbnail */}
-                    <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-800 border border-white/10">
+                    <div className="w-20 sm:w-24 h-12 sm:h-14 rounded-xl overflow-hidden flex-shrink-0 relative bg-slate-800 border border-white/10">
                       <img
                         src={vid.poster || "/media/school/video-profil.webp"}
                         alt={vid.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                        <i className={`${vid.icon} text-white text-xs`} />
+                      <div className={`absolute inset-0 flex items-center justify-center ${isSelected ? "bg-emerald-950/60" : "bg-black/35"}`}>
+                        <Play className={`w-4 h-4 ${isSelected ? "fill-emerald-400 text-emerald-400" : "fill-white text-white"}`} />
                       </div>
                     </div>
 
-                    <div className="overflow-hidden flex-1 min-w-0">
-                      <p className="font-bold text-xs truncate">{vid.title}</p>
-                      <span
-                        className={`text-[10.5px] truncate block ${
-                          isSelected
-                            ? "text-emerald-300 font-medium"
-                            : "text-slate-400"
-                        }`}
-                      >
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+                        <p className="font-bold text-xs sm:text-sm text-white leading-tight break-words">
+                          {vid.title}
+                        </p>
+                      </div>
+                      <span className="text-[11px] text-slate-400 block mt-0.5 font-medium">
                         {vid.subtitle}
                       </span>
                     </div>
 
                     {isSelected && (
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0 mr-1" />
                     )}
                   </button>
                 );
