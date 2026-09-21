@@ -5,8 +5,12 @@ import Link from "next/link";
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import TiltCard from "@/components/3d/TiltCard";
 import { MAJORS_DATA } from "@/lib/data-initial";
+import { useCMS } from "@/lib/store";
 
 export default function MajorsGrid() {
+  const { majors } = useCMS();
+  const majorList = majors && majors.length > 0 ? majors : MAJORS_DATA;
+
   return (
     <section id="jurusan" className="py-16 lg:py-24 bg-slate-100/80 border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,7 +31,7 @@ export default function MajorsGrid() {
 
         {/* Grid 8 Jurusan */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
-          {MAJORS_DATA.map((major, idx) => {
+          {majorList.map((major, idx) => {
             const revealClass = `reveal-zoom delay-${(idx % 4) + 1}`;
 
             const majorIcons: Record<string, string> = {
@@ -68,46 +72,60 @@ export default function MajorsGrid() {
 
                   {/* Badge */}
                   <span
-                    className={`absolute top-3 right-3 text-white text-[11px] font-black tracking-wide px-2.5 py-1 rounded-lg shadow-lg backdrop-blur-sm border border-white/20 ${major.colorBadge}`}
+                    className={`absolute top-3 right-3 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-md shadow-md ${major.colorBadge}`}
                   >
-                    <i className={`${majorIcons[major.code] || "fa-solid fa-gear"} mr-1.5`} />
                     {major.code}
                   </span>
 
-                  {/* Program Number Pill */}
-                  <span
-                    className="absolute bottom-2.5 left-3 text-[10px] font-mono font-bold bg-slate-950/80 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/30"
-                  >
-                    KONSENTRASI #{idx + 1}
-                  </span>
+                  {/* Aksara & Subtitle overlay */}
+                  <div className="absolute bottom-2.5 left-3 right-3 text-white">
+                    <span className="text-[10px] text-emerald-300 font-serif block opacity-95">
+                      {major.aksara}
+                    </span>
+                    <p className="text-[11px] font-semibold text-slate-200 truncate">
+                      {major.tagline}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Content Body */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                {/* Body Content */}
+                <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3
-                      className="font-display font-black text-base text-slate-900 dark:text-white group-hover:text-skagata-700 dark:group-hover:text-emerald-400 transition"
-                    >
-                      <Link href={`/jurusan/${major.slug}`}>{major.name}</Link>
+                    <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-emerald-600 transition leading-snug">
+                      {major.name}
                     </h3>
 
-                    <p
-                      className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed line-clamp-3"
-                    >
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
                       {major.description}
                     </p>
                   </div>
 
-                  {/* Footer Link */}
+                  <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px]">
+                    <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 font-medium">
+                      <i
+                        className={`${
+                          majorIcons[major.code] || "fa-solid fa-award"
+                        } text-emerald-600 text-xs`}
+                      />
+                      <span>
+                        {bottomLabels[major.code] || "Pusat Keunggulan"}
+                      </span>
+                    </div>
+
+                    <span className="text-emerald-700 dark:text-emerald-400 font-bold">
+                      {major.totalStudents} Taruna
+                    </span>
+                  </div>
+                </div>
+
+                {/* Link Action */}
+                <div className="p-3 pt-0 bg-slate-50 dark:bg-slate-900/50">
                   <Link
                     href={`/jurusan/${major.slug}`}
-                    className="pt-3 mt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-skagata-700 dark:text-emerald-400 group-hover:text-skagata-900 dark:group-hover:text-emerald-300 transition"
+                    className="w-full py-2 bg-emerald-500/10 hover:bg-emerald-600 text-emerald-700 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 group-hover:shadow-sm"
                   >
-                    <span className="flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      {bottomLabels[major.code] || "Lihat Kurikulum"}
-                    </span>
-                    <i className="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform" />
+                    <span>Detail Program Keahlian</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>
               </TiltCard>
@@ -115,8 +133,8 @@ export default function MajorsGrid() {
           })}
         </div>
 
-        {/* Smart Major Matcher Banner */}
-        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-skagata-950 via-slate-900 to-emerald-950 border border-emerald-500/30 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 reveal-pop">
+        {/* Smart Career Matcher Banner */}
+        <div className="mt-12 bg-gradient-to-r from-skagata-900 via-slate-900 to-emerald-950 rounded-3xl p-6 sm:p-8 border border-emerald-500/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 reveal-up">
           <div className="space-y-2 text-center md:text-left max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />

@@ -1,12 +1,29 @@
 import { NextResponse } from "next/server";
 import { POSTS_DATA } from "@/lib/data-initial";
+import { prisma } from "@/lib/prisma";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const category = searchParams.get("category");
   const query = searchParams.get("q");
 
-  let filtered = POSTS_DATA;
+  let sourcePosts = POSTS_DATA;
+
+  try {
+    const record = await prisma.cmsData.findUnique({
+      where: { id: "singleton" },
+    });
+    if (record && record.data) {
+      const parsed = JSON.parse(record.data);
+      if (parsed.posts && Array.isArray(parsed.posts) && parsed.posts.length > 0) {
+        sourcePosts = parsed.posts;
+      }
+    }
+  } catch (e) {
+    // fallback
+  }
+
+  let filtered = sourcePosts;
 
   if (category && category !== "Semua") {
     filtered = filtered.filter((p) => p.category === category);

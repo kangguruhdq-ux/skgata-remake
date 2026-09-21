@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Newspaper, Bell, BookOpen } from "lucide-react";
+import { useCMS } from "@/lib/store";
 
 interface NewsItem {
   id: string;
@@ -16,7 +17,7 @@ interface NewsItem {
   link: string;
 }
 
-const BERITA_ITEMS: NewsItem[] = [
+const FALLBACK_BERITA_ITEMS: NewsItem[] = [
   {
     id: "berita-1",
     category: "Internasional",
@@ -36,8 +37,8 @@ const BERITA_ITEMS: NewsItem[] = [
     date: "12 Juni 2026",
     title: "Satu Langkah Kecil, Berdampak Besar: Wujudkan Sekolah Bebas Sampah Plastik",
     excerpt: "Lingkungan sekolah yang bersih, sehat, dan berbudaya lingkungan hidup merupakan komitmen seluruh civitas akademika kampus Skagata Jetis.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-31-at-18.30.44-2-260x195.jpeg",
-    link: "/kabar/smkn-3-yogyakarta-hidupkan-nilai-keistimewaan-diy-lewat-upacara-berbahasa-jawa-dan-gagrag-yogyakarta",
+    image: "/media/school/modena-2.webp",
+    link: "/kabar",
   },
   {
     id: "berita-3",
@@ -47,8 +48,8 @@ const BERITA_ITEMS: NewsItem[] = [
     date: "31 Agustus 2026",
     title: "Hidupkan Nilai Keistimewaan DIY Lewat Upacara Berbahasa Jawa dan Busana Gagrag Yogyakarta",
     excerpt: "Penanaman karakter sopan santun adiluhung dan keluhuran budi pekerti Mataram Ngayogyakarta bagi seluruh taruna-taruni Skagata.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-31-at-18.30.44-2-260x195.jpeg",
-    link: "/kabar/smkn-3-yogyakarta-hidupkan-nilai-keistimewaan-diy-lewat-upacara-berbahasa-jawa-dan-gagrag-yogyakarta",
+    image: "/media/school/logo.webp",
+    link: "/kabar",
   },
   {
     id: "berita-4",
@@ -59,33 +60,11 @@ const BERITA_ITEMS: NewsItem[] = [
     title: "Perkuat Kemitraan Industri, Kelas MODENA Disiapkan Jadi Modena Technical School",
     excerpt: "Program link-and-match menghadirkan sertifikasi kompetensi industri appliances berstandar internasional dan serapan kerja alumni.",
     image: "/media/school/modena-2.webp",
-    link: "/kabar/perkuat-kemitraan-industri-kelas-modena-disiapkan-jadi-modena-technical-school",
-  },
-  {
-    id: "berita-5",
-    category: "Seni & Karakter",
-    categoryBadge: "HUT Ke-61",
-    badgeBg: "bg-pink-700 text-white",
-    date: "20 Agustus 2026",
-    title: "FESTA MANGAJAPA, 2.000 Siswa SMKN 3 Yogyakarta Hidupkan Seni dan Budaya",
-    excerpt: "Perayaan HUT Mangajapa menyajikan parade kirab budaya, pertunjukan kesenian tradisi, dan pameran inovasi teknologi karya taruna.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-20-at-21.07.59-1-260x195.jpeg",
-    link: "/kabar/festa-mangajapa-2-000-siswa-smkn-3-yogyakarta-hidupkan-seni-dan-budaya-di-usia-ke-61",
-  },
-  {
-    id: "berita-6",
-    category: "Adiwiyata",
-    categoryBadge: "Peduli Lingkungan",
-    badgeBg: "bg-emerald-800 text-white",
-    date: "8 Juni 2026",
-    title: "Jumat Bersih SMKN 3 Yogyakarta, Langkah Nyata Menuju Sekolah Hijau Berkelanjutan",
-    excerpt: "Dalam rangka memperingati Hari Lingkungan Hidup, seluruh warga sekolah bersinergi membersihkan bengkel, laboratorium, dan ruang publik.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/TJ-2023-1024x683.jpg",
     link: "/kabar",
   },
 ];
 
-const PENGUMUMAN_ITEMS: NewsItem[] = [
+const FALLBACK_PENGUMUMAN_ITEMS: NewsItem[] = [
   {
     id: "peng-1",
     category: "SPMB 2026",
@@ -95,7 +74,7 @@ const PENGUMUMAN_ITEMS: NewsItem[] = [
     title: "Pengumuman Hasil Seleksi SPMB 2026 SMK Negeri 3 Yogyakarta",
     excerpt: "Pengumuman Hasil Seleksi SPMB Tahun 2026 jalur zonasi, afirmasi, dan prestasi dapat diakses secara transparan melalui portal resmi.",
     image: "/media/school/logo.webp",
-    link: "https://smkn3jogja.sch.id/pengumuman/",
+    link: "/kabar?category=SPMB",
   },
   {
     id: "peng-2",
@@ -105,34 +84,12 @@ const PENGUMUMAN_ITEMS: NewsItem[] = [
     date: "25 Juni 2026",
     title: "Berkas Daftar Ulang SPMB Tahun 2026 Calon Taruna Baru",
     excerpt: "Silakan unduh dan lengkapi berkas persyaratan daftar ulang SPMB 2026: Surat Pernyataan Ketarunaan, Tata Tertib, dan Dokumen Registrasi.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-20-at-21.07.59-1-260x195.jpeg",
-    link: "https://smkn3jogja.sch.id/pengumuman/",
-  },
-  {
-    id: "peng-3",
-    category: "Kelulusan",
-    categoryBadge: "Alumni XII",
-    badgeBg: "bg-emerald-700 text-white",
-    date: "5 Mei 2026",
-    title: "Pengumuman Kelulusan Siswa Kelas XII SMKN 3 Yogyakarta TP 2025/2026",
-    excerpt: "Kelulusan 100% siswa kelas XII dan prosedur layanan legalisasi ijazah daring serta panduan registrasi bursa kerja khusus (BKK).",
-    image: "/media/school/jepang-2.webp",
-    link: "https://kelulusansmk.my.id",
-  },
-  {
-    id: "peng-4",
-    category: "Inklusi",
-    categoryBadge: "Afirmasi",
-    badgeBg: "bg-indigo-700 text-white",
-    date: "30 Mei 2026",
-    title: "SK Penetapan Penerimaan Peserta Didik Baru Jalur Disabilitas & Afirmasi",
-    excerpt: "Pemberian kuota dan pendampingan fasilitas ramah disabilitas bagi calon siswa berkebutuhan khusus berpotensi kejuruan teknik.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/TJ-2023-1024x683.jpg",
-    link: "https://smkn3jogja.sch.id/pengumuman/",
+    image: "/media/school/logo.webp",
+    link: "/kabar?category=SPMB",
   },
 ];
 
-const ARTIKEL_ITEMS: NewsItem[] = [
+const FALLBACK_ARTIKEL_ITEMS: NewsItem[] = [
   {
     id: "art-1",
     category: "Kompetisi Vokasi",
@@ -141,7 +98,7 @@ const ARTIKEL_ITEMS: NewsItem[] = [
     date: "8 April 2026",
     title: "SMKN 3 Yogyakarta Jadi Tuan Rumah LKS Tingkat Provinsi DIY 2026",
     excerpt: "Memacu etos juara dan standar keterampilan internasional bidang welding, electronics, mechanical engineering, dan electrical installation.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/MESIN-2023-1024x683.jpg",
+    image: "/media/school/workshop-bp-1.webp",
     link: "/kabar",
   },
   {
@@ -155,51 +112,71 @@ const ARTIKEL_ITEMS: NewsItem[] = [
     image: "/media/school/modena-2.webp",
     link: "/karir",
   },
-  {
-    id: "art-3",
-    category: "Pedagogi Vokasi",
-    categoryBadge: "Inovasi Guru",
-    badgeBg: "bg-emerald-700 text-white",
-    date: "7 Juni 2025",
-    title: "Workshop PjBL Berbasis TPACK untuk Penguatan Karya Inovatif Siswa",
-    excerpt: "Pengembangan metode pembelajaran berbasis proyek industri nyata (Project Based Learning) untuk mencetak lulusan siap kerja mandiri.",
-    image: "https://smkn3jogja.sch.id/wp-content/uploads/2023/04/BC-2023-1024x683.jpg",
-    link: "/kabar",
-  },
 ];
 
-const TAB_CONFIG = {
-  berita: {
-    javanese: "ꦧꦺꦫꦶꦠ",
-    title: "Pusat Liputan & Berita Terkini",
-    subtitle: "Ikuti dinamika agenda kejuruan, kemitraan industri global, dan kegiatan kesiswaan.",
-    items: BERITA_ITEMS,
-    allLabel: "Lihat Semua Berita",
-    allLink: "/kabar?category=Berita",
-  },
-  pengumuman: {
-    javanese: "ꦥꦺꦔꦸꦩꦸꦩꦤ꧀",
-    title: "Pusat Pengumuman Resmi",
-    subtitle: "Informasi kedinasan, seleksi penerimaan murid baru (SPMB), dan agenda resmi sekolah.",
-    items: PENGUMUMAN_ITEMS,
-    allLabel: "Lihat Semua Pengumuman",
-    allLink: "/kabar?category=Pengumuman",
-  },
-  artikel: {
-    javanese: "ꦄꦂꦠꦶꦏꦺꦭ꧀",
-    title: "Koleksi Artikel & Opini Vokasi",
-    subtitle: "Wawasan teknologi terapan, pedagogi kejuruan, dan opini praktisi industri masa kini.",
-    items: ARTIKEL_ITEMS,
-    allLabel: "Lihat Semua Artikel",
-    allLink: "/kabar?category=Artikel",
-  },
-};
-
 export default function NewsCarousel() {
+  const { posts } = useCMS();
   const [activeTab, setActiveTab] = useState<"berita" | "pengumuman" | "artikel">("berita");
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const activeMeta = TAB_CONFIG[activeTab];
+  const tabConfig = useMemo(() => {
+    // Dynamic mapping from active CMS posts
+    const beritaList = (posts || []).filter((p) => p.category === "Berita");
+    const pengumumanList = (posts || []).filter((p) => p.category === "Pengumuman" || p.category === "SPMB");
+    const artikelList = (posts || []).filter((p) => p.category === "Artikel");
+
+    const mapPostToItem = (p: any): NewsItem => ({
+      id: p.id,
+      category: p.category,
+      categoryBadge: p.category,
+      badgeBg:
+        p.category === "SPMB"
+          ? "bg-amber-600 text-white"
+          : p.category === "Pengumuman"
+          ? "bg-cyan-700 text-white"
+          : p.category === "Artikel"
+          ? "bg-purple-700 text-white"
+          : "bg-emerald-700 text-white",
+      date: p.publishedAt || "Terbaru",
+      title: p.title,
+      excerpt: p.excerpt || "",
+      image: p.coverImage || "/media/school/logo.webp",
+      link: `/kabar/${p.slug}`,
+    });
+
+    const beritaItems = beritaList.length > 0 ? beritaList.map(mapPostToItem) : FALLBACK_BERITA_ITEMS;
+    const pengumumanItems = pengumumanList.length > 0 ? pengumumanList.map(mapPostToItem) : FALLBACK_PENGUMUMAN_ITEMS;
+    const artikelItems = artikelList.length > 0 ? artikelList.map(mapPostToItem) : FALLBACK_ARTIKEL_ITEMS;
+
+    return {
+      berita: {
+        javanese: "ꦧꦺꦫꦶꦠ",
+        title: "Pusat Liputan & Berita Terkini",
+        subtitle: "Ikuti dinamika agenda kejuruan, kemitraan industri global, dan kegiatan kesiswaan.",
+        items: beritaItems,
+        allLabel: "Lihat Semua Berita",
+        allLink: "/kabar?category=Berita",
+      },
+      pengumuman: {
+        javanese: "ꦥꦺꦔꦸꦩꦸꦩꦤ꧀",
+        title: "Pusat Pengumuman Resmi",
+        subtitle: "Informasi kedinasan, seleksi penerimaan murid baru (SPMB), dan agenda resmi sekolah.",
+        items: pengumumanItems,
+        allLabel: "Lihat Semua Pengumuman",
+        allLink: "/kabar?category=Pengumuman",
+      },
+      artikel: {
+        javanese: "ꦄꦂꦠꦶꦏꦺꦭ꧀",
+        title: "Koleksi Artikel & Opini Vokasi",
+        subtitle: "Wawasan teknologi terapan, pedagogi kejuruan, dan opini praktisi industri masa kini.",
+        items: artikelItems,
+        allLabel: "Lihat Semua Artikel",
+        allLink: "/kabar?category=Artikel",
+      },
+    };
+  }, [posts]);
+
+  const activeMeta = tabConfig[activeTab];
 
   const handleTabChange = (tab: "berita" | "pengumuman" | "artikel") => {
     setActiveTab(tab);
@@ -302,7 +279,7 @@ export default function NewsCarousel() {
           </div>
         </div>
 
-        {/* Carousel Content Track (Exact Layout matching media_1789820074851.png) */}
+        {/* Carousel Content Track */}
         <div className="w-full">
           <div
             ref={carouselRef}
@@ -325,8 +302,7 @@ export default function NewsCarousel() {
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
-                        e.currentTarget.src =
-                          "https://smkn3jogja.sch.id/wp-content/uploads/2026/08/WhatsApp-Image-2026-08-20-at-21.07.59-1-260x195.jpeg";
+                        e.currentTarget.src = "/media/school/logo.webp";
                       }}
                     />
                     <span
@@ -338,17 +314,14 @@ export default function NewsCarousel() {
 
                   {/* Card Body */}
                   <div className="p-5">
-                    {/* Teal / Cyan Date as seen in reference image */}
                     <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 block mb-2">
                       {item.date}
                     </span>
 
-                    {/* Bold Headline */}
                     <h3 className="font-display font-extrabold text-sm sm:text-base text-slate-900 dark:text-white leading-snug line-clamp-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
                       <Link href={item.link}>{item.title}</Link>
                     </h3>
 
-                    {/* Excerpt */}
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3 leading-relaxed">
                       {item.excerpt}
                     </p>

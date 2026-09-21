@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, X, ArrowRight, BookOpen, Layers, Laptop, User } from "lucide-react";
 import { MAJORS_DATA, POSTS_DATA, SERVICES_DATA, TEACHERS_DATA } from "@/lib/data-initial";
+import { useCMS } from "@/lib/store";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface SearchModalProps {
 }
 
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
+  const { majors, posts, services, teachers } = useCMS();
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -53,8 +55,13 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   const q = query.trim().toLowerCase();
 
+  const majorList = majors && majors.length > 0 ? majors : MAJORS_DATA;
+  const postList = posts && posts.length > 0 ? posts : POSTS_DATA;
+  const serviceList = services && services.length > 0 ? services : SERVICES_DATA;
+  const teacherList = teachers && teachers.length > 0 ? teachers : TEACHERS_DATA;
+
   const filteredMajors = q
-    ? MAJORS_DATA.filter(
+    ? majorList.filter(
         (m) =>
           m.name.toLowerCase().includes(q) ||
           m.code.toLowerCase().includes(q) ||
@@ -63,7 +70,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     : [];
 
   const filteredPosts = q
-    ? POSTS_DATA.filter(
+    ? postList.filter(
         (p) =>
           p.title.toLowerCase().includes(q) ||
           p.category.toLowerCase().includes(q) ||
@@ -72,7 +79,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     : [];
 
   const filteredServices = q
-    ? SERVICES_DATA.filter(
+    ? serviceList.filter(
         (s) =>
           s.name.toLowerCase().includes(q) ||
           s.description.toLowerCase().includes(q) ||
@@ -81,7 +88,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     : [];
 
   const filteredTeachers = q
-    ? TEACHERS_DATA.filter(
+    ? teacherList.filter(
         (t) =>
           t.name.toLowerCase().includes(q) ||
           t.role.toLowerCase().includes(q) ||

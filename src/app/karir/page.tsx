@@ -15,14 +15,18 @@ import {
   Send,
 } from "lucide-react";
 import { JOBS_DATA } from "@/lib/data-initial";
+import { useCMS } from "@/lib/store";
 
 export default function KarirPage() {
+  const { jobs } = useCMS();
   const [filterType, setFilterType] = useState("Semua");
   const [submitted, setSubmitted] = useState(false);
 
   const types = ["Semua", "Full-Time", "Program Karir Jepang", "Magang Industri"];
 
-  const filteredJobs = JOBS_DATA.filter((job) => {
+  const jobList = jobs && jobs.length > 0 ? jobs : JOBS_DATA;
+
+  const filteredJobs = jobList.filter((job) => {
     return filterType === "Semua" || job.type === filterType;
   });
 

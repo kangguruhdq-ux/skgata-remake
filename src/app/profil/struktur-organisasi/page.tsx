@@ -1,12 +1,19 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Users, ChevronRight, UserCheck, Shield, Award, Briefcase, GraduationCap } from "lucide-react";
+import { useCMS } from "@/lib/store";
+import { SCHOOL_INFO } from "@/lib/data-initial";
 
 export default function StrukturOrganisasiPage() {
+  const { profile, majors, teachers } = useCMS();
+  const headmasterName = teachers.find((t) => /kepala sekolah/i.test(t.role))?.name || SCHOOL_INFO.headmaster;
+
   const leadership = [
     {
       role: "Kepala Sekolah",
-      name: "Widodo, M.Pd.",
+      name: headmasterName,
       nip: "19680512 199403 1 008",
       color: "border-emerald-500 bg-emerald-50 text-emerald-900",
     },
@@ -41,16 +48,16 @@ export default function StrukturOrganisasiPage() {
     },
   ];
 
-  const departments = [
-    { code: "BP", name: "Broadcasting & Perfilman" },
-    { code: "TJKT", name: "Teknik Jaringan Komputer & Telko" },
-    { code: "DPIB", name: "Desain Pemodelan & Info Bangunan" },
-    { code: "TKP", name: "Teknik Konstruksi & Perumahan" },
-    { code: "TE", name: "Teknik Elektronika (Modena School)" },
-    { code: "TITL", name: "Teknik Ketenagalistrikan" },
-    { code: "TKRO", name: "Teknik Kendaraan Ringan Otomotif" },
-    { code: "TP", name: "Teknik Pemesinan (CNC Center)" },
-  ];
+  const departmentList = (majors && majors.length > 0 ? majors : [
+    { code: "BP", name: "Broadcasting & Perfilman", slug: "broadcasting-dan-perfilman" },
+    { code: "TJKT", name: "Teknik Jaringan Komputer & Telko", slug: "teknik-jaringan-komputer-dan-telekomunikasi" },
+    { code: "DPIB", name: "Desain Pemodelan & Info Bangunan", slug: "desain-pemodelan-dan-informasi-bangunan" },
+    { code: "TKP", name: "Teknik Konstruksi & Perumahan", slug: "teknik-konstruksi-dan-perumahan" },
+    { code: "TE", name: "Teknik Elektronika", slug: "teknik-elektronika" },
+    { code: "TITL", name: "Teknik Ketenagalistrikan", slug: "teknik-ketenagalistrikan" },
+    { code: "TKRO", name: "Teknik Kendaraan Ringan Otomotif", slug: "teknik-kendaraan-ringan-otomotif" },
+    { code: "TP", name: "Teknik Pemesinan", slug: "teknik-pemesinan" },
+  ]);
 
   return (
     <div className="bg-slate-50 py-12 lg:py-20">
@@ -144,10 +151,10 @@ export default function StrukturOrganisasiPage() {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {departments.map((dept) => (
+              {departmentList.map((dept) => (
                 <Link
                   key={dept.code}
-                  href={`/jurusan`}
+                  href={`/jurusan/${dept.slug || ""}`}
                   className="p-3.5 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-300 transition flex items-center gap-2.5"
                 >
                   <span className="w-8 h-8 rounded-lg bg-skagata-900 text-white font-bold text-xs flex items-center justify-center flex-shrink-0">
@@ -158,7 +165,7 @@ export default function StrukturOrganisasiPage() {
                       {dept.name}
                     </p>
                     <span className="text-[10px] text-emerald-600 font-medium">
-                      Konsentrasi Kejuruan
+                      {(dept as any).headOfMajor ? `Ka: ${(dept as any).headOfMajor}` : "Konsentrasi Kejuruan"}
                     </span>
                   </div>
                 </Link>

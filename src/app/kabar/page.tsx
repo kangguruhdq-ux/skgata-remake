@@ -5,9 +5,11 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Search, Calendar, ChevronRight, ArrowRight, Eye, User, Newspaper, Megaphone, BookOpen, Award } from "lucide-react";
 import { POSTS_DATA } from "@/lib/data-initial";
+import { useCMS } from "@/lib/store";
 import { formatDate } from "@/lib/utils";
 
 function KabarContent() {
+  const { posts } = useCMS();
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "Semua";
 
@@ -22,7 +24,9 @@ function KabarContent() {
 
   const categories = ["Semua", "Berita", "Pengumuman", "Artikel", "SPMB"];
 
-  const filteredPosts = POSTS_DATA.filter((post) => {
+  const postList = posts && posts.length > 0 ? posts : POSTS_DATA;
+
+  const filteredPosts = postList.filter((post) => {
     const matchesCat = activeCategory === "Semua" || post.category === activeCategory;
     const matchesQuery =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -1,10 +1,16 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, CheckCircle2, Award, ChevronRight } from "lucide-react";
 import { MAJORS_DATA } from "@/lib/data-initial";
+import { useCMS } from "@/lib/store";
 import TiltCard from "@/components/3d/TiltCard";
 
 export default function JurusanIndexPage() {
+  const { majors } = useCMS();
+  const majorList = majors && majors.length > 0 ? majors : MAJORS_DATA;
+
   return (
     <div className="bg-slate-50 py-12 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,7 +36,7 @@ export default function JurusanIndexPage() {
 
         {/* Grid 8 Jurusan */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {MAJORS_DATA.map((major, idx) => (
+          {majorList.map((major, idx) => (
             <TiltCard
               key={major.id}
               className={`bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition interactive-card flex flex-col justify-between group reveal-up delay-${(idx % 4) + 1}`}
@@ -68,7 +74,11 @@ export default function JurusanIndexPage() {
                     </span>
                     <div className="flex items-center gap-1.5 text-xs text-slate-700 font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                      <span className="truncate">{major.competencies[0]}</span>
+                      <span className="truncate">
+                        {major.competencies && major.competencies.length > 0
+                          ? major.competencies[0]
+                          : "Standar Industri & BNSP"}
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -19,8 +19,10 @@ import {
   Megaphone,
 } from "lucide-react";
 import { SERVICES_DATA } from "@/lib/data-initial";
+import { useCMS } from "@/lib/store";
 
 export default function LayananPage() {
+  const { services } = useCMS();
   const [filterCategory, setFilterCategory] = useState("Semua");
   const [search, setSearch] = useState("");
 
@@ -63,8 +65,10 @@ export default function LayananPage() {
     },
   ];
 
+  const serviceSource = services && services.length > 0 ? services : SERVICES_DATA;
+
   const allServices = [
-    ...SERVICES_DATA.map((s) => ({
+    ...serviceSource.map((s) => ({
       ...s,
       category: s.category === "LMS" || s.category === "Nilai" ? "Akademik" : s.category,
     })),
