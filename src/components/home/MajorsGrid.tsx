@@ -80,6 +80,8 @@ export default function MajorsGrid() {
                   <img
                     src={major.coverImage}
                     alt={major.name}
+                    width="400"
+                    height="176"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90 group-hover:opacity-100"

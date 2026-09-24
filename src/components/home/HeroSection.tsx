@@ -106,6 +106,8 @@ export default function HeroSection() {
         <img
           src="/media/school/video-profil.webp"
           alt="Latar Video Kampus SMKN 3 Yogyakarta"
+          width="1920"
+          height="1080"
           fetchPriority="high"
           loading="eager"
           decoding="async"
@@ -176,9 +178,9 @@ export default function HeroSection() {
             href="https://kamimendengar.skagata.sch.id/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-5 sm:px-7 py-3 sm:py-3.5 bg-[#f59e0b] hover:bg-[#d97706] text-white font-black rounded-xl shadow-[0_10px_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 text-xs sm:text-base border border-amber-300/40 btn-bounce"
+            className="w-full sm:w-auto px-5 sm:px-7 py-3 sm:py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl shadow-[0_10px_30px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2.5 text-xs sm:text-base border border-amber-400/60 btn-bounce"
           >
-            <FileText className="w-4 h-4 sm:w-5 sm:h-5 fill-white/20" />
+            <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950 fill-slate-950/20" />
             <span>Skagata Mendengar</span>
           </a>
 

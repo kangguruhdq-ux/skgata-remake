@@ -146,6 +146,9 @@ export default function KetarunaanCards() {
       className="py-10 sm:py-16 bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800/80 relative z-20 w-full max-w-full overflow-hidden"
     >
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Accessible Section Heading for Screen Readers & SEO Sequential Hierarchy */}
+        <h2 className="sr-only">Portal Pintasan Informasi SMKN 3 Yogyakarta</h2>
+
         {/* 4 Portal Icons Bar - Clean Minimalist Style with 3D Pop & Hover Depth */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-5xl mx-auto w-full">
           {portalItems.map((item, idx) => (

@@ -188,9 +188,12 @@ export default function VideoTheater() {
                   <img
                     src={activeVid.poster || "/media/school/video-profil.webp"}
                     alt={activeVid.title}
+                    width="800"
+                    height="450"
                     className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     loading="lazy"
+                    decoding="async"
                   />
                   {/* Clean Center Play Button Overlay */}
                   <div className="absolute inset-0 bg-slate-950/35 group-hover:bg-slate-950/20 transition-colors flex flex-col items-center justify-center gap-3 p-4 pointer-events-none">
@@ -259,6 +262,8 @@ export default function VideoTheater() {
                       <img
                         src={vid.poster || "/media/school/video-profil.webp"}
                         alt={vid.title}
+                        width="96"
+                        height="56"
                         className="w-full h-full object-cover"
                         loading="lazy"
                         decoding="async"

@@ -300,6 +300,8 @@ export default function NewsCarousel() {
                     <img
                       src={item.image}
                       alt={item.title}
+                      width="340"
+                      height="192"
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -316,7 +318,7 @@ export default function NewsCarousel() {
 
                   {/* Card Body */}
                   <div className="p-5">
-                    <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 block mb-2">
+                    <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 block mb-2">
                       {item.date}
                     </span>
 

@@ -102,7 +102,7 @@ export default function ThemeToggle({
     <button
       onClick={toggleTheme}
       type="button"
-      className={`inline-flex items-center gap-2 p-2 rounded-xl border transition-all duration-300 active:scale-95 ${
+      className={`inline-flex items-center gap-2 p-2 rounded-xl border transition-colors duration-200 active:scale-95 ${
         isDark
           ? "bg-slate-800/90 text-amber-300 border-slate-700 hover:bg-slate-700 shadow-sm"
           : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 shadow-sm"

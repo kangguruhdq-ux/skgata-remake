@@ -26,7 +26,7 @@ export default function PillarStack() {
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % stackCards.length);
       setIsSwapping(false);
-    }, 420);
+    }, 260);
   };
 
   const cyclePrev = () => {
@@ -36,7 +36,7 @@ export default function PillarStack() {
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - 1 + stackCards.length) % stackCards.length);
       setIsSwapping(false);
-    }, 420);
+    }, 260);
   };
 
   const jumpTo = (index: number) => {
@@ -46,7 +46,7 @@ export default function PillarStack() {
     setTimeout(() => {
       setCurrentIndex(index);
       setIsSwapping(false);
-    }, 420);
+    }, 260);
   };
 
   const getCardClass = (index: number) => {
@@ -225,7 +225,7 @@ export default function PillarStack() {
                 <div
                   key={pilar.id}
                   onClick={cycleNext}
-                  className={`stack-card ${getCardClass(idx)} ${pilar.bgClass} p-6 sm:p-9 flex flex-col justify-between cursor-pointer relative overflow-hidden transition-all duration-300`}
+                  className={`stack-card ${getCardClass(idx)} ${pilar.bgClass} p-6 sm:p-9 flex flex-col justify-between cursor-pointer relative overflow-hidden`}
                   title="Ketuk kartu untuk swap ke pilar berikutnya"
                 >
                   {/* Subtle Background Watermark Icon for Depth */}
