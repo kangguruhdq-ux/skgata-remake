@@ -207,6 +207,7 @@ export default function SkagataPetCompanion({
   return (
     <div
       ref={petRef}
+      style={{ contain: "layout" }}
       className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none pointer-events-auto max-w-[calc(100vw-24px)]"
     >
       {/* Floating Speech Bubble (Bisa Ngomong) */}

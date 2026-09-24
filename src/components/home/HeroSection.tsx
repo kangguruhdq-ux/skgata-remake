@@ -110,16 +110,23 @@ export default function HeroSection() {
       {/* 1. IMMERSIVE VIDEO BACKGROUND (Crisp 9KB poster on mobile, deferred 1080p looper on desktop/play) */}
       <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
         {/* High-Definition Local Poster Image (Primary LCP Element) */}
-        <img
-          src="/media/school/video-profil.webp"
-          alt="Latar Video Kampus SMKN 3 Yogyakarta"
-          width="1920"
-          height="1080"
-          fetchPriority="high"
-          loading="eager"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover filter brightness-75 scale-105"
-        />
+        <picture className="absolute inset-0 w-full h-full pointer-events-none">
+          <source
+            media="(max-width: 640px)"
+            srcSet="/media/school/video-profil-480.webp"
+            type="image/webp"
+          />
+          <img
+            src="/media/school/video-profil.webp"
+            alt="Latar Video Kampus SMKN 3 Yogyakarta"
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </picture>
 
         {/* Local HTML5 Video Looper */}
         {videoActive && isPlaying && (
@@ -140,7 +147,7 @@ export default function HeroSection() {
         )}
 
         {/* Cinematic Vignette Overlay */}
-        <div className="absolute inset-0 bg-slate-950/45 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 bg-slate-950/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/60" />
       </div>
 

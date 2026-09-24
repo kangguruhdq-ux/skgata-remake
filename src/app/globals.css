@@ -522,14 +522,14 @@ html.theme-transitioning *:after {
 }
 
 .emblem-rise-slow {
-  animation: emblemRiseSlow 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: emblemRiseSlow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Progressive Hero Entrance Keyframes (Independent of Observer) */
 @keyframes heroFadeUp {
   0% {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
@@ -540,7 +540,7 @@ html.theme-transitioning *:after {
 @keyframes heroFadeLeft {
   0% {
     opacity: 0;
-    transform: translateX(-35px);
+    transform: translateX(-20px);
   }
   100% {
     opacity: 1;
@@ -551,7 +551,7 @@ html.theme-transitioning *:after {
 @keyframes heroFadeRight {
   0% {
     opacity: 0;
-    transform: translateX(35px);
+    transform: translateX(20px);
   }
   100% {
     opacity: 1;
@@ -560,28 +560,28 @@ html.theme-transitioning *:after {
 }
 
 .hero-animate-badge {
-  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
 }
 .hero-animate-title {
-  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 .hero-animate-desc {
-  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 .hero-animate-cta {
-  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+  animation: heroFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 .hero-stat-1 {
-  animation: heroFadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+  animation: heroFadeLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 .hero-stat-2 {
-  animation: heroFadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+  animation: heroFadeLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
 }
 .hero-stat-3 {
-  animation: heroFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+  animation: heroFadeRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
 }
 .hero-stat-4 {
-  animation: heroFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+  animation: heroFadeRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
 /* Floating Animations */

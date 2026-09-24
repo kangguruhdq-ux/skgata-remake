@@ -48,22 +48,13 @@ export default function ScrollRevealObserver() {
         }
 
         revealTargets.forEach((el) => {
-          // If already scrolled past, reveal immediately so it doesn't stay hidden when scrolling up
-          const rect = el.getBoundingClientRect();
-          if (rect.bottom < 0) {
-            el.classList.add("revealed");
-          } else {
-            observer!.observe(el);
-          }
+          observer!.observe(el);
         });
       } catch (err) {
         console.warn("Scroll reveal observer setup:", err);
       }
     };
 
-    // Batch DOM mutations into one observer pass per frame. This avoids a
-    // query/loop storm on low-power Android devices while chat and CMS widgets
-    // hydrate at the same time.
     const scheduleSetup = () => {
       if (setupFrame !== null) return;
       setupFrame = window.requestAnimationFrame(() => {
@@ -72,22 +63,9 @@ export default function ScrollRevealObserver() {
       });
     };
 
-    // Staggered ticks to capture dynamic & hydrated components
-    const t1 = setTimeout(scheduleSetup, 50);
-    const t2 = setTimeout(scheduleSetup, 250);
-    const t3 = setTimeout(scheduleSetup, 650);
-
-    // MutationObserver to capture dynamically inserted or tab-switched elements
-    let mutationObserver: MutationObserver | null = null;
-    if (typeof window !== "undefined" && "MutationObserver" in window) {
-      mutationObserver = new MutationObserver(() => {
-        scheduleSetup();
-      });
-      mutationObserver.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-    }
+    // Staggered ticks to capture initial hydration without layout thrashing
+    const t1 = setTimeout(scheduleSetup, 150);
+    const t2 = setTimeout(scheduleSetup, 800);
 
     // Also re-run on custom CMS updates
     window.addEventListener("skagata_cms_updated", scheduleSetup);
@@ -95,12 +73,8 @@ export default function ScrollRevealObserver() {
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
-      clearTimeout(t3);
       window.removeEventListener("skagata_cms_updated", scheduleSetup);
       if (setupFrame !== null) window.cancelAnimationFrame(setupFrame);
-      if (mutationObserver) {
-        mutationObserver.disconnect();
-      }
       if (observer) {
         observer.disconnect();
       }

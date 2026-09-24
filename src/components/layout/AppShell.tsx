@@ -9,13 +9,32 @@ import SearchModal from "./SearchModal";
 import Footer from "./Footer";
 import ScrollRevealObserver from "./ScrollRevealObserver";
 import PageTransition from "./PageTransition";
-import SkagataBot from "@/components/chat/SkagataBot";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+
+const SkagataBot = dynamic(() => import("@/components/chat/SkagataBot"), {
+  ssr: false,
+});
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [showBot, setShowBot] = useState(false);
   const pathname = usePathname();
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    if ("requestIdleCallback" in window) {
+      const handle = (window as any).requestIdleCallback(
+        () => setShowBot(true),
+        { timeout: 2500 }
+      );
+      return () => (window as any).cancelIdleCallback(handle);
+    } else {
+      const timer = setTimeout(() => setShowBot(true), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const isAdmin = pathname.startsWith("/admin");
 
@@ -45,7 +64,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <PageTransition>{children}</PageTransition>
       </main>
       <Footer />
-      <SkagataBot />
+      {showBot && <SkagataBot />}
     </div>
   );
 }

@@ -26,7 +26,7 @@ export default function VideoTheater() {
       description: "Gambaran menyeluruh keunggulan bengkel teknik, kurikulum industri, dan kehidupan taruna-taruni STM 2 Jetis Yogyakarta.",
       icon: "play",
       color: "emerald",
-      poster: "/media/school/video-profil.webp",
+      poster: "/media/school/video-profil-480.webp",
     },
     {
       id: "7OoOmmRb5Ek",
@@ -36,7 +36,7 @@ export default function VideoTheater() {
       description: "Dokumentasi pelaksanaan pembinaan fisik, mental, dan apel taruna di lapangan sekolah.",
       icon: "shield",
       color: "slate",
-      poster: "/media/school/video-taruna-1.webp",
+      poster: "/media/school/video-taruna-1-480.webp",
     },
     {
       id: "URLFZN5JZUg",
@@ -46,7 +46,7 @@ export default function VideoTheater() {
       description: "Lanjutan drill kedisiplinan dan pembentukan etos kerja tangguh siswa siap kerja.",
       icon: "flag",
       color: "slate",
-      poster: "/media/school/video-taruna-2.webp",
+      poster: "/media/school/video-taruna-2-480.webp",
     },
     {
       id: "o3Kzq2jUre0",
@@ -56,7 +56,7 @@ export default function VideoTheater() {
       description: "Pesan dan restu Gubernur DIY atas peran strategis SMKN 3 dalam mencerdaskan generasi teknik bangsa.",
       icon: "crown",
       color: "amber",
-      poster: "/media/school/sultan.webp",
+      poster: "/media/school/sultan-480.webp",
     },
     {
       id: "72o_zv3jei4",
@@ -66,7 +66,7 @@ export default function VideoTheater() {
       description: "Pesan penting Wikan Sakarinto, Ph.D mengenai link-and-match dan karakter lulusan masa depan.",
       icon: "user",
       color: "teal",
-      poster: "/media/school/wikan.webp",
+      poster: "/media/school/wikan-480.webp",
     },
     {
       id: "-_1paxlaUfE",
@@ -76,7 +76,7 @@ export default function VideoTheater() {
       description: "Mengapa anak SMK keren: keunggulan praktek kerja nyata dan kemandirian profesional di lapangan.",
       icon: "film",
       color: "rose",
-      poster: "/media/school/hanung.webp",
+      poster: "/media/school/hanung-480.webp",
     },
   ];
 

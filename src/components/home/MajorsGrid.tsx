@@ -136,9 +136,11 @@ export default function MajorsGrid() {
                 <div className="p-3 pt-0 bg-slate-50 dark:bg-slate-900/50">
                   <Link
                     href={`/jurusan/${major.slug}`}
+                    aria-label={`Detail Program Keahlian ${major.name}`}
                     className="w-full py-2 bg-emerald-500/10 hover:bg-emerald-600 text-emerald-700 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 group-hover:shadow-sm"
                   >
                     <span>Detail Program Keahlian</span>
+                    <span className="sr-only">: {major.name}</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>

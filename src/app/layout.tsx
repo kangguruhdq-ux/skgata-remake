@@ -61,8 +61,17 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
+          href="/media/school/video-profil-480.webp"
+          type="image/webp"
+          media="(max-width: 640px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
           href="/media/school/video-profil.webp"
           type="image/webp"
+          media="(min-width: 641px)"
           fetchPriority="high"
         />
         <script

@@ -1,12 +1,28 @@
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/home/HeroSection";
 import KetarunaanCards from "@/components/home/KetarunaanCards";
-import PillarStack from "@/components/home/PillarStack";
-import VideoTheater from "@/components/home/VideoTheater";
-import TokohQuotes from "@/components/home/TokohQuotes";
-import MajorsGrid from "@/components/home/MajorsGrid";
-import DigitalBento from "@/components/home/DigitalBento";
-import NewsCarousel from "@/components/home/NewsCarousel";
-import CareerBanner from "@/components/home/CareerBanner";
+
+const PillarStack = dynamic(() => import("@/components/home/PillarStack"), {
+  ssr: true,
+});
+const VideoTheater = dynamic(() => import("@/components/home/VideoTheater"), {
+  ssr: true,
+});
+const TokohQuotes = dynamic(() => import("@/components/home/TokohQuotes"), {
+  ssr: true,
+});
+const MajorsGrid = dynamic(() => import("@/components/home/MajorsGrid"), {
+  ssr: true,
+});
+const DigitalBento = dynamic(() => import("@/components/home/DigitalBento"), {
+  ssr: true,
+});
+const NewsCarousel = dynamic(() => import("@/components/home/NewsCarousel"), {
+  ssr: true,
+});
+const CareerBanner = dynamic(() => import("@/components/home/CareerBanner"), {
+  ssr: true,
+});
 
 export default function HomePage() {
   return (
