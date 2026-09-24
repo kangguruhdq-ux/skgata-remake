@@ -282,10 +282,11 @@ export function useCMS() {
     // 1. Instantly load local cache
     setState(getInitialCMSState());
 
-    // 2. Fetch latest server database state during idle time to prevent network contention with LCP
+    // 2. Fetch latest server database state without competing with initial LCP & critical resources
     if (typeof window !== "undefined") {
-      const scheduleSync = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1200));
-      scheduleSync(() => {
+      const isAdmin = window.location.pathname.startsWith("/admin");
+      const delay = isAdmin ? 200 : 4500;
+      const timer = setTimeout(() => {
         fetchSharedCMSState().then((serverState) => {
           if (!serverState) return;
           setState(serverState);
@@ -295,7 +296,7 @@ export function useCMS() {
             // ignore quota error
           }
         });
-      });
+      }, delay);
     }
 
     const handleUpdate = () => {

@@ -17,10 +17,7 @@ import {
   Tv,
 } from "lucide-react";
 import TiltCard from "@/components/3d/TiltCard";
-import { useCMS } from "@/lib/store";
-
 export default function HeroSection() {
-  const { activeVideoId } = useCMS();
   const [isPlaying, setIsPlaying] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [haloActive, setHaloActive] = useState(false);
@@ -33,7 +30,7 @@ export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  const videoId = activeVideoId || "tJhzVg7Nq4g";
+  const videoId = "tJhzVg7Nq4g";
 
   useEffect(() => {
     const handleVisibility = () => setPageVisible(!document.hidden);
@@ -110,23 +107,18 @@ export default function HeroSection() {
       {/* 1. IMMERSIVE VIDEO BACKGROUND (Crisp 9KB poster on mobile, deferred 1080p looper on desktop/play) */}
       <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
         {/* High-Definition Local Poster Image (Primary LCP Element) */}
-        <picture className="absolute inset-0 w-full h-full pointer-events-none">
-          <source
-            media="(max-width: 640px)"
-            srcSet="/media/school/video-profil-480.webp"
-            type="image/webp"
-          />
-          <img
-            src="/media/school/video-profil.webp"
-            alt="Latar Video Kampus SMKN 3 Yogyakarta"
-            width="1920"
-            height="1080"
-            fetchPriority="high"
-            loading="eager"
-            decoding="sync"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </picture>
+        <img
+          src="/media/school/video-profil-480.webp"
+          srcSet="/media/school/video-profil-480.webp 480w, /media/school/video-profil.webp 1080w"
+          sizes="100vw"
+          alt="Latar Video Kampus SMKN 3 Yogyakarta"
+          width="480"
+          height="270"
+          fetchPriority="high"
+          loading="eager"
+          decoding="sync"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        />
 
         {/* Local HTML5 Video Looper */}
         {videoActive && isPlaying && (
@@ -166,10 +158,14 @@ export default function HeroSection() {
               }`}
             />
             {/* Authentic Circular Crest Container */}
-            <div className="relative w-28 h-28 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full bg-skagata-950/95 border-2 sm:border-4 border-amber-400 shadow-[0_15px_45px_rgba(0,0,0,0.8)] flex items-center justify-center p-2 sm:p-3.5 backdrop-blur-md group-hover:scale-105 transition-transform duration-300">
+            <div className="relative w-28 h-28 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full bg-skagata-950/95 border-2 sm:border-4 border-amber-400 shadow-[0_15px_45px_rgba(0,0,0,0.8)] flex items-center justify-center p-2 sm:p-3.5 group-hover:scale-105 transition-transform duration-300">
               <img
                 src="/media/school/logo.webp"
                 alt="Logo Resmi SMK Negeri 3 Yogyakarta"
+                width="160"
+                height="160"
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-contain filter drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]"
               />
             </div>
