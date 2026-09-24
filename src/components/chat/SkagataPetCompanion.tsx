@@ -55,7 +55,15 @@ export default function SkagataPetCompanion({
 
   const [currentDialogue, setCurrentDialogue] = useState(defaultDialogues[0]);
 
-  // Eye tracking: Follow cursor anywhere on screen with smooth rAF throttling
+  // Auto-dismiss bubble on mobile after 3.5s so it doesn't obstruct cards
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      const timer = setTimeout(() => {
+        setIsBubbleDismissed(true);
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
   useEffect(() => {
     let rAFId: number | null = null;
 
@@ -316,7 +324,7 @@ export default function SkagataPetCompanion({
 
         {/* Inner Pet Container: Interactive squash, stretch, bounce & directional lean */}
         <div
-          className="relative w-20 h-20 sm:w-24 sm:h-24"
+          className="relative w-14 h-14 sm:w-24 sm:h-24"
           style={{
             transform: isPetting
               ? `scale(1.07, 0.94) translateY(2px) rotate(${tiltAngle}deg)`

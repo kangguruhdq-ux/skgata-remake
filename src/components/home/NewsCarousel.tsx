@@ -336,9 +336,11 @@ export default function NewsCarousel() {
                 <div className="px-5 pb-5 pt-0">
                   <Link
                     href={item.link}
-                    className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-all gap-1 group-hover:gap-1.5"
+                    className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center text-xs font-bold text-emerald-700 dark:text-emerald-300 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors gap-1 group-hover:gap-1.5"
+                    aria-label={`Baca selengkapnya: ${item.title}`}
                   >
                     <span>Baca selengkapnya</span>
+                    <span className="sr-only">: {item.title}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

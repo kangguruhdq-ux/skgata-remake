@@ -27,7 +27,7 @@ export default function HeroSection() {
   const [isMobile, setIsMobile] = useState(true);
   const [pageVisible, setPageVisible] = useState(true);
   const [isInView, setIsInView] = useState(true);
-  const [desktopReady, setDesktopReady] = useState(false);
+  const [videoActive, setVideoActive] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -43,7 +43,7 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Viewport detection: keep mobile lightweight (zero video preload), defer desktop video
+  // Viewport detection: keep mobile initial load fast (zero video download), activate desktop after LCP
   useEffect(() => {
     const checkViewport = () => {
       const mobile = window.innerWidth < 1024;
@@ -51,11 +51,9 @@ export default function HeroSection() {
       if (!mobile) {
         // Defer desktop background video looper until after LCP is fully complete
         const timer = setTimeout(() => {
-          setDesktopReady(true);
+          setVideoActive(true);
         }, 1500);
         return () => clearTimeout(timer);
-      } else {
-        setDesktopReady(false);
       }
     };
 
@@ -82,12 +80,21 @@ export default function HeroSection() {
     if (!videoRef.current) return;
     videoRef.current.defaultMuted = true;
     videoRef.current.muted = true;
-    if (isInView && pageVisible && isPlaying && !isMobile) {
+    if (isInView && pageVisible && isPlaying && videoActive) {
       videoRef.current.play().catch(() => {});
     } else {
       videoRef.current.pause();
     }
-  }, [isInView, pageVisible, isPlaying, isMobile]);
+  }, [isInView, pageVisible, isPlaying, videoActive]);
+
+  const handleTogglePlay = () => {
+    if (!videoActive) {
+      setVideoActive(true);
+      setIsPlaying(true);
+    } else {
+      setIsPlaying((prev) => !prev);
+    }
+  };
 
   const handleEmblemClick = () => {
     setHaloActive(true);
@@ -98,9 +105,9 @@ export default function HeroSection() {
     <section
       id="beranda"
       ref={heroRef}
-      className="relative min-h-[85svh] lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-hidden py-8 sm:py-16 transition-colors duration-300"
+      className="relative min-h-0 lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-x-clip overflow-y-visible py-5 sm:py-14 transition-colors duration-300"
     >
-      {/* 1. IMMERSIVE VIDEO BACKGROUND (Crisp 9KB poster on mobile, deferred 1080p looper on desktop) */}
+      {/* 1. IMMERSIVE VIDEO BACKGROUND (Crisp 9KB poster on mobile, deferred 1080p looper on desktop/play) */}
       <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
         {/* High-Definition Local Poster Image (Primary LCP Element) */}
         <img
@@ -114,8 +121,8 @@ export default function HeroSection() {
           className="absolute inset-0 w-full h-full object-cover filter brightness-75 scale-105"
         />
 
-        {/* Local HTML5 Video Looper (Loaded ONLY on desktop after initial paint, never on mobile) */}
-        {!isMobile && desktopReady && isPlaying && (
+        {/* Local HTML5 Video Looper */}
+        {videoActive && isPlaying && (
           <video
             ref={videoRef}
             src="/media/school/hero-bg.mp4"
@@ -124,7 +131,7 @@ export default function HeroSection() {
             loop
             muted
             playsInline
-            preload="none"
+            preload="auto"
             className={`absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-75 contrast-105 scale-105 transition-opacity duration-1000 ${
               videoLoaded ? "opacity-75" : "opacity-0"
             }`}
@@ -204,39 +211,39 @@ export default function HeroSection() {
       </div>
 
       {/* 3. BOTTOM STATS & CONTROLS SECTION */}
-      <div className="max-w-screen-2xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full pt-6 sm:pt-8">
+      <div className="max-w-screen-2xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full pt-4 sm:pt-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3.5 w-full">
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-1">
-            <div className="font-display font-black text-lg sm:text-2xl text-emerald-300">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-1">
+            <div className="font-display font-black text-base sm:text-2xl text-emerald-300">
               8 Keahlian
             </div>
-            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Program Industri 4.0</p>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-0.5 sm:mt-1">Program Industri 4.0</p>
           </div>
 
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-2">
-            <div className="font-display font-black text-lg sm:text-2xl text-teal-300">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-2">
+            <div className="font-display font-black text-base sm:text-2xl text-teal-300">
               2.000+
             </div>
-            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Taruna-Taruni Aktif</p>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-0.5 sm:mt-1">Taruna-Taruni Aktif</p>
           </div>
 
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-3">
-            <div className="font-display font-black text-lg sm:text-2xl text-amber-300">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-3">
+            <div className="font-display font-black text-base sm:text-2xl text-amber-300">
               MODENA & Jepang
             </div>
-            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Mitra Industri Dunia</p>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-0.5 sm:mt-1">Mitra Industri Dunia</p>
           </div>
 
-          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-4">
-            <div className="font-display font-black text-lg sm:text-2xl text-emerald-300">
+          <div className="bg-slate-900/75 hover:bg-slate-900/90 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-white/15 backdrop-blur-md transition shadow-md flex flex-col justify-between reveal-zoom delay-4">
+            <div className="font-display font-black text-base sm:text-2xl text-emerald-300">
               1952
             </div>
-            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-1">Tradisi Teknik Tertua</p>
+            <p className="text-[10px] sm:text-[11px] text-slate-300 mt-0.5 sm:mt-1">Tradisi Teknik Tertua</p>
           </div>
         </div>
 
         {/* Video Control Bar at Bottom */}
-        <div className="mt-4 flex items-center justify-between text-xs text-slate-400 border-t border-white/10 pt-3">
+        <div className="mt-3.5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 border-t border-white/10 pt-2.5 pb-2">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             <span className="font-mono text-[11px] text-slate-300">
@@ -246,16 +253,16 @@ export default function HeroSection() {
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => isMobile ? setIsModalOpen(true) : setIsPlaying(!isPlaying)}
-              className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition flex items-center gap-1 text-[11px]"
-              title={isMobile ? "Putar Video Lengkap" : isPlaying ? "Jeda Background Video" : "Putar Background Video"}
+              onClick={handleTogglePlay}
+              className="px-3 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white font-medium transition flex items-center gap-1.5 text-xs shadow-md active:scale-95"
+              title={isPlaying && videoActive ? "Jeda Background Video" : "Putar Video"}
             >
-              {isMobile || !isPlaying ? <Play className="w-3 h-3 fill-white" /> : <Pause className="w-3 h-3" />}
-              <span>{isMobile ? "Putar Video" : isPlaying ? "Jeda Video" : "Putar Video"}</span>
+              {isPlaying && videoActive ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 fill-white" />}
+              <span>{isPlaying && videoActive ? "Jeda Video" : "Putar Video"}</span>
             </button>
             <a
               href="#jurusan"
-              className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition flex items-center gap-1 text-[11px]"
+              className="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition flex items-center gap-1 text-[11px]"
             >
               <span>Jelajahi Bawah</span>
               <ArrowDown className="w-3 h-3" />
@@ -288,9 +295,10 @@ export default function HeroSection() {
             {/* Video Player */}
             <div className="aspect-video w-full bg-black">
               <iframe
-                src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`}
                 title="Profil Resmi SMK Negeri 3 Yogyakarta"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
                 className="w-full h-full border-0"
               />
@@ -303,7 +311,7 @@ export default function HeroSection() {
                 href={`https://www.youtube.com/watch?v=${videoId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-emerald-400 hover:underline flex items-center gap-1"
+                className="text-emerald-400 hover:underline flex items-center gap-1 font-semibold"
               >
                 <span>Buka di YouTube</span>
                 <Maximize2 className="w-3 h-3" />

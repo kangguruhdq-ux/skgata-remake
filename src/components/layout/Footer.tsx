@@ -12,6 +12,9 @@ export default function Footer() {
   return (
     <footer className="bg-slate-950 text-slate-400 pt-14 pb-8 border-t border-slate-800 w-full max-w-full overflow-hidden">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Accessible Section Heading for Screen Readers & Heading Sequence */}
+        <h2 className="sr-only">Informasi Tambahan & Tautan Footer</h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-800/80 reveal-up">
           {/* Identity & Bio */}
           <div className="lg:col-span-4 space-y-4">
@@ -114,9 +117,9 @@ export default function Footer() {
 
           {/* Quick Institutional Links */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider">
+            <h3 className="font-display font-bold text-white text-sm uppercase tracking-wider">
               Tautan Institusi
-            </h4>
+            </h3>
             <ul className="text-xs space-y-2">
               <li>
                 <a
@@ -124,9 +127,10 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-emerald-400 transition flex items-center gap-1.5 font-medium text-emerald-300"
+                  aria-label="Portal Nasional Bursa Kerja SMK (Kemendikbud)"
                 >
                   <ChevronRight className="w-3 h-3 text-emerald-500" />
-                  <span>Bursa Kerja SMK (BKK)</span>
+                  <span>Bursa Kerja SMK Nasional (Kemdikbud)</span>
                 </a>
               </li>
               <li>
@@ -220,9 +224,9 @@ export default function Footer() {
 
           {/* Regional & National Stakeholders */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider">
+            <h3 className="font-display font-bold text-white text-sm uppercase tracking-wider">
               Mitra & Instansi
-            </h4>
+            </h3>
             <ul className="text-xs space-y-2">
               <li>
                 <a
@@ -320,9 +324,9 @@ export default function Footer() {
           {/* Campus Map Location */}
           <div className="lg:col-span-3 space-y-3">
             <div className="flex items-center justify-between">
-              <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider">
+              <h3 className="font-display font-bold text-white text-sm uppercase tracking-wider">
                 Lokasi Kampus
-              </h4>
+              </h3>
               <a
                 href={schoolInfo.mapsUrl}
                 target="_blank"
@@ -351,7 +355,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 font-medium gap-3">
           <p>&copy; 2026 SMK Negeri 3 Yogyakarta (SKAGATA). Seluruh hak cipta dilindungi.</p>
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1 text-emerald-400 font-medium">
@@ -359,7 +363,7 @@ export default function Footer() {
               SMK Pusat Keunggulan DIY
             </span>
             <span>•</span>
-            <span>Powered by Tim ICT & Humas Skagata</span>
+            <span className="text-slate-300 font-medium">Powered by Tim ICT & Humas Skagata</span>
           </div>
         </div>
       </div>

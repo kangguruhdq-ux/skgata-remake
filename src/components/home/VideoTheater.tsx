@@ -167,7 +167,7 @@ export default function VideoTheater() {
                   key={activeVid.id}
                   className="w-full h-full border-0"
                   style={{ width: "100%", height: "100%", border: 0 }}
-                  src={`https://www.youtube-nocookie.com/embed/${activeVid.id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${activeVid.id}?autoplay=1&playsinline=1&rel=0`}
                   title={activeVid.fullTitle}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"

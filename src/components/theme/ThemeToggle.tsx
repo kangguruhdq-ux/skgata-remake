@@ -49,7 +49,7 @@ export default function ThemeToggle({
             toggleTheme();
           }
         }}
-        className={`w-full p-3 rounded-2xl border transition-colors duration-200 flex items-center justify-between cursor-pointer select-none active:scale-[0.985] ${
+        className={`w-full p-3 rounded-2xl border transition-[background-color,color] duration-200 flex items-center justify-between cursor-pointer select-none active:scale-[0.985] ${
           isDark
             ? "bg-slate-800/90 border-slate-700/80 text-white hover:bg-slate-800 shadow-sm"
             : "bg-slate-100/90 border-slate-200 text-slate-800 hover:bg-slate-100 shadow-sm"
