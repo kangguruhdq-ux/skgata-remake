@@ -2,7 +2,20 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  CheckCircle2,
+  Video,
+  Network,
+  Compass,
+  Hammer,
+  Cpu,
+  Zap,
+  Car,
+  Cog,
+  Award,
+} from "lucide-react";
 import TiltCard from "@/components/3d/TiltCard";
 import { MAJORS_DATA } from "@/lib/data-initial";
 import { useCMS } from "@/lib/store";
@@ -11,20 +24,42 @@ export default function MajorsGrid() {
   const { majors } = useCMS();
   const majorList = majors && majors.length > 0 ? majors : MAJORS_DATA;
 
+  const majorIconMap: Record<string, React.ElementType> = {
+    BP: Video,
+    TJKT: Network,
+    DPIB: Compass,
+    TKP: Hammer,
+    TE: Cpu,
+    TITL: Zap,
+    TKRO: Car,
+    TP: Cog,
+  };
+
+  const bottomLabels: Record<string, string> = {
+    BP: "Studio Skagata TV",
+    TJKT: "MikroTik Academy",
+    DPIB: "BIM & Autodesk Standar",
+    TKP: "Praktek Lapangan Riil",
+    TE: "IoT & Automation Lab",
+    TITL: "Standar PLN & Industri",
+    TKRO: "Bengkel Standar APM",
+    TP: "CNC Machining Center",
+  };
+
   return (
-    <section id="jurusan" className="py-16 lg:py-24 bg-slate-100/80 border-y border-slate-200">
+    <section id="jurusan" className="py-16 lg:py-24 bg-slate-100/80 dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title with authentic Aksara Jawa */}
         <div className="text-center max-w-3xl mx-auto mb-12 reveal-up">
-          <span className="font-serif text-skagata-700 text-2xl block mb-1 select-none font-medium">
+          <span className="font-serif text-skagata-700 dark:text-emerald-400 text-2xl block mb-1 select-none font-medium">
             ꦥꦿꦺꦴꦒꦿꦩ꧀ꦏꦺꦪꦃꦭꦶꦪꦤ꧀
           </span>
 
-          <h2 className="font-display font-black text-2xl sm:text-4xl text-slate-900 tracking-tight">
+          <h2 className="font-display font-black text-2xl sm:text-4xl text-slate-900 dark:text-white tracking-tight">
             8 Program & Konsentrasi Keahlian Unggulan
           </h2>
 
-          <p className="text-slate-600 text-xs sm:text-sm mt-2">
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2">
             Seluruh jurusan telah bersertifikasi LSP P1 BNSP dan terkoneksi dengan kemitraan industri modern.
           </p>
         </div>
@@ -33,28 +68,7 @@ export default function MajorsGrid() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
           {majorList.map((major, idx) => {
             const revealClass = `reveal-zoom delay-${(idx % 4) + 1}`;
-
-            const majorIcons: Record<string, string> = {
-              BP: "fa-solid fa-video",
-              TJKT: "fa-solid fa-network-wired",
-              DPIB: "fa-solid fa-compass-drafting",
-              TKP: "fa-solid fa-trowel-bricks",
-              TE: "fa-solid fa-robot",
-              TITL: "fa-solid fa-bolt",
-              TKRO: "fa-solid fa-car",
-              TP: "fa-solid fa-gears",
-            };
-
-            const bottomLabels: Record<string, string> = {
-              BP: "Studio Skagata TV",
-              TJKT: "MikroTik Academy",
-              DPIB: "BIM & Autodesk Standar",
-              TKP: "Praktek Lapangan Riil",
-              TE: "IoT & Automation Lab",
-              TITL: "Standar PLN & Industri",
-              TKRO: "Bengkel Standar APM",
-              TP: "CNC Machining Center",
-            };
+            const MajorIcon = majorIconMap[major.code] || Award;
 
             return (
               <TiltCard
@@ -66,6 +80,8 @@ export default function MajorsGrid() {
                   <img
                     src={major.coverImage}
                     alt={major.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
@@ -102,11 +118,7 @@ export default function MajorsGrid() {
 
                   <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px]">
                     <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 font-medium">
-                      <i
-                        className={`${
-                          majorIcons[major.code] || "fa-solid fa-award"
-                        } text-emerald-600 text-xs`}
-                      />
+                      <MajorIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                       <span>
                         {bottomLabels[major.code] || "Pusat Keunggulan"}
                       </span>
@@ -153,7 +165,7 @@ export default function MajorsGrid() {
               href="/kuis-jurusan"
               className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold rounded-2xl shadow-lg shadow-emerald-950/50 transition flex items-center justify-center gap-2 text-xs sm:text-sm btn-bounce"
             >
-              <i className="fa-solid fa-compass text-sm" />
+              <Compass className="w-4 h-4" />
               <span>Mulai Kuis Jurusan (5 Menit)</span>
               <ArrowRight className="w-4 h-4" />
             </Link>

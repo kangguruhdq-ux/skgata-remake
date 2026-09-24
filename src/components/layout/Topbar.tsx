@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MapPin, Phone, Mail, GraduationCap, Megaphone } from "lucide-react";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useCMS } from "@/lib/store";
+import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon, MailIcon } from "@/components/ui/SocialIcons";
 
 export default function Topbar() {
   const { schoolInfo, socialLinks } = useCMS();
@@ -91,8 +92,9 @@ export default function Topbar() {
               rel="noopener noreferrer"
               className="w-6 h-6 rounded-md hover:bg-skagata-800/80 flex items-center justify-center text-slate-200 hover:text-white transition"
               title="Facebook Resmi SMKN 3 Yogyakarta"
+              aria-label="Facebook SMKN 3 Yogyakarta"
             >
-              <i className="fa-brands fa-facebook text-sm"></i>
+              <FacebookIcon className="w-3.5 h-3.5" />
             </a>
             <a
               href={socialLinks.twitter}
@@ -100,8 +102,9 @@ export default function Topbar() {
               rel="noopener noreferrer"
               className="w-6 h-6 rounded-md hover:bg-skagata-800/80 flex items-center justify-center text-slate-200 hover:text-white transition"
               title="Twitter / X Resmi SMKN 3 Yogyakarta"
+              aria-label="Twitter SMKN 3 Yogyakarta"
             >
-              <i className="fa-brands fa-twitter text-sm"></i>
+              <TwitterIcon className="w-3.5 h-3.5" />
             </a>
             <a
               href={socialLinks.instagram}
@@ -109,8 +112,9 @@ export default function Topbar() {
               rel="noopener noreferrer"
               className="w-6 h-6 rounded-md hover:bg-skagata-800/80 flex items-center justify-center text-slate-200 hover:text-white transition"
               title="Instagram Resmi @smkn3jogja"
+              aria-label="Instagram SMKN 3 Yogyakarta"
             >
-              <i className="fa-brands fa-instagram text-sm"></i>
+              <InstagramIcon className="w-3.5 h-3.5" />
             </a>
             <a
               href={socialLinks.youtube}
@@ -118,15 +122,17 @@ export default function Topbar() {
               rel="noopener noreferrer"
               className="w-6 h-6 rounded-md hover:bg-skagata-800/80 flex items-center justify-center text-slate-200 hover:text-red-400 transition"
               title="YouTube Skagata TV"
+              aria-label="YouTube Skagata TV"
             >
-              <i className="fa-brands fa-youtube text-sm"></i>
+              <YoutubeIcon className="w-3.5 h-3.5" />
             </a>
             <a
               href={socialLinks.email}
               className="w-6 h-6 rounded-md hover:bg-skagata-800/80 flex items-center justify-center text-slate-200 hover:text-white transition"
               title="Kirim Email Resmi"
+              aria-label="Email Resmi SMKN 3 Yogyakarta"
             >
-              <i className="fa-regular fa-envelope text-sm"></i>
+              <MailIcon className="w-3.5 h-3.5" />
             </a>
           </div>
 

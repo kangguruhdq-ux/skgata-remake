@@ -1,20 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -39,8 +26,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Tim ICT & Humas SMKN 3 Yogyakarta" }],
   icons: {
-    icon: "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/cropped-logosmk3yk-32x32.png",
-    apple: "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/cropped-logosmk3yk-180x180.png",
+    icon: "/media/school/logo.webp",
+    apple: "/media/school/logo.webp",
   },
 };
 
@@ -53,9 +40,22 @@ export default function RootLayout({
     <html
       lang="id"
       suppressHydrationWarning
-      className={`scroll-smooth overflow-x-hidden w-full max-w-full ${plusJakartaSans.variable} ${outfit.variable}`}
+      className="scroll-smooth overflow-x-hidden w-full max-w-full"
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/media/school/video-profil.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -74,13 +74,6 @@ export default function RootLayout({
               })();
             `,
           }}
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
         />
       </head>
       <body className="font-sans antialiased overflow-x-hidden w-full max-w-full selection:bg-skagata-500 selection:text-white bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">

@@ -282,16 +282,21 @@ export function useCMS() {
     // 1. Instantly load local cache
     setState(getInitialCMSState());
 
-    // 2. Fetch latest server database state in background to ensure zero data loss on refresh/deploy
-    fetchSharedCMSState().then((serverState) => {
-      if (!serverState) return;
-      setState(serverState);
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(serverState));
-      } catch (e) {
-        // ignore quota error
-      }
-    });
+    // 2. Fetch latest server database state during idle time to prevent network contention with LCP
+    if (typeof window !== "undefined") {
+      const scheduleSync = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1200));
+      scheduleSync(() => {
+        fetchSharedCMSState().then((serverState) => {
+          if (!serverState) return;
+          setState(serverState);
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(serverState));
+          } catch (e) {
+            // ignore quota error
+          }
+        });
+      });
+    }
 
     const handleUpdate = () => {
       const next = getInitialCMSState();

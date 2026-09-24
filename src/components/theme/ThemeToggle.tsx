@@ -49,7 +49,7 @@ export default function ThemeToggle({
             toggleTheme();
           }
         }}
-        className={`w-full p-3 rounded-2xl border transition-all duration-300 flex items-center justify-between cursor-pointer select-none active:scale-[0.985] ${
+        className={`w-full p-3 rounded-2xl border transition-colors duration-200 flex items-center justify-between cursor-pointer select-none active:scale-[0.985] ${
           isDark
             ? "bg-slate-800/90 border-slate-700/80 text-white hover:bg-slate-800 shadow-sm"
             : "bg-slate-100/90 border-slate-200 text-slate-800 hover:bg-slate-100 shadow-sm"
@@ -57,7 +57,7 @@ export default function ThemeToggle({
       >
         <div className="flex items-center gap-3">
           <div
-            className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 ${
+            className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors duration-200 ${
               isDark
                 ? "bg-amber-400/20 text-amber-300 border border-amber-400/30 shadow-[0_0_12px_rgba(251,191,36,0.2)]"
                 : "bg-emerald-500/15 text-emerald-600 border border-emerald-500/25"
@@ -81,11 +81,11 @@ export default function ThemeToggle({
 
         {/* Animated Pill Switch Track */}
         <div
-          className={`w-12 h-6 rounded-full p-0.5 transition-colors duration-300 relative flex items-center ${
+          className={`w-12 h-6 rounded-full p-0.5 transition-colors duration-200 relative flex items-center ${
             isDark ? "bg-emerald-600 justify-end" : "bg-slate-300 dark:bg-slate-700 justify-start"
           }`}
         >
-          <div className="w-5 h-5 rounded-full bg-white shadow-md transform transition-all duration-300 flex items-center justify-center text-slate-800">
+          <div className="w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-200 flex items-center justify-center text-slate-800">
             {isDark ? (
               <Moon className="w-3 h-3 text-emerald-700" />
             ) : (

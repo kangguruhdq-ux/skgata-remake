@@ -43,6 +43,27 @@ export default function HeroSection() {
     };
   }, []);
 
+  // Viewport detection: keep mobile lightweight (zero video preload), defer desktop video
+  useEffect(() => {
+    const checkViewport = () => {
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
+      if (!mobile) {
+        // Defer desktop background video looper until after LCP is fully complete
+        const timer = setTimeout(() => {
+          setDesktopReady(true);
+        }, 1500);
+        return () => clearTimeout(timer);
+      } else {
+        setDesktopReady(false);
+      }
+    };
+
+    checkViewport();
+    window.addEventListener("resize", checkViewport);
+    return () => window.removeEventListener("resize", checkViewport);
+  }, []);
+
   // Viewport Observer: Pause background video when user scrolls down away from Hero
   useEffect(() => {
     if (!heroRef.current) return;
@@ -61,12 +82,12 @@ export default function HeroSection() {
     if (!videoRef.current) return;
     videoRef.current.defaultMuted = true;
     videoRef.current.muted = true;
-    if (isInView && pageVisible && isPlaying) {
+    if (isInView && pageVisible && isPlaying && !isMobile) {
       videoRef.current.play().catch(() => {});
     } else {
       videoRef.current.pause();
     }
-  }, [isInView, pageVisible, isPlaying]);
+  }, [isInView, pageVisible, isPlaying, isMobile]);
 
   const handleEmblemClick = () => {
     setHaloActive(true);
@@ -79,17 +100,20 @@ export default function HeroSection() {
       ref={heroRef}
       className="relative min-h-[85svh] lg:min-h-[96vh] w-full max-w-full flex flex-col justify-between text-white overflow-hidden py-8 sm:py-16 transition-colors duration-300"
     >
-      {/* 1. IMMERSIVE VIDEO BACKGROUND (Lightweight local video looper with poster fallback) */}
+      {/* 1. IMMERSIVE VIDEO BACKGROUND (Crisp 9KB poster on mobile, deferred 1080p looper on desktop) */}
       <div className="absolute inset-0 w-full h-full max-w-full overflow-hidden pointer-events-none z-0">
-        {/* High-Definition Local Poster Image */}
+        {/* High-Definition Local Poster Image (Primary LCP Element) */}
         <img
           src="/media/school/video-profil.webp"
           alt="Latar Video Kampus SMKN 3 Yogyakarta"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover filter brightness-75 scale-105"
         />
 
-        {/* Local HTML5 Video Looper (Autoplay, muted, loop, playsinline on both mobile and desktop) */}
-        {isPlaying && (
+        {/* Local HTML5 Video Looper (Loaded ONLY on desktop after initial paint, never on mobile) */}
+        {!isMobile && desktopReady && isPlaying && (
           <video
             ref={videoRef}
             src="/media/school/hero-bg.mp4"
@@ -98,7 +122,7 @@ export default function HeroSection() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
             className={`absolute inset-0 w-full h-full object-cover pointer-events-none filter brightness-75 contrast-105 scale-105 transition-opacity duration-1000 ${
               videoLoaded ? "opacity-75" : "opacity-0"
             }`}
@@ -220,11 +244,11 @@ export default function HeroSection() {
 
           <div className="flex items-center gap-2">
             <button
-            onClick={() => isMobile ? setIsModalOpen(true) : setIsPlaying(!isPlaying)}
+              onClick={() => isMobile ? setIsModalOpen(true) : setIsPlaying(!isPlaying)}
               className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition flex items-center gap-1 text-[11px]"
-              title={isPlaying ? "Jeda Background Video" : "Putar Background Video"}
+              title={isMobile ? "Putar Video Lengkap" : isPlaying ? "Jeda Background Video" : "Putar Background Video"}
             >
-              {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 fill-white" />}
+              {isMobile || !isPlaying ? <Play className="w-3 h-3 fill-white" /> : <Pause className="w-3 h-3" />}
               <span>{isMobile ? "Putar Video" : isPlaying ? "Jeda Video" : "Putar Video"}</span>
             </button>
             <a

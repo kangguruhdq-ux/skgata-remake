@@ -85,11 +85,18 @@ export async function GET() {
           }).catch((err) => console.warn("Background Prisma upgrade skipped:", err));
         }
 
-        return NextResponse.json({
-          status: "success",
-          source: "database",
-          data: parsed,
-        });
+        return NextResponse.json(
+          {
+            status: "success",
+            source: "database",
+            data: parsed,
+          },
+          {
+            headers: {
+              "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+            },
+          }
+        );
       }
     } catch (dbErr) {
       console.warn("Prisma read failed, attempting file backup fallback:", dbErr);
@@ -100,11 +107,18 @@ export async function GET() {
       try {
         const fileContent = fs.readFileSync(BACKUP_FILE, "utf-8");
         const parsed = JSON.parse(fileContent);
-        return NextResponse.json({
-          status: "success",
-          source: "backup_file",
-          data: parsed,
-        });
+        return NextResponse.json(
+          {
+            status: "success",
+            source: "backup_file",
+            data: parsed,
+          },
+          {
+            headers: {
+              "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+            },
+          }
+        );
       } catch (fileErr) {
         console.warn("File backup read failed:", fileErr);
       }
@@ -122,11 +136,18 @@ export async function GET() {
       console.warn("Initial DB seed skipped:", seedErr);
     }
 
-    return NextResponse.json({
-      status: "success",
-      source: "initial_default",
-      data: defaultData,
-    });
+    return NextResponse.json(
+      {
+        status: "success",
+        source: "initial_default",
+        data: defaultData,
+      },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+        },
+      }
+    );
   } catch (error: any) {
     console.error("GET /api/cms error:", error);
     return NextResponse.json(

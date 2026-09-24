@@ -13,6 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { useCMS } from "@/lib/store";
+import { YoutubeIcon } from "@/components/ui/SocialIcons";
 
 export default function VideoTheater() {
   const { videos, activeVideoId } = useCMS();
@@ -23,7 +24,7 @@ export default function VideoTheater() {
       subtitle: "Official Profile (Featured)",
       fullTitle: "Profil Resmi SMK Negeri 3 Yogyakarta – Pusat Keunggulan DIY",
       description: "Gambaran menyeluruh keunggulan bengkel teknik, kurikulum industri, dan kehidupan taruna-taruni STM 2 Jetis Yogyakarta.",
-      icon: "fa-solid fa-play",
+      icon: "play",
       color: "emerald",
       poster: "/media/school/video-profil.webp",
     },
@@ -33,7 +34,7 @@ export default function VideoTheater() {
       subtitle: "Pembinaan Disiplin Taruna",
       fullTitle: "Pendidikan Karakter Berbasis Ketarunaan (Bagian 1)",
       description: "Dokumentasi pelaksanaan pembinaan fisik, mental, dan apel taruna di lapangan sekolah.",
-      icon: "fa-solid fa-shield-halved",
+      icon: "shield",
       color: "slate",
       poster: "/media/school/video-taruna-1.webp",
     },
@@ -43,7 +44,7 @@ export default function VideoTheater() {
       subtitle: "Kedisiplinan & Baris Berbaris",
       fullTitle: "Pendidikan Karakter Berbasis Ketarunaan (Bagian 2)",
       description: "Lanjutan drill kedisiplinan dan pembentukan etos kerja tangguh siswa siap kerja.",
-      icon: "fa-solid fa-person-military-rifle",
+      icon: "flag",
       color: "slate",
       poster: "/media/school/video-taruna-2.webp",
     },
@@ -53,7 +54,7 @@ export default function VideoTheater() {
       subtitle: "Gubernur D.I. Yogyakarta",
       fullTitle: "Sambutan Khusus Sri Sultan Hamengkubuwono X",
       description: "Pesan dan restu Gubernur DIY atas peran strategis SMKN 3 dalam mencerdaskan generasi teknik bangsa.",
-      icon: "fa-solid fa-crown",
+      icon: "crown",
       color: "amber",
       poster: "/media/school/sultan.webp",
     },
@@ -63,7 +64,7 @@ export default function VideoTheater() {
       subtitle: "Wikan Sakarinto, Ph.D",
       fullTitle: "Apresiasi & Arahan Ditjen Pendidikan Vokasi",
       description: "Pesan penting Wikan Sakarinto, Ph.D mengenai link-and-match dan karakter lulusan masa depan.",
-      icon: "fa-solid fa-user-tie",
+      icon: "user",
       color: "teal",
       poster: "/media/school/wikan.webp",
     },
@@ -73,7 +74,7 @@ export default function VideoTheater() {
       subtitle: "Sutradara & Tokoh Perfilman",
       fullTitle: "Motivasi dari Sutradara Hanung Bramantyo",
       description: "Mengapa anak SMK keren: keunggulan praktek kerja nyata dan kemandirian profesional di lapangan.",
-      icon: "fa-solid fa-film",
+      icon: "film",
       color: "rose",
       poster: "/media/school/hanung.webp",
     },
@@ -115,7 +116,7 @@ export default function VideoTheater() {
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-10 reveal-up">
           <span className="text-emerald-400 text-xs font-bold uppercase tracking-widest bg-emerald-500/15 px-3 py-1 rounded-full border border-emerald-500/25 inline-flex items-center gap-1.5">
-            <i className="fa-brands fa-youtube text-red-500 mr-1.5" />
+            <YoutubeIcon className="w-3.5 h-3.5 text-red-500 mr-1 inline" />
             <span>Skagata TV & Video Galeri Asli</span>
           </span>
 
@@ -150,9 +151,9 @@ export default function VideoTheater() {
                 className="text-emerald-400 hover:text-emerald-300 font-semibold text-xs flex items-center gap-1.5 bg-emerald-950/70 border border-emerald-500/30 px-3 py-1 rounded-lg transition shrink-0 hover:bg-emerald-900/60"
                 title="Buka tayangan langsung di YouTube"
               >
-                <i className="fa-brands fa-youtube text-red-500" />
+                <YoutubeIcon className="w-3.5 h-3.5 text-red-500" />
                 <span>Buka di YouTube</span>
-                <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" />
+                <ExternalLink className="w-3 h-3 text-emerald-400" />
               </a>
             </div>
 
@@ -260,6 +261,7 @@ export default function VideoTheater() {
                         alt={vid.title}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
                       />
                       <div className={`absolute inset-0 flex items-center justify-center ${isSelected ? "bg-emerald-950/60" : "bg-black/35"}`}>
                         <Play className={`w-4 h-4 ${isSelected ? "fill-emerald-400 text-emerald-400" : "fill-white text-white"}`} />

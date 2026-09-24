@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { MapPin, Phone, Mail, ChevronRight, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { useCMS } from "@/lib/store";
+import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon, MailIcon } from "@/components/ui/SocialIcons";
 
 export default function Footer() {
   const { schoolInfo, socialLinks } = useCMS();
@@ -17,8 +18,10 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 rounded-2xl bg-skagata-800 flex items-center justify-center p-1 text-white shadow-md">
                 <img
-                  src="https://smkn3jogja.sch.id/wp-content/uploads/2021/07/cropped-logosmk3yk-192x192.png"
-                  alt="Logo SMKN 3"
+                  src="/media/school/logo.webp"
+                  alt="Logo SMKN 3 Yogyakarta"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -63,8 +66,9 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition"
                   title="Facebook Resmi SMKN 3 Yogyakarta"
+                  aria-label="Facebook SMKN 3 Yogyakarta"
                 >
-                  <i className="fa-brands fa-facebook text-sm"></i>
+                  <FacebookIcon className="w-4 h-4" />
                 </a>
                 <a
                   href={socialLinks.twitter}
@@ -72,8 +76,9 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition"
                   title="Twitter / X Resmi SMKN 3 Yogyakarta"
+                  aria-label="Twitter SMKN 3 Yogyakarta"
                 >
-                  <i className="fa-brands fa-twitter text-sm"></i>
+                  <TwitterIcon className="w-4 h-4" />
                 </a>
                 <a
                   href={socialLinks.instagram}
@@ -81,8 +86,9 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition"
                   title="Instagram Resmi @smkn3jogja"
+                  aria-label="Instagram SMKN 3 Yogyakarta"
                 >
-                  <i className="fa-brands fa-instagram text-sm"></i>
+                  <InstagramIcon className="w-4 h-4" />
                 </a>
                 <a
                   href={socialLinks.youtube}
@@ -90,15 +96,17 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-red-500 hover:bg-red-600 flex items-center justify-center text-slate-300 hover:text-white transition"
                   title="YouTube Skagata TV"
+                  aria-label="YouTube Skagata TV"
                 >
-                  <i className="fa-brands fa-youtube text-sm"></i>
+                  <YoutubeIcon className="w-4 h-4" />
                 </a>
                 <a
                   href={socialLinks.email}
                   className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition"
                   title="Email Resmi"
+                  aria-label="Email Resmi SMKN 3 Yogyakarta"
                 >
-                  <i className="fa-regular fa-envelope text-sm"></i>
+                  <MailIcon className="w-4 h-4" />
                 </a>
               </div>
             </div>

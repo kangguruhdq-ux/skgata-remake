@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Settings, Check, RotateCcw, Video, Phone, Mail, MapPin, Sparkles, Bot, ArrowRight } from "lucide-react";
 import { useCMS } from "@/lib/store";
 import { VideoData } from "@/lib/data-initial";
+import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon, MailIcon } from "@/components/ui/SocialIcons";
 
 export default function AdminPengaturanPage() {
   const {
@@ -201,7 +202,7 @@ export default function AdminPengaturanPage() {
               <div className="grid sm:grid-cols-2 gap-3">
                 <div>
                   <label className="font-semibold text-slate-700 block mb-1 flex items-center gap-1.5">
-                    <i className="fa-brands fa-facebook text-blue-600" />
+                    <FacebookIcon className="w-3.5 h-3.5 text-blue-600" />
                     <span>Facebook URL</span>
                   </label>
                   <input
@@ -214,7 +215,7 @@ export default function AdminPengaturanPage() {
 
                 <div>
                   <label className="font-semibold text-slate-700 block mb-1 flex items-center gap-1.5">
-                    <i className="fa-brands fa-twitter text-sky-500" />
+                    <TwitterIcon className="w-3.5 h-3.5 text-sky-500" />
                     <span>Twitter / X URL</span>
                   </label>
                   <input
@@ -227,7 +228,7 @@ export default function AdminPengaturanPage() {
 
                 <div>
                   <label className="font-semibold text-slate-700 block mb-1 flex items-center gap-1.5">
-                    <i className="fa-brands fa-instagram text-pink-600" />
+                    <InstagramIcon className="w-3.5 h-3.5 text-pink-600" />
                     <span>Instagram URL</span>
                   </label>
                   <input
@@ -240,7 +241,7 @@ export default function AdminPengaturanPage() {
 
                 <div>
                   <label className="font-semibold text-slate-700 block mb-1 flex items-center gap-1.5">
-                    <i className="fa-brands fa-youtube text-red-600" />
+                    <YoutubeIcon className="w-3.5 h-3.5 text-red-600" />
                     <span>YouTube Channel URL</span>
                   </label>
                   <input
@@ -253,7 +254,7 @@ export default function AdminPengaturanPage() {
 
                 <div className="sm:col-span-2">
                   <label className="font-semibold text-slate-700 block mb-1 flex items-center gap-1.5">
-                    <i className="fa-regular fa-envelope text-emerald-600" />
+                    <MailIcon className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Email Resmi (mailto / webmail)</span>
                   </label>
                   <input

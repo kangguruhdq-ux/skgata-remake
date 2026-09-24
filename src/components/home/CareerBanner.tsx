@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { Briefcase, Search, Building } from "lucide-react";
 
 export default function CareerBanner() {
   return (
@@ -9,7 +10,7 @@ export default function CareerBanner() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="bg-gradient-to-r from-skagata-900 via-skagata-800 to-teal-900 rounded-3xl p-7 sm:p-10 text-white relative overflow-hidden shadow-2xl reveal-zoom">
           <div className="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-10 translate-y-10">
-            <i className="fa-solid fa-briefcase text-9xl text-white" />
+            <Briefcase className="w-56 h-56 text-white stroke-[1]" />
           </div>
 
           <div className="relative z-10 max-w-2xl space-y-3.5">
@@ -27,7 +28,7 @@ export default function CareerBanner() {
                 href="/karir"
                 className="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs transition flex items-center gap-2 shadow-lg btn-bounce"
               >
-                <i className="fa-solid fa-magnifying-glass" />
+                <Search className="w-4 h-4" />
                 <span>Telusuri Lowongan Kerja</span>
               </Link>
               <a
@@ -36,7 +37,7 @@ export default function CareerBanner() {
                 rel="noopener noreferrer"
                 className="px-5 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-xl text-xs transition flex items-center gap-2 btn-bounce"
               >
-                <i className="fa-solid fa-building" />
+                <Building className="w-4 h-4" />
                 <span>Portal Bursa Kerja SMK</span>
               </a>
             </div>
