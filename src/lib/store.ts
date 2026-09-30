@@ -33,6 +33,10 @@ import {
   INITIAL_CHATBOT_SETTINGS,
   QuizQuestion,
   INITIAL_QUIZ_QUESTIONS,
+  NavMenuItem,
+  DEFAULT_NAV_MENUS,
+  CareerSettings,
+  DEFAULT_CAREER_SETTINGS,
 } from "./data-initial";
 
 export interface AnnouncementBanner {
@@ -51,6 +55,7 @@ export interface CMSState {
   posts: PostData[];
   teachers: TeacherStaffData[];
   jobs: JobData[];
+  careerSettings: CareerSettings;
   videos: VideoData[];
   timeline: TimelineItem[];
   archivePhotos: ArchivePhoto[];
@@ -63,6 +68,7 @@ export interface CMSState {
   tokohQuotes: TokohQuoteItem[];
   chatbotSettings: ChatbotSettings;
   quizQuestions: QuizQuestion[];
+  navLinks: NavMenuItem[];
 }
 
 const STORAGE_KEY = "skagata_cms_v3";
@@ -87,6 +93,7 @@ export function getInitialCMSState(): CMSState {
       posts: POSTS_DATA,
       teachers: TEACHERS_DATA,
       jobs: JOBS_DATA,
+      careerSettings: DEFAULT_CAREER_SETTINGS,
       videos: VIDEOS_DATA,
       timeline: INITIAL_TIMELINE,
       archivePhotos: INITIAL_ARCHIVE_PHOTOS,
@@ -99,6 +106,7 @@ export function getInitialCMSState(): CMSState {
       tokohQuotes: INITIAL_TOKOH_QUOTES,
       chatbotSettings: INITIAL_CHATBOT_SETTINGS,
       quizQuestions: INITIAL_QUIZ_QUESTIONS,
+      navLinks: DEFAULT_NAV_MENUS,
     };
   }
 
@@ -108,15 +116,16 @@ export function getInitialCMSState(): CMSState {
       const parsed = JSON.parse(cached);
       return {
         schoolInfo: parsed.schoolInfo || SCHOOL_INFO,
-        majors: (parsed.majors && Array.isArray(parsed.majors) && !parsed.majors.some((m: any) => m.coverImage?.includes("unsplash.com") || m.gallery?.some((g: any) => g.url?.includes("unsplash.com"))))
+        majors: (Array.isArray(parsed.majors) && parsed.majors.length > 0)
           ? parsed.majors
           : MAJORS_DATA,
         services: parsed.services || SERVICES_DATA,
         posts: parsed.posts || POSTS_DATA,
-        teachers: (parsed.teachers && Array.isArray(parsed.teachers) && parsed.teachers.length > 10 && !parsed.teachers.some((t: any) => t.photo?.includes("unsplash.com")))
+        teachers: (Array.isArray(parsed.teachers) && parsed.teachers.length > 0)
           ? parsed.teachers
           : TEACHERS_DATA,
         jobs: parsed.jobs || JOBS_DATA,
+        careerSettings: parsed.careerSettings || DEFAULT_CAREER_SETTINGS,
         videos: parsed.videos || VIDEOS_DATA,
         timeline: parsed.timeline || INITIAL_TIMELINE,
         archivePhotos: parsed.archivePhotos || INITIAL_ARCHIVE_PHOTOS,
@@ -158,6 +167,9 @@ export function getInitialCMSState(): CMSState {
           ...(parsed.chatbotSettings || {}),
         },
         quizQuestions: parsed.quizQuestions || INITIAL_QUIZ_QUESTIONS,
+        navLinks: (Array.isArray(parsed.navLinks) && parsed.navLinks.length > 0)
+          ? parsed.navLinks
+          : DEFAULT_NAV_MENUS,
       };
     }
   } catch (e) {
@@ -171,6 +183,7 @@ export function getInitialCMSState(): CMSState {
     posts: POSTS_DATA,
     teachers: TEACHERS_DATA,
     jobs: JOBS_DATA,
+    careerSettings: DEFAULT_CAREER_SETTINGS,
     videos: VIDEOS_DATA,
     timeline: INITIAL_TIMELINE,
     archivePhotos: INITIAL_ARCHIVE_PHOTOS,
@@ -183,14 +196,15 @@ export function getInitialCMSState(): CMSState {
     tokohQuotes: INITIAL_TOKOH_QUOTES,
     chatbotSettings: INITIAL_CHATBOT_SETTINGS,
     quizQuestions: INITIAL_QUIZ_QUESTIONS,
+    navLinks: DEFAULT_NAV_MENUS,
   };
 }
 
 export function saveCMSState(state: CMSState) {
   if (typeof window !== "undefined") {
-    // Keep every CMS consumer in the same tab on one in-memory snapshot. This
-    // prevents a homepage with many sections from issuing a request per section.
+    // Keep every CMS consumer in the same tab on one in-memory snapshot.
     sharedServerState = state;
+    sharedServerRequest = Promise.resolve(state);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       window.dispatchEvent(new Event("skagata_cms_updated"));
@@ -198,9 +212,10 @@ export function saveCMSState(state: CMSState) {
       console.error("Failed to save CMS to localStorage", e);
     }
 
-    // Persist to Server Database (Prisma SQLite / Production DB)
+    // Persist to Server Database (Prisma SQLite / Production DB) with keepalive
     fetch("/api/cms", {
       method: "POST",
+      keepalive: true,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: state }),
     }).catch((err) => {
@@ -213,56 +228,41 @@ function fetchSharedCMSState(): Promise<CMSState | null> {
   if (sharedServerState) return Promise.resolve(sharedServerState);
   if (sharedServerRequest) return sharedServerRequest;
 
-  sharedServerRequest = fetch("/api/cms")
+  sharedServerRequest = fetch(`/api/cms?t=${Date.now()}`, {
+    cache: "no-store",
+    headers: { "Cache-Control": "no-cache" },
+  })
     .then((res) => res.json())
     .then((resData) => {
       if (!resData || resData.status !== "success" || !resData.data) return null;
       const base = getInitialCMSState();
-      const isServerTeachersValid =
-        resData.data.teachers &&
-        Array.isArray(resData.data.teachers) &&
-        resData.data.teachers.length > 10 &&
-        !resData.data.teachers.some((t: any) => t.photo?.includes("unsplash.com") || t.photo?.includes("wikimedia.org"));
-
-      const isServerMajorsValid =
-        resData.data.majors &&
-        Array.isArray(resData.data.majors) &&
-        !resData.data.majors.some((m: any) => m.coverImage?.includes("unsplash.com") || m.gallery?.some((g: any) => g.url?.includes("unsplash.com")));
 
       const serverState: CMSState = {
         ...base,
         ...resData.data,
-        teachers: isServerTeachersValid ? resData.data.teachers : TEACHERS_DATA,
-        majors: isServerMajorsValid ? resData.data.majors : MAJORS_DATA,
-        tokohQuotes: (resData.data.tokohQuotes && !resData.data.tokohQuotes.some((t: any) => t.image?.includes("unsplash.com") || t.image?.includes("wikimedia.org")))
-          ? resData.data.tokohQuotes
-          : INITIAL_TOKOH_QUOTES,
+        teachers: (Array.isArray(resData.data.teachers) && resData.data.teachers.length > 0)
+          ? resData.data.teachers
+          : base.teachers,
+        majors: (Array.isArray(resData.data.majors) && resData.data.majors.length > 0)
+          ? resData.data.majors
+          : base.majors,
+        careerSettings: resData.data.careerSettings || base.careerSettings || DEFAULT_CAREER_SETTINGS,
+        tokohQuotes: resData.data.tokohQuotes || base.tokohQuotes,
+        navLinks: (Array.isArray(resData.data.navLinks) && resData.data.navLinks.length > 0)
+          ? resData.data.navLinks
+          : base.navLinks,
         profile: {
-          ...INITIAL_PROFILE,
+          ...base.profile,
           ...(resData.data.profile || {}),
           headmasterGreeting: {
-            ...INITIAL_PROFILE.headmasterGreeting,
+            ...base.profile.headmasterGreeting,
             ...((resData.data.profile && resData.data.profile.headmasterGreeting) || {}),
-            photo:
-              (resData.data.profile?.headmasterGreeting?.photo?.includes("unsplash.com") ||
-               resData.data.profile?.headmasterGreeting?.photo === "https://smkn3jogja.sch.id/wp-content/uploads/2021/07/kepala-sekolah.jpg")
-                ? INITIAL_PROFILE.headmasterGreeting.photo
-                : (resData.data.profile?.headmasterGreeting?.photo || INITIAL_PROFILE.headmasterGreeting.photo),
           },
-          identity: { ...INITIAL_PROFILE.identity, ...((resData.data.profile && resData.data.profile.identity) || {}) },
-          historyHero: { ...INITIAL_PROFILE.historyHero, ...((resData.data.profile && resData.data.profile.historyHero) || {}) },
+          identity: { ...base.profile.identity, ...((resData.data.profile && resData.data.profile.identity) || {}) },
+          historyHero: { ...base.profile.historyHero, ...((resData.data.profile && resData.data.profile.historyHero) || {}) },
         },
-        chatbotSettings: { ...INITIAL_CHATBOT_SETTINGS, ...(resData.data.chatbotSettings || {}) },
+        chatbotSettings: { ...base.chatbotSettings, ...(resData.data.chatbotSettings || {}) },
       };
-
-      if (!isServerTeachersValid) {
-        // Automatically sync the upgraded 148 teachers back to server DB
-        fetch("/api/cms", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ data: serverState }),
-        }).catch(() => {});
-      }
 
       sharedServerState = serverState;
       return serverState;
@@ -419,6 +419,18 @@ export function useCMS() {
     saveCMSState(next);
   };
 
+  const updateNavLinks = (newLinks: NavMenuItem[]) => {
+    const next = { ...state, navLinks: newLinks };
+    setState(next);
+    saveCMSState(next);
+  };
+
+  const updateCareerSettings = (newSettings: CareerSettings) => {
+    const next = { ...state, careerSettings: newSettings };
+    setState(next);
+    saveCMSState(next);
+  };
+
   const resetToDefaults = () => {
     const next: CMSState = {
       schoolInfo: SCHOOL_INFO,
@@ -427,6 +439,7 @@ export function useCMS() {
       posts: POSTS_DATA,
       teachers: TEACHERS_DATA,
       jobs: JOBS_DATA,
+      careerSettings: DEFAULT_CAREER_SETTINGS,
       videos: VIDEOS_DATA,
       timeline: INITIAL_TIMELINE,
       archivePhotos: INITIAL_ARCHIVE_PHOTOS,
@@ -439,6 +452,7 @@ export function useCMS() {
       tokohQuotes: INITIAL_TOKOH_QUOTES,
       chatbotSettings: INITIAL_CHATBOT_SETTINGS,
       quizQuestions: INITIAL_QUIZ_QUESTIONS,
+      navLinks: DEFAULT_NAV_MENUS,
     };
     setState(next);
     saveCMSState(next);
@@ -450,6 +464,7 @@ export function useCMS() {
     updateMajors,
     updateTeachers,
     updateJobs,
+    updateCareerSettings,
     updateVideos,
     updateServices,
     updateTimeline,
@@ -463,6 +478,7 @@ export function useCMS() {
     updateTokohQuotes,
     updateChatbotSettings,
     updateQuizQuestions,
+    updateNavLinks,
     setActiveVideoId,
     resetToDefaults,
   };

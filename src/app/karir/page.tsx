@@ -14,11 +14,12 @@ import {
   Globe2,
   Send,
 } from "lucide-react";
-import { JOBS_DATA } from "@/lib/data-initial";
+import { JOBS_DATA, DEFAULT_CAREER_SETTINGS } from "@/lib/data-initial";
 import { useCMS } from "@/lib/store";
 
 export default function KarirPage() {
-  const { jobs } = useCMS();
+  const { jobs, careerSettings } = useCMS();
+  const career = careerSettings || DEFAULT_CAREER_SETTINGS;
   const [filterType, setFilterType] = useState("Semua");
   const [submitted, setSubmitted] = useState(false);
 
@@ -45,37 +46,37 @@ export default function KarirPage() {
           <span className="font-semibold text-slate-800">Bursa Kerja Khusus (BKK)</span>
         </nav>
 
-        {/* Hero Header with Authentic Job Fair Photo */}
+        {/* Hero Header with Dynamic Career Photo */}
         <div className="bg-gradient-to-br from-skagata-900 via-skagata-800 to-teal-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl mb-10 relative overflow-hidden">
           <div className="relative z-10 grid md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-8 space-y-4">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-300 bg-amber-400/20 px-3 py-1 rounded-full border border-amber-400/30 inline-flex items-center gap-1.5">
                 <Globe2 className="w-3.5 h-3.5" />
-                <span>Skagata Career Center & Rekrutmen Jepang</span>
+                <span>{career.badge}</span>
               </span>
 
               <h1 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl leading-tight">
-                Bursa Kerja Khusus (BKK) SMKN 3 Yogyakarta
+                {career.title}
               </h1>
 
               <p className="text-slate-200 text-xs sm:text-sm leading-relaxed max-w-2xl font-light">
-                Menghubungkan langsung taruna tingkat akhir dan alumni STM 2 Jetis dengan dunia usaha dan industri (DUDIKA) terkemuka nasional serta program karir formal ke Tokyo & Osaka, Jepang.
+                {career.description}
               </p>
             </div>
 
             <div className="md:col-span-4">
-              <div className="rounded-2xl overflow-hidden shadow-lg border border-white/20 aspect-[4/3] bg-slate-950 group">
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-white/20 aspect-[4/3] bg-slate-950 group relative">
                 <img
-                  src="https://smkn3jogja.sch.id/wp-content/uploads/2025/09/Job-fair-4-260x195.jpg"
-                  alt="Career Day & Rekrutmen Kerja SMKN 3 Yogyakarta"
+                  src={career.photoUrl}
+                  alt={career.photoTitle || "Career Day"}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-2.5 left-2.5 right-2.5 text-white">
                   <span className="text-[10px] text-amber-300 font-bold uppercase tracking-wider block">
-                    Dokumentasi Career Day
+                    {career.photoBadge}
                   </span>
-                  <p className="text-[11px] font-semibold truncate">Walk-in Interview Bersama 40+ Mitra Industri</p>
+                  <p className="text-[11px] font-semibold truncate">{career.photoTitle}</p>
                 </div>
               </div>
             </div>

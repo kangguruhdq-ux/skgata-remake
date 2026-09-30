@@ -24,6 +24,7 @@ import {
 import { useCMS } from "@/lib/store";
 import { VideoData } from "@/lib/data-initial";
 import { FacebookIcon, TwitterIcon, InstagramIcon, YoutubeIcon, MailIcon } from "@/components/ui/SocialIcons";
+import ImageUploadInput from "@/components/admin/ImageUploadInput";
 
 interface NavMenuItem {
   id: string;
@@ -49,8 +50,10 @@ export default function AdminPengaturanPage() {
     socialLinks,
     activeVideoId,
     videos,
+    navLinks: cmsNavLinks,
     updateSchoolInfo,
     updateSocialLinks,
+    updateNavLinks,
     setActiveVideoId,
     updateVideos,
     resetToDefaults,
@@ -135,6 +138,12 @@ export default function AdminPengaturanPage() {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    if (cmsNavLinks && Array.isArray(cmsNavLinks) && cmsNavLinks.length > 0) {
+      setNavMenus(cmsNavLinks);
+    }
+  }, [cmsNavLinks]);
+
   const resetVideoForm = () => {
     setVideoForm({
       id: "",
@@ -173,8 +182,11 @@ export default function AdminPengaturanPage() {
       email: form.email,
       address: form.address,
       headmaster: form.headmaster,
+      logoUrl: form.logoUrl,
+      faviconUrl: form.faviconUrl,
     });
     updateSocialLinks(socials);
+    updateNavLinks(navMenus);
 
     // 2. Persist to server SiteSetting model in PostgreSQL
     try {
@@ -217,9 +229,11 @@ export default function AdminPengaturanPage() {
   };
 
   const toggleNavVisibility = (id: string) => {
-    setNavMenus((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, isVisible: !item.isVisible } : item))
-    );
+    setNavMenus((prev) => {
+      const updated = prev.map((item) => (item.id === id ? { ...item, isVisible: !item.isVisible } : item));
+      updateNavLinks(updated);
+      return updated;
+    });
   };
 
   return (
@@ -302,34 +316,28 @@ export default function AdminPengaturanPage() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Path / URL Logo Sekolah</label>
-                  <div className="flex gap-2 items-center">
-                    <img
-                      src={form.logoUrl}
-                      alt="Logo Preview"
-                      className="w-8 h-8 rounded-lg object-contain bg-slate-900 p-1 border"
-                    />
-                    <input
-                      type="text"
-                      required
-                      value={form.logoUrl}
-                      onChange={(e) => setForm({ ...form, logoUrl: e.target.value })}
-                      className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-mono text-[11px]"
-                    />
-                  </div>
-                </div>
+                <ImageUploadInput
+                  label="Logo Resmi Sekolah"
+                  value={form.logoUrl}
+                  onChange={(url) => setForm({ ...form, logoUrl: url })}
+                  placeholder="/media/school/logo.webp atau unggah dari penyimpanan komputer"
+                  helperText="Format: WebP, PNG, SVG (transparan disarankan). Digunakan pada header & navbar."
+                  presets={[
+                    { label: "Logo Skagata Asli (WebP)", url: "/media/school/logo.webp" },
+                    { label: "Logo Kemendikbud", url: "/media/school/logo-kemendikbud.webp" },
+                  ]}
+                />
 
-                <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Path Favicon Web</label>
-                  <input
-                    type="text"
-                    required
-                    value={form.faviconUrl}
-                    onChange={(e) => setForm({ ...form, faviconUrl: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-mono text-[11px]"
-                  />
-                </div>
+                <ImageUploadInput
+                  label="Favicon Website"
+                  value={form.faviconUrl}
+                  onChange={(url) => setForm({ ...form, faviconUrl: url })}
+                  placeholder="/favicon.ico atau unggah dari penyimpanan komputer"
+                  helperText="Format: ICO atau PNG 32x32 / 64x64 piksel untuk tab browser."
+                  presets={[
+                    { label: "Favicon Skagata Asli", url: "/favicon.ico" },
+                  ]}
+                />
               </div>
 
               <div className="grid sm:grid-cols-3 gap-4">

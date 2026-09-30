@@ -21,6 +21,9 @@ import {
   INITIAL_TOKOH_QUOTES,
   INITIAL_CHATBOT_SETTINGS,
   INITIAL_QUIZ_QUESTIONS,
+  DEFAULT_NAV_MENUS,
+  NavMenuItem,
+  DEFAULT_CAREER_SETTINGS,
 } from "@/lib/data-initial";
 
 const BACKUP_DIR = path.join(process.cwd(), "data");
@@ -34,6 +37,7 @@ function getDefaultState() {
     posts: POSTS_DATA,
     teachers: TEACHERS_DATA,
     jobs: JOBS_DATA,
+    careerSettings: DEFAULT_CAREER_SETTINGS,
     videos: VIDEOS_DATA,
     timeline: INITIAL_TIMELINE,
     archivePhotos: INITIAL_ARCHIVE_PHOTOS,
@@ -53,6 +57,7 @@ function getDefaultState() {
     tokohQuotes: INITIAL_TOKOH_QUOTES,
     chatbotSettings: INITIAL_CHATBOT_SETTINGS,
     quizQuestions: INITIAL_QUIZ_QUESTIONS,
+    navLinks: DEFAULT_NAV_MENUS,
   };
 }
 
@@ -65,26 +70,17 @@ export async function GET() {
       });
       if (record && record.data) {
         let parsed = JSON.parse(record.data);
-        const isStale =
-          !parsed.teachers ||
-          !Array.isArray(parsed.teachers) ||
-          parsed.teachers.length < 10 ||
-          parsed.teachers.some((t: any) => t.photo?.includes("unsplash.com") || t.photo?.includes("wikimedia.org"));
-
-        if (isStale) {
-          const defaultData = getDefaultState();
-          parsed = {
-            ...defaultData,
-            ...parsed,
-            teachers: TEACHERS_DATA,
-            majors: MAJORS_DATA,
-            tokohQuotes: INITIAL_TOKOH_QUOTES,
-          };
-          // Persist upgraded 148 teachers state back to Prisma
-          prisma.cmsData.update({
-            where: { id: "singleton" },
-            data: { data: JSON.stringify(parsed) },
-          }).catch((err) => console.warn("Background Prisma upgrade skipped:", err));
+        if (!parsed.navLinks || !Array.isArray(parsed.navLinks) || parsed.navLinks.length === 0) {
+          try {
+            const siteSettings = await prisma.siteSetting.findUnique({ where: { id: "default" } });
+            if (siteSettings?.navLinks) {
+              parsed.navLinks = JSON.parse(siteSettings.navLinks);
+            } else {
+              parsed.navLinks = DEFAULT_NAV_MENUS;
+            }
+          } catch {
+            parsed.navLinks = DEFAULT_NAV_MENUS;
+          }
         }
 
         return NextResponse.json(
@@ -95,7 +91,9 @@ export async function GET() {
           },
           {
             headers: {
-              "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+              "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+              "Pragma": "no-cache",
+              "Expires": "0",
             },
           }
         );
@@ -109,6 +107,7 @@ export async function GET() {
       try {
         const fileContent = fs.readFileSync(BACKUP_FILE, "utf-8");
         const parsed = JSON.parse(fileContent);
+        if (!parsed.navLinks) parsed.navLinks = DEFAULT_NAV_MENUS;
         return NextResponse.json(
           {
             status: "success",
@@ -117,7 +116,9 @@ export async function GET() {
           },
           {
             headers: {
-              "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+              "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+              "Pragma": "no-cache",
+              "Expires": "0",
             },
           }
         );
@@ -146,7 +147,9 @@ export async function GET() {
       },
       {
         headers: {
-          "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600",
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+          "Pragma": "no-cache",
+          "Expires": "0",
         },
       }
     );
@@ -184,6 +187,19 @@ export async function POST(req: Request) {
       dbSuccess = true;
     } catch (dbErr: any) {
       console.error("Failed to save to Prisma database:", dbErr);
+    }
+
+    // 1b. Also keep siteSetting.navLinks in sync if provided
+    if (cmsPayload.navLinks && Array.isArray(cmsPayload.navLinks)) {
+      try {
+        await prisma.siteSetting.upsert({
+          where: { id: "default" },
+          update: { navLinks: JSON.stringify(cmsPayload.navLinks) },
+          create: { id: "default", navLinks: JSON.stringify(cmsPayload.navLinks) },
+        });
+      } catch (siteErr) {
+        console.warn("Failed to sync navLinks to siteSetting:", siteErr);
+      }
     }
 
     // 2. Save to file backup for safety & resilience

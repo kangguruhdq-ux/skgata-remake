@@ -88,7 +88,45 @@ export interface JobData {
   linkApply: string;
 }
 
-export const SCHOOL_INFO = {
+export interface CareerSettings {
+  badge: string;
+  title: string;
+  description: string;
+  photoUrl: string;
+  photoBadge: string;
+  photoTitle: string;
+}
+
+export const DEFAULT_CAREER_SETTINGS: CareerSettings = {
+  badge: "Skagata Career Center & Rekrutmen Jepang",
+  title: "Bursa Kerja Khusus (BKK) SMKN 3 Yogyakarta",
+  description:
+    "Menghubungkan langsung taruna tingkat akhir dan alumni STM 2 Jetis dengan dunia usaha dan industri (DUDIKA) terkemuka nasional serta program karir formal ke Tokyo & Osaka, Jepang.",
+  photoUrl: "https://smkn3jogja.sch.id/wp-content/uploads/2025/09/Job-fair-4-260x195.jpg",
+  photoBadge: "Dokumentasi Career Day",
+  photoTitle: "Walk-in Interview Bersama 40+ Mitra Industri",
+};
+
+export interface SchoolInfo {
+  name: string;
+  nickname: string;
+  historicName: string;
+  foundedYear: number;
+  status: string;
+  motto: string;
+  address: string;
+  phone: string;
+  fax: string;
+  email: string;
+  headmaster: string;
+  logoUrl?: string;
+  faviconUrl?: string;
+  mapsUrl: string;
+  embedMaps: string;
+  stats: { label: string; value: string; sub: string }[];
+}
+
+export const SCHOOL_INFO: SchoolInfo = {
   name: "SMK Negeri 3 Yogyakarta",
   nickname: "SKAGATA JAYA",
   historicName: "STM 2 Jetis (STM 2 Yogyakarta)",
@@ -100,6 +138,8 @@ export const SCHOOL_INFO = {
   fax: "(0274) 554316",
   email: "humas@smkn3jogja.sch.id",
   headmaster: "Widada, S.Pd., M.Pd.",
+  logoUrl: "/media/school/logo.webp",
+  faviconUrl: "/favicon.ico",
   mapsUrl: "https://maps.google.com/?q=SMK+Negeri+3+Yogyakarta",
   embedMaps: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31624.921533353023!2d110.366028!3d-7.777609!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x34bffdcc5d618a71!2sSMK%20Negeri%203%20Jogja!5e0!3m2!1sen!2sid!4v1627018081002!5m2!1sen!2sid",
   stats: [
@@ -1725,4 +1765,23 @@ export const INITIAL_QUIZ_QUESTIONS: QuizQuestion[] = [
     ],
   },
 ];
+
+export interface NavMenuItem {
+  id: string;
+  label: string;
+  href: string;
+  isVisible: boolean;
+  order: number;
+}
+
+export const DEFAULT_NAV_MENUS: NavMenuItem[] = [
+  { id: "home", label: "Beranda", href: "/", isVisible: true, order: 1 },
+  { id: "profile", label: "Profil", href: "/profil", isVisible: true, order: 2 },
+  { id: "majors", label: "8 Konsentrasi Keahlian", href: "/program-keahlian", isVisible: true, order: 3 },
+  { id: "news", label: "Kabar & Berita", href: "/kabar", isVisible: true, order: 4 },
+  { id: "career", label: "Bursa Kerja (BKK)", href: "/karir", isVisible: true, order: 5 },
+  { id: "services", label: "Portal Layanan", href: "/layanan", isVisible: true, order: 6 },
+  { id: "quiz", label: "Kuis Rekomendasi Jurusan", href: "/kuis-jurusan", isVisible: true, order: 7 },
+];
+
 

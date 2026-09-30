@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import ImageUploadInput from "@/components/admin/ImageUploadInput";
 import {
   Network,
   Plus,
@@ -585,18 +586,17 @@ export default function AdminOrganisasiPage() {
                 </div>
               </div>
 
-              <div>
-                <label className="font-semibold text-slate-700 block mb-1">
-                  URL Foto Pejabat (Opsional)
-                </label>
-                <input
-                  type="text"
-                  value={formData.photo}
-                  onChange={(e) => setFormData({ ...formData, photo: e.target.value })}
-                  placeholder="/media/school/kepala-sekolah.webp atau unggah di Media Management"
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                />
-              </div>
+              <ImageUploadInput
+                label="Foto Pejabat Struktural (Opsional)"
+                value={formData.photo}
+                onChange={(url) => setFormData({ ...formData, photo: url })}
+                placeholder="/media/school/kepala-sekolah.webp atau unggah dari penyimpanan komputer"
+                helperText="Pilih foto dari penyimpanan laptop / HP atau pilih dari galeri media sekolah."
+                presets={[
+                  { label: "Kepala Sekolah", url: "/media/school/kepala-sekolah.webp" },
+                  { label: "Pimpinan / Staff", url: "/media/school/staff-331f777f37.webp" },
+                ]}
+              />
 
               <div>
                 <label className="font-semibold text-slate-700 block mb-1">

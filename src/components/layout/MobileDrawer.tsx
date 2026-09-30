@@ -22,6 +22,7 @@ import {
   Network,
 } from "lucide-react";
 import ThemeToggle from "@/components/theme/ThemeToggle";
+import { useCMS } from "@/lib/store";
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -29,6 +30,14 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
+  const { navLinks, schoolInfo } = useCMS();
+
+  const isNavVisible = (id: string) => {
+    if (!navLinks || !Array.isArray(navLinks) || navLinks.length === 0) return true;
+    const item = navLinks.find((n) => n.id === id);
+    return item ? item.isVisible !== false : true;
+  };
+
   useEffect(() => {
     if (!isOpen) return;
     const previous = document.body.style.overflow;
@@ -58,7 +67,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-skagata-900 text-white flex items-center justify-center p-1 shadow-sm">
               <img
-                src="/media/school/logo.webp"
+                src={schoolInfo.logoUrl || "/media/school/logo.webp"}
                 alt="Logo"
                 className="w-full h-full object-contain"
               />
@@ -95,157 +104,165 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           </div>
 
           {/* 2. Beranda Quick Link */}
-          <div className={isOpen ? "drawer-item-2" : ""}>
-            <Link
-              href="/"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-skagata-800 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100/70 transition"
-            >
-              <Home className="w-4 h-4 text-skagata-600 dark:text-emerald-400" />
-              <span>Beranda Utama</span>
-            </Link>
-          </div>
-
-          {/* Section Profil */}
-          <div className={`pt-2 ${isOpen ? "drawer-item-3" : ""}`}>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
-              Profil Sekolah
-            </span>
-            <Link
-              href="/profil"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-skagata-700 dark:text-emerald-400 font-semibold bg-emerald-50/70 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-950 transition"
-            >
-              <GraduationCap className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              <span>Data Pokok & Profil Sekolah</span>
-            </Link>
-            <Link
-              href="/profil/sambutan"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-            >
-              <UserCheck className="w-4 h-4 text-slate-400" />
-              <span>Sambutan Kepala Sekolah</span>
-            </Link>
-            <Link
-              href="/profil/sejarah"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-            >
-              <Building className="w-4 h-4 text-slate-400" />
-              <span>Sejarah STM 2 Jetis 1952</span>
-            </Link>
-            <Link
-              href="/profil/visi-misi"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-            >
-              <Layers className="w-4 h-4 text-slate-400" />
-              <span>Visi, Misi & 4 Pilar</span>
-            </Link>
-            <Link
-              href="/profil/struktur-organisasi"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-            >
-              <Network className="w-4 h-4 text-slate-400" />
-              <span>Struktur Organisasi</span>
-            </Link>
-            <Link
-              href="/profil/sdm"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-50/50 dark:bg-emerald-950/30 hover:bg-emerald-100 dark:hover:bg-emerald-950 transition"
-            >
-              <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              <div className="flex items-center justify-between w-full">
-                <span>Pendidik & Tenaga Kependidikan</span>
-                <span className="text-[10px] bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 font-bold px-1.5 py-0.5 rounded">148 Guru</span>
-              </div>
-            </Link>
-            <Link
-              href="/profil/fasilitas"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-            >
-              <Laptop className="w-4 h-4 text-slate-400" />
-              <span>Fasilitas Bengkel & Lab</span>
-            </Link>
-          </div>
-
-          {/* Section Program Keahlian */}
-          <div className={`pt-2 ${isOpen ? "drawer-item-4" : ""}`}>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
-              Akademik & 8 Jurusan
-            </span>
-            <Link
-              href="/program-keahlian"
-              onClick={onClose}
-              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
-            >
-              <GraduationCap className="w-4 h-4 text-slate-400" />
-              <span>Program Keahlian (Semua Jurusan)</span>
-            </Link>
-
-            {/* Direct links to 8 Jurusan */}
-            <div className="grid grid-cols-2 gap-1 px-1 my-1">
+          {isNavVisible("home") && (
+            <div className={isOpen ? "drawer-item-2" : ""}>
               <Link
-                href="/jurusan/broadcasting-perfilman"
+                href="/"
                 onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-skagata-800 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100/70 transition"
               >
-                • Broadcasting (BP)
-              </Link>
-              <Link
-                href="/jurusan/teknik-jaringan-komputer-telekomunikasi"
-                onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
-              >
-                • Jaringan (TJKT)
-              </Link>
-              <Link
-                href="/jurusan/desain-pemodelan-informasi-bangunan"
-                onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
-              >
-                • Desain BIM (DPIB)
-              </Link>
-              <Link
-                href="/jurusan/teknik-konstruksi-perumahan"
-                onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
-              >
-                • Konstruksi (TKP)
-              </Link>
-              <Link
-                href="/jurusan/teknik-elektronika"
-                onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
-              >
-                • Elektronika (TE)
-              </Link>
-              <Link
-                href="/jurusan/teknik-ketenagalistrikan"
-                onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
-              >
-                • Listrik (TITL)
-              </Link>
-              <Link
-                href="/jurusan/teknik-kendaraan-ringan-otomotif"
-                onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
-              >
-                • Otomotif (TKRO)
-              </Link>
-              <Link
-                href="/jurusan/teknik-pemesinan"
-                onClick={onClose}
-                className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
-              >
-                • Pemesinan (TP)
+                <Home className="w-4 h-4 text-skagata-600 dark:text-emerald-400" />
+                <span>Beranda Utama</span>
               </Link>
             </div>
+          )}
 
+          {/* Section Profil */}
+          {isNavVisible("profile") && (
+            <div className={`pt-2 ${isOpen ? "drawer-item-3" : ""}`}>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
+                Profil Sekolah
+              </span>
+              <Link
+                href="/profil"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-skagata-700 dark:text-emerald-400 font-semibold bg-emerald-50/70 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-950 transition"
+              >
+                <GraduationCap className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span>Data Pokok & Profil Sekolah</span>
+              </Link>
+              <Link
+                href="/profil/sambutan"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                <UserCheck className="w-4 h-4 text-slate-400" />
+                <span>Sambutan Kepala Sekolah</span>
+              </Link>
+              <Link
+                href="/profil/sejarah"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                <Building className="w-4 h-4 text-slate-400" />
+                <span>Sejarah STM 2 Jetis 1952</span>
+              </Link>
+              <Link
+                href="/profil/visi-misi"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                <Layers className="w-4 h-4 text-slate-400" />
+                <span>Visi, Misi & 4 Pilar</span>
+              </Link>
+              <Link
+                href="/profil/struktur-organisasi"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                <Network className="w-4 h-4 text-slate-400" />
+                <span>Struktur Organisasi</span>
+              </Link>
+              <Link
+                href="/profil/sdm"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-50/50 dark:bg-emerald-950/30 hover:bg-emerald-100 dark:hover:bg-emerald-950 transition"
+              >
+                <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <div className="flex items-center justify-between w-full">
+                  <span>Pendidik & Tenaga Kependidikan</span>
+                  <span className="text-[10px] bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 font-bold px-1.5 py-0.5 rounded">148 Guru</span>
+                </div>
+              </Link>
+              <Link
+                href="/profil/fasilitas"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                <Laptop className="w-4 h-4 text-slate-400" />
+                <span>Fasilitas Bengkel & Lab</span>
+              </Link>
+            </div>
+          )}
+
+          {/* Section Program Keahlian */}
+          {isNavVisible("majors") && (
+            <div className={`pt-2 ${isOpen ? "drawer-item-4" : ""}`}>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
+                Akademik & 8 Jurusan
+              </span>
+              <Link
+                href="/program-keahlian"
+                onClick={onClose}
+                className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              >
+                <GraduationCap className="w-4 h-4 text-slate-400" />
+                <span>Program Keahlian (Semua Jurusan)</span>
+              </Link>
+
+              {/* Direct links to 8 Jurusan */}
+              <div className="grid grid-cols-2 gap-1 px-1 my-1">
+                <Link
+                  href="/jurusan/broadcasting-perfilman"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Broadcasting (BP)
+                </Link>
+                <Link
+                  href="/jurusan/teknik-jaringan-komputer-telekomunikasi"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Jaringan (TJKT)
+                </Link>
+                <Link
+                  href="/jurusan/desain-pemodelan-informasi-bangunan"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Desain BIM (DPIB)
+                </Link>
+                <Link
+                  href="/jurusan/teknik-konstruksi-perumahan"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Konstruksi (TKP)
+                </Link>
+                <Link
+                  href="/jurusan/teknik-elektronika"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Elektronika (TE)
+                </Link>
+                <Link
+                  href="/jurusan/teknik-ketenagalistrikan"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Listrik (TITL)
+                </Link>
+                <Link
+                  href="/jurusan/teknik-kendaraan-ringan-otomotif"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Otomotif (TKRO)
+                </Link>
+                <Link
+                  href="/jurusan/teknik-pemesinan"
+                  onClick={onClose}
+                  className="px-2 py-1 rounded-lg text-[11px] text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium truncate"
+                >
+                  • Pemesinan (TP)
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {isNavVisible("quiz") && (
             <Link
               href="/kuis-jurusan"
               onClick={onClose}
@@ -254,6 +271,20 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               <Compass className="w-4 h-4 text-amber-500" />
               <span>Kuis Rekomendasi Jurusan</span>
             </Link>
+          )}
+
+          {isNavVisible("news") && (
+            <Link
+              href="/kabar"
+              onClick={onClose}
+              className="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+            >
+              <Newspaper className="w-4 h-4 text-slate-400" />
+              <span>Kabar & Berita Terkini</span>
+            </Link>
+          )}
+
+          {isNavVisible("career") && (
             <Link
               href="/karir"
               onClick={onClose}
@@ -262,130 +293,134 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
               <Briefcase className="w-4 h-4 text-slate-400" />
               <span>Bursa Kerja SMK (BKK)</span>
             </Link>
-          </div>
+          )}
 
           {/* Section Pokja & Unit Penunjang (Sesuai Web Asli) */}
-          <div className={`pt-2 ${isOpen ? "drawer-item-5" : ""}`}>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
-              Pokja & Unit Penunjang
-            </span>
-            <div className="grid grid-cols-2 gap-1 px-1">
-              <a
-                href="http://perpustakaan.smkn3jogja.sch.id/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Perpus Widura
-              </a>
-              <a
-                href="https://bnsp.go.id/detaillsp?id=1008"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • LSP P1 BNSP
-              </a>
-              <a
-                href="http://smm.smkn3jogja.sch.id/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Penjaminan Mutu
-              </a>
-              <a
-                href="http://tefa.skagata.sch.id/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • BLUD & TEFA
-              </a>
-              <Link
-                href="/layanan"
-                onClick={onClose}
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Bimbingan BK
-              </Link>
-              <Link
-                href="/layanan"
-                onClick={onClose}
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • PLIS! ICT Center
-              </Link>
-              <Link
-                href="/profil/visi-misi"
-                onClick={onClose}
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Kesiswaan
-              </Link>
-              <Link
-                href="/kabar"
-                onClick={onClose}
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • OSIS Skagata
-              </Link>
+          {isNavVisible("services") && (
+            <div className={`pt-2 ${isOpen ? "drawer-item-5" : ""}`}>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
+                Pokja & Unit Penunjang
+              </span>
+              <div className="grid grid-cols-2 gap-1 px-1">
+                <a
+                  href="http://perpustakaan.smkn3jogja.sch.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Perpus Widura
+                </a>
+                <a
+                  href="https://bnsp.go.id/detaillsp?id=1008"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • LSP P1 BNSP
+                </a>
+                <a
+                  href="http://smm.smkn3jogja.sch.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Penjaminan Mutu
+                </a>
+                <a
+                  href="http://tefa.skagata.sch.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • BLUD & TEFA
+                </a>
+                <Link
+                  href="/layanan"
+                  onClick={onClose}
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Bimbingan BK
+                </Link>
+                <Link
+                  href="/layanan"
+                  onClick={onClose}
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • PLIS! ICT Center
+                </Link>
+                <Link
+                  href="/profil/visi-misi"
+                  onClick={onClose}
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Kesiswaan
+                </Link>
+                <Link
+                  href="/kabar"
+                  onClick={onClose}
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • OSIS Skagata
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Section Layanan Digital (Sesuai Web Asli) */}
-          <div className={`pt-2 ${isOpen ? "drawer-item-6" : ""}`}>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
-              Layanan Digital Resmi
-            </span>
-            <div className="grid grid-cols-2 gap-1 px-1">
-              <Link
-                href="/layanan"
-                onClick={onClose}
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Info Publik
-              </Link>
-              <a
-                href="https://forms.gle/4ieEgX1dudo8ULyV9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Legalisasi Ijazah
-              </a>
-              <a
-                href="https://kamimendengar.skagata.sch.id/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • WBS Mendengar
-              </a>
-              <a
-                href="http://kelasiber.skagata.sch.id/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Daftar Ulang XI-XII
-              </a>
-              <Link
-                href="/kabar?category=SPMB"
-                onClick={onClose}
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Daftar Siswa Baru
-              </Link>
-              <Link
-                href="/kabar"
-                onClick={onClose}
-                className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
-              >
-                • Kliping Media
-              </Link>
+          {isNavVisible("services") && (
+            <div className={`pt-2 ${isOpen ? "drawer-item-6" : ""}`}>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-3 block mb-1">
+                Layanan Digital Resmi
+              </span>
+              <div className="grid grid-cols-2 gap-1 px-1">
+                <Link
+                  href="/layanan"
+                  onClick={onClose}
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Info Publik
+                </Link>
+                <a
+                  href="https://forms.gle/4ieEgX1dudo8ULyV9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Legalisasi Ijazah
+                </a>
+                <a
+                  href="https://kamimendengar.skagata.sch.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • WBS Mendengar
+                </a>
+                <a
+                  href="http://kelasiber.skagata.sch.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Daftar Ulang XI-XII
+                </a>
+                <Link
+                  href="/kabar?category=SPMB"
+                  onClick={onClose}
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Daftar Siswa Baru
+                </Link>
+                <Link
+                  href="/kabar"
+                  onClick={onClose}
+                  className="px-2.5 py-1.5 rounded-lg text-xs text-slate-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 transition font-medium"
+                >
+                  • Kliping Media
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Footer */}
