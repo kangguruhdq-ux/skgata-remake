@@ -194,15 +194,15 @@ export default function AdminOverviewPage() {
       </AnimatePresence>
 
       {/* Top Welcome Controller Banner */}
-      <div className="bg-gradient-to-r from-skagata-900 via-emerald-950 to-slate-950 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-emerald-500/20 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-skagata-900 via-emerald-950 to-slate-950 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 text-white shadow-xl border border-emerald-500/20 relative overflow-hidden">
         <div className="absolute -right-16 -top-16 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-400/30 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>All-in-One CMS & Analytics Controller Aktif</span>
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6">
+          <div className="space-y-2 max-w-2xl min-w-0">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-emerald-300 bg-emerald-500/20 px-2.5 sm:px-3 py-1 rounded-full border border-emerald-400/30 backdrop-blur-md max-w-full">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
+              <span className="truncate">All-in-One CMS & Analytics Controller Aktif</span>
             </div>
-            <h1 className="font-display font-black text-2xl sm:text-3xl tracking-tight">
+            <h1 className="font-display font-black text-xl sm:text-3xl tracking-tight leading-tight">
               Pusat Kendali Portal SMKN 3 Yogyakarta
             </h1>
             <p className="text-slate-300 text-xs sm:text-sm font-light leading-relaxed">
@@ -210,19 +210,19 @@ export default function AdminOverviewPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0">
             <Link
               href="/admin/berita"
-              className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition flex items-center gap-1.5 shadow-md hover:scale-[1.02]"
+              className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow-md hover:scale-[1.02]"
             >
-              <FileEdit className="w-4 h-4" />
+              <FileEdit className="w-4 h-4 shrink-0" />
               <span>Tulis Berita Baru</span>
             </Link>
             <a
               href="#pengumuman-live"
-              className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-xs backdrop-blur-md border border-white/20 transition flex items-center gap-1.5"
+              className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-xs backdrop-blur-md border border-white/20 transition flex items-center justify-center gap-1.5"
             >
-              <Megaphone className="w-4 h-4 text-amber-300" />
+              <Megaphone className="w-4 h-4 text-amber-300 shrink-0" />
               <span>Atur Pengumuman Live</span>
             </a>
           </div>
@@ -230,95 +230,95 @@ export default function AdminOverviewPage() {
       </div>
 
       {/* 4 Quick Stat Metric Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500">Total Pengunjung</span>
-            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <TrendingUp className="w-3 h-3" /> Real-Time
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div className="flex items-center justify-between gap-1">
+            <span className="text-[11px] sm:text-xs font-semibold text-slate-500 truncate">Total Pengunjung</span>
+            <span className="text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1.5 sm:px-2 py-0.5 rounded-full flex items-center gap-0.5 shrink-0">
+              <TrendingUp className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> Live
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="font-display font-black text-3xl text-slate-900">
+          <div className="mt-1.5 sm:mt-2 flex items-baseline gap-1 sm:gap-2">
+            <span className="font-display font-black text-xl sm:text-3xl text-slate-900">
               {realAnalytics ? realAnalytics.summary.totalVisits.toLocaleString() : "..."}
             </span>
-            <span className="text-xs text-slate-400 font-normal">Sesi</span>
+            <span className="text-[11px] sm:text-xs text-slate-400 font-normal">Sesi</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">
+          <span className="text-[10px] sm:text-[11px] text-slate-400 mt-1 block truncate">
             {realAnalytics ? realAnalytics.summary.uniqueVisitors.toLocaleString() : "0"} Pengunjung Unik
           </span>
         </div>
 
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500">Kunjungan Hari Ini</span>
-            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <TrendingUp className="w-3 h-3" /> 24 Jam
+        <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div className="flex items-center justify-between gap-1">
+            <span className="text-[11px] sm:text-xs font-semibold text-slate-500 truncate">Kunjungan Hari Ini</span>
+            <span className="text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-emerald-100 px-1.5 sm:px-2 py-0.5 rounded-full flex items-center gap-0.5 shrink-0">
+              <TrendingUp className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> 24 Jam
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="font-display font-black text-3xl text-slate-900">
+          <div className="mt-1.5 sm:mt-2 flex items-baseline gap-1 sm:gap-2">
+            <span className="font-display font-black text-xl sm:text-3xl text-slate-900">
               {realAnalytics ? realAnalytics.summary.todayVisits.toLocaleString() : "..."}
             </span>
-            <span className="text-xs text-slate-400 font-normal">Hits</span>
+            <span className="text-[11px] sm:text-xs text-slate-400 font-normal">Hits</span>
           </div>
-          <span className="text-[11px] text-emerald-600 mt-1 block font-medium">
-            {realAnalytics ? realAnalytics.summary.activeOnline : 1} Pengguna Aktif Sekarang
+          <span className="text-[10px] sm:text-[11px] text-emerald-600 mt-1 block font-medium truncate">
+            {realAnalytics ? realAnalytics.summary.activeOnline : 1} Aktif Sekarang
           </span>
         </div>
 
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500">Perangkat Akses</span>
-            <span className="text-[10px] font-bold text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <Globe className="w-3 h-3" /> Web/Mobile
+        <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div className="flex items-center justify-between gap-1">
+            <span className="text-[11px] sm:text-xs font-semibold text-slate-500 truncate">Perangkat Akses</span>
+            <span className="text-[9px] sm:text-[10px] font-bold text-teal-700 bg-teal-100 px-1.5 sm:px-2 py-0.5 rounded-full flex items-center gap-0.5 shrink-0">
+              <Globe className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> Web/HP
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="font-display font-black text-3xl text-slate-900">
+          <div className="mt-1.5 sm:mt-2 flex items-baseline gap-1 sm:gap-2">
+            <span className="font-display font-black text-xl sm:text-3xl text-slate-900">
               {realAnalytics ? realAnalytics.devices.desktop + realAnalytics.devices.mobile : "0"}
             </span>
-            <span className="text-xs text-slate-400 font-normal">Klien</span>
+            <span className="text-[11px] sm:text-xs text-slate-400 font-normal">Klien</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">
-            Desktop {realAnalytics?.devices?.desktop ?? 0} &bull; Mobile {realAnalytics?.devices?.mobile ?? 0}
+          <span className="text-[10px] sm:text-[11px] text-slate-400 mt-1 block truncate">
+            Desktop {realAnalytics?.devices?.desktop ?? 0} &bull; HP {realAnalytics?.devices?.mobile ?? 0}
           </span>
         </div>
 
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500">Konten Terbit di Web</span>
-            <span className="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <Sparkles className="w-3 h-3" /> Database
+        <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+          <div className="flex items-center justify-between gap-1">
+            <span className="text-[11px] sm:text-xs font-semibold text-slate-500 truncate">Konten Terbit</span>
+            <span className="text-[9px] sm:text-[10px] font-bold text-amber-700 bg-amber-100 px-1.5 sm:px-2 py-0.5 rounded-full flex items-center gap-0.5 shrink-0">
+              <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> Data
             </span>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="font-display font-black text-3xl text-slate-900">{posts.length}</span>
-            <span className="text-xs text-slate-400 font-normal">Artikel</span>
+          <div className="mt-1.5 sm:mt-2 flex items-baseline gap-1 sm:gap-2">
+            <span className="font-display font-black text-xl sm:text-3xl text-slate-900">{posts.length}</span>
+            <span className="text-[11px] sm:text-xs text-slate-400 font-normal">Artikel</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">
-            {majors.length} Jurusan &bull; {teachers.length} SDM Guru
+          <span className="text-[10px] sm:text-[11px] text-slate-400 mt-1 block truncate">
+            {majors.length} Jurusan &bull; {teachers.length} Guru
           </span>
         </div>
       </div>
 
       {/* SECTION 1: INTERACTIVE TRAFFIC LINE & AREA CHART */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+      <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
-              <Activity className="w-5 h-5 text-emerald-600" />
-              <h2 className="font-display font-bold text-lg text-slate-900">
+              <Activity className="w-5 h-5 text-emerald-600 shrink-0" />
+              <h2 className="font-display font-bold text-base sm:text-lg text-slate-900">
                 Grafik Interaktif Tren Pengunjung Portal
               </h2>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">
-              Arahkan kursor ke titik data untuk melihat rincian pengunjung unik dan jumlah impresi halaman.
+              Arahkan kursor atau sentuh titik data untuk melihat rincian pengunjung unik dan jumlah impresi halaman.
             </p>
           </div>
 
           {/* Timeframe selector tabs */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-200/80 text-xs">
+          <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-200/80 text-xs overflow-x-auto max-w-full">
             {(
               [
                 { id: "24h", label: "Hari Ini" },
@@ -330,7 +330,7 @@ export default function AdminOverviewPage() {
               <button
                 key={t.id}
                 onClick={() => setTimeframe(t.id)}
-                className={`px-3 py-1.5 rounded-xl font-semibold transition ${
+                className={`px-3 py-1.5 rounded-xl font-semibold transition shrink-0 whitespace-nowrap ${
                   timeframe === t.id
                     ? "bg-white text-skagata-900 shadow-sm"
                     : "text-slate-500 hover:text-slate-800"
@@ -343,8 +343,8 @@ export default function AdminOverviewPage() {
         </div>
 
         {/* Hovered point tooltip banner */}
-        <div className="flex items-center justify-between bg-slate-50 px-4 py-2.5 rounded-2xl border border-slate-200/60 text-xs">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-slate-50 p-3 sm:px-4 sm:py-2.5 rounded-2xl border border-slate-200/60 text-xs gap-2">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <span className="font-bold text-slate-700">
               {hoveredPoint ? `Titik: ${hoveredPoint.label}` : `Ikhtisar Periode: ${timeframe.toUpperCase()}`}
             </span>
@@ -354,16 +354,16 @@ export default function AdminOverviewPage() {
             </span>
             <span className="text-teal-700 font-semibold flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-teal-400 inline-block" />
-              Tayangan Halaman: {hoveredPoint ? hoveredPoint.pageviews.toLocaleString() : trafficPoints.reduce((acc, p) => acc + p.pageviews, 0).toLocaleString()}
+              Tayangan: {hoveredPoint ? hoveredPoint.pageviews.toLocaleString() : trafficPoints.reduce((acc, p) => acc + p.pageviews, 0).toLocaleString()}
             </span>
           </div>
-          <span className="text-[11px] text-slate-400 hidden sm:inline">
+          <span className="text-[11px] text-slate-400 hidden lg:inline">
             Status: Data Server Real-Time Sinkron
           </span>
         </div>
 
         {/* SVG Curve Chart */}
-        <div className="relative h-64 sm:h-72 w-full pt-4">
+        <div className="relative h-56 sm:h-72 w-full pt-4">
           <svg
             className="w-full h-full overflow-visible"
             viewBox="0 0 700 240"
@@ -448,9 +448,9 @@ export default function AdminOverviewPage() {
           </svg>
 
           {/* X Axis Labels */}
-          <div className="flex justify-between text-[11px] text-slate-400 mt-2 font-medium">
+          <div className="flex justify-between text-[9px] sm:text-[11px] text-slate-400 mt-2 font-medium">
             {trafficPoints.map((p, idx) => (
-              <span key={idx}>{p.label}</span>
+              <span key={idx} className="truncate max-w-[45px] sm:max-w-none text-center">{p.label}</span>
             ))}
           </div>
         </div>
@@ -459,22 +459,22 @@ export default function AdminOverviewPage() {
       {/* SECTION 2: DUAL CARDS - POPULARITY 8 JURUSAN & DEVICE DEMOGRAPHICS */}
       <div className="grid lg:grid-cols-12 gap-6">
         {/* Popularity Bar Chart: 8 Jurusan */}
-        <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-5">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <Layers className="w-5 h-5 text-emerald-600" />
+              <Layers className="w-5 h-5 text-emerald-600 shrink-0" />
               <div>
-                <h3 className="font-display font-bold text-base text-slate-900">
+                <h3 className="font-display font-bold text-sm sm:text-base text-slate-900">
                   Tingkat Minat 8 Konsentrasi Keahlian
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-[11px] sm:text-xs text-slate-400">
                   Distribusi peminat pendaftaran dan kunjungan laman jurusan
                 </p>
               </div>
             </div>
             <Link
               href="/admin/jurusan"
-              className="text-xs font-bold text-skagata-700 hover:underline flex items-center gap-1"
+              className="text-xs font-bold text-skagata-700 hover:underline flex items-center gap-1 shrink-0 self-start sm:self-auto"
             >
               <span>Kelola Jurusan</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -483,22 +483,24 @@ export default function AdminOverviewPage() {
 
           <div className="space-y-3.5">
             {JURUSAN_POPULARITY.map((j) => (
-              <div key={j.code} className="space-y-1 text-xs">
-                <div className="flex items-center justify-between font-semibold">
-                  <div className="flex items-center gap-2">
-                    <span className="w-10 px-1.5 py-0.5 rounded-md bg-skagata-900 text-emerald-300 font-mono text-[10px] text-center font-bold">
+              <div key={j.code} className="space-y-1.5 text-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <span className="w-11 shrink-0 px-1.5 py-0.5 rounded-md bg-skagata-900 text-emerald-300 font-mono text-[10px] text-center font-bold tracking-tight">
                       {j.code}
                     </span>
-                    <span className="text-slate-800 font-medium truncate max-w-xs">{j.name}</span>
+                    <span className="text-slate-800 font-medium truncate text-xs" title={j.name}>
+                      {j.name}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2 text-[11px]">
+                  <div className="flex items-center justify-between sm:justify-end gap-2 text-[11px] shrink-0 pl-13 sm:pl-0">
                     <span className="text-slate-400">{j.applicants} pendaftar</span>
-                    <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                    <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full text-[10px]">
                       {j.percent}%
                     </span>
                   </div>
                 </div>
-                <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                <div className="w-full h-2 sm:h-2.5 bg-slate-100 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${j.percent * 3}%` }}
@@ -514,32 +516,32 @@ export default function AdminOverviewPage() {
         {/* Device Breakdown & Geo Origins */}
         <div className="lg:col-span-5 space-y-6">
           {/* Device Demographics */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
-            <h3 className="font-display font-bold text-base text-slate-900 flex items-center gap-2">
-              <Smartphone className="w-4 h-4 text-emerald-600" />
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+            <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+              <Smartphone className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Akses Pengunjung Berdasarkan Perangkat</span>
             </h3>
 
-            <div className="grid grid-cols-3 gap-3 text-center pt-2">
-              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                <Smartphone className="w-5 h-5 text-emerald-600 mx-auto" />
-                <span className="font-display font-black text-xl text-slate-900 mt-1 block">67.4%</span>
-                <span className="text-[11px] text-slate-500">Smartphone</span>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center pt-2">
+              <div className="p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
+                <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 mx-auto" />
+                <span className="font-display font-black text-base sm:text-xl text-slate-900 mt-1 block">67.4%</span>
+                <span className="text-[10px] sm:text-[11px] text-slate-500 truncate block">Smartphone</span>
               </div>
-              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                <Monitor className="w-5 h-5 text-teal-600 mx-auto" />
-                <span className="font-display font-black text-xl text-slate-900 mt-1 block">27.2%</span>
-                <span className="text-[11px] text-slate-500">PC / Laptop</span>
+              <div className="p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
+                <Monitor className="w-4 h-4 sm:w-5 sm:h-5 text-teal-600 mx-auto" />
+                <span className="font-display font-black text-base sm:text-xl text-slate-900 mt-1 block">27.2%</span>
+                <span className="text-[10px] sm:text-[11px] text-slate-500 truncate block">PC / Laptop</span>
               </div>
-              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                <Tablet className="w-5 h-5 text-amber-600 mx-auto" />
-                <span className="font-display font-black text-xl text-slate-900 mt-1 block">5.4%</span>
-                <span className="text-[11px] text-slate-500">Tablet</span>
+              <div className="p-2 sm:p-3 bg-slate-50 rounded-xl sm:rounded-2xl border border-slate-100">
+                <Tablet className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 mx-auto" />
+                <span className="font-display font-black text-base sm:text-xl text-slate-900 mt-1 block">5.4%</span>
+                <span className="text-[10px] sm:text-[11px] text-slate-500 truncate block">Tablet</span>
               </div>
             </div>
 
             {/* Segment Progress Bar */}
-            <div className="w-full h-3 rounded-full overflow-hidden flex">
+            <div className="w-full h-2.5 sm:h-3 rounded-full overflow-hidden flex">
               <div style={{ width: "67.4%" }} className="bg-emerald-500 h-full" title="Mobile 67.4%" />
               <div style={{ width: "27.2%" }} className="bg-teal-500 h-full" title="Desktop 27.2%" />
               <div style={{ width: "5.4%" }} className="bg-amber-400 h-full" title="Tablet 5.4%" />
@@ -550,29 +552,29 @@ export default function AdminOverviewPage() {
               <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
                 Wilayah Asal Trafik Terbanyak
               </span>
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-600">DI Yogyakarta (Sleman, Kota, Bantul)</span>
-                <span className="font-bold text-slate-900">62.4%</span>
+              <div className="flex justify-between items-center py-1 border-b border-slate-50 gap-2">
+                <span className="text-slate-600 min-w-0 truncate">DI Yogyakarta (Sleman, Kota, Bantul)</span>
+                <span className="font-bold text-slate-900 shrink-0">62.4%</span>
               </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-600">Jawa Tengah (Klaten, Magelang, Solo)</span>
-                <span className="font-bold text-slate-900">23.1%</span>
+              <div className="flex justify-between items-center py-1 border-b border-slate-50 gap-2">
+                <span className="text-slate-600 min-w-0 truncate">Jawa Tengah (Klaten, Magelang, Solo)</span>
+                <span className="font-bold text-slate-900 shrink-0">23.1%</span>
               </div>
-              <div className="flex justify-between items-center py-1">
-                <span className="text-slate-600">Jawa Timur, Jawa Barat & Kemitraan</span>
-                <span className="font-bold text-slate-900">14.5%</span>
+              <div className="flex justify-between items-center py-1 gap-2">
+                <span className="text-slate-600 min-w-0 truncate">Jawa Timur, Jawa Barat & Kemitraan</span>
+                <span className="font-bold text-slate-900 shrink-0">14.5%</span>
               </div>
             </div>
           </div>
 
           {/* Quick YouTube Cinema Selector */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-sm text-slate-900 flex items-center gap-2">
-                <Video className="w-4 h-4 text-emerald-600" />
+                <Video className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>Video YouTube Cinema di Beranda</span>
               </h3>
-              <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">
+              <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded shrink-0">
                 LIVE
               </span>
             </div>
@@ -595,12 +597,12 @@ export default function AdminOverviewPage() {
       </div>
 
       {/* SECTION 3: HOMEPAGE ANNOUNCEMENT LIVE CONTROLLER (ADMIN MENGELOLA WEB SEPENUHNYA) */}
-      <div id="pengumuman-live" className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+      <div id="pengumuman-live" className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-5 sm:space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
-              <Megaphone className="w-5 h-5 text-amber-500" />
-              <h2 className="font-display font-bold text-lg text-slate-900">
+              <Megaphone className="w-5 h-5 text-amber-500 shrink-0" />
+              <h2 className="font-display font-bold text-base sm:text-lg text-slate-900">
                 Pengatur Banner Pengumuman & SPMB di Beranda Depan
               </h2>
             </div>
@@ -609,7 +611,7 @@ export default function AdminOverviewPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             <span className="text-xs font-semibold text-slate-600">Status Banner:</span>
             <button
               type="button"
@@ -700,23 +702,25 @@ export default function AdminOverviewPage() {
           </div>
 
           {/* Live Preview Box */}
-          <div className="p-3.5 bg-slate-900 text-white rounded-2xl space-y-1">
+          <div className="p-3.5 bg-slate-900 text-white rounded-2xl space-y-1.5 overflow-hidden">
             <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block">
               Pratinjau Banner Live di Atas Beranda:
             </span>
-            <div className="flex items-center gap-2 text-[11.5px] truncate">
-              <span className="px-2 py-0.5 rounded-full bg-emerald-500/30 text-emerald-300 font-bold text-[10px]">
-                {bannerForm.badge}
-              </span>
-              <span className="text-slate-300">{bannerForm.text}</span>
-              <span className="text-white underline font-semibold ml-auto">{bannerForm.linkText} &rarr;</span>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-[11.5px]">
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/30 text-emerald-300 font-bold text-[10px] shrink-0">
+                  {bannerForm.badge}
+                </span>
+                <span className="text-slate-300 truncate">{bannerForm.text}</span>
+              </div>
+              <span className="text-white underline font-semibold sm:ml-auto shrink-0">{bannerForm.linkText} &rarr;</span>
             </div>
           </div>
 
           <div className="flex justify-end pt-2">
             <button
               type="submit"
-              className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition flex items-center gap-1.5 shadow-md hover:scale-[1.02]"
+              className="w-full sm:w-auto justify-center px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition flex items-center gap-1.5 shadow-md hover:scale-[1.02]"
             >
               <Check className="w-4 h-4" />
               <span>Simpan & Terapkan Perubahan ke Website Publik</span>
@@ -728,15 +732,15 @@ export default function AdminOverviewPage() {
       {/* SECTION 4: SERVER HEALTH INTEGRATION & AUDIT LOG */}
       <div className="grid lg:grid-cols-12 gap-6">
         {/* Status 8 Layanan Digital Kampus */}
-        <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
-              <div>
-                <h3 className="font-display font-bold text-base text-slate-900">
+        <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+            <div className="flex items-center gap-2 min-w-0">
+              <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+              <div className="min-w-0">
+                <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 truncate">
                   Konektivitas 8 Portal Layanan Digital Kampus
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-400 truncate">
                   Memantau ketersediaan sistem Moodle, perpustakaan Widura, dan cloud
                 </p>
               </div>
@@ -745,7 +749,7 @@ export default function AdminOverviewPage() {
             <button
               onClick={handleTestAllServices}
               disabled={isTestingServices}
-              className="px-3 py-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 border border-slate-200"
+              className="px-3 py-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-1.5 border border-slate-200 shrink-0 self-start sm:self-auto"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isTestingServices ? "animate-spin text-emerald-600" : ""}`} />
               <span>{isTestingServices ? "Menguji..." : "Uji Latensi"}</span>
@@ -792,17 +796,17 @@ export default function AdminOverviewPage() {
         </div>
 
         {/* Audit Activity Trail */}
-        <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div className="lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-slate-600" />
-              <h3 className="font-display font-bold text-base text-slate-900">
+              <Clock className="w-5 h-5 text-slate-600 shrink-0" />
+              <h3 className="font-display font-bold text-sm sm:text-base text-slate-900">
                 Log Audit & Aktivitas Terakhir
               </h3>
             </div>
             <Link
               href="/admin/audit-log"
-              className="text-[11px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition"
+              className="text-[11px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition self-start sm:self-auto"
             >
               Lihat Semua Log &rarr;
             </Link>
