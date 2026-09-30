@@ -271,13 +271,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </aside>
 
         {/* Content Area with smooth animated transitions between pages */}
-        <main className="flex-1 min-w-0 overflow-y-auto overflow-x-hidden p-3 sm:p-8 bg-slate-100">
+        <main className="flex-1 w-full min-w-0 max-w-full overflow-y-auto overflow-x-hidden p-3 sm:p-8 bg-slate-100">
           <motion.div
             key={pathname}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="max-w-6xl mx-auto"
+            className="w-full max-w-6xl mx-auto min-w-0"
           >
             {children}
           </motion.div>

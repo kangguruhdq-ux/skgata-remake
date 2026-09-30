@@ -166,7 +166,7 @@ export default function AdminOverviewPage() {
   };
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-6 sm:space-y-8 pb-12 w-full max-w-full min-w-0 overflow-hidden">
       {/* Toast Feedback */}
       <AnimatePresence>
         {bannerToast && (
@@ -303,7 +303,7 @@ export default function AdminOverviewPage() {
       </div>
 
       {/* SECTION 1: INTERACTIVE TRAFFIC LINE & AREA CHART */}
-      <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-6">
+      <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-6 w-full max-w-full min-w-0 overflow-hidden">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
@@ -318,7 +318,7 @@ export default function AdminOverviewPage() {
           </div>
 
           {/* Timeframe selector tabs */}
-          <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-200/80 text-xs overflow-x-auto max-w-full">
+          <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-200/80 text-xs overflow-x-auto max-w-full min-w-0">
             {(
               [
                 { id: "24h", label: "Hari Ini" },
@@ -363,9 +363,9 @@ export default function AdminOverviewPage() {
         </div>
 
         {/* SVG Curve Chart */}
-        <div className="relative h-56 sm:h-72 w-full pt-4">
+        <div className="relative h-56 sm:h-72 w-full pt-4 overflow-hidden">
           <svg
-            className="w-full h-full overflow-visible"
+            className="w-full h-full overflow-hidden"
             viewBox="0 0 700 240"
             preserveAspectRatio="none"
           >
@@ -448,18 +448,18 @@ export default function AdminOverviewPage() {
           </svg>
 
           {/* X Axis Labels */}
-          <div className="flex justify-between text-[9px] sm:text-[11px] text-slate-400 mt-2 font-medium">
+          <div className="flex justify-between text-[9px] sm:text-[11px] text-slate-400 mt-2 font-medium w-full min-w-0 overflow-hidden">
             {trafficPoints.map((p, idx) => (
-              <span key={idx} className="truncate max-w-[45px] sm:max-w-none text-center">{p.label}</span>
+              <span key={idx} className="truncate flex-1 text-center">{p.label}</span>
             ))}
           </div>
         </div>
       </div>
 
       {/* SECTION 2: DUAL CARDS - POPULARITY 8 JURUSAN & DEVICE DEMOGRAPHICS */}
-      <div className="grid lg:grid-cols-12 gap-6">
+      <div className="grid lg:grid-cols-12 gap-6 w-full max-w-full min-w-0">
         {/* Popularity Bar Chart: 8 Jurusan */}
-        <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-5">
+        <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-5 w-full max-w-full min-w-0 overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <Layers className="w-5 h-5 text-emerald-600 shrink-0" />
@@ -493,7 +493,7 @@ export default function AdminOverviewPage() {
                       {j.name}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between sm:justify-end gap-2 text-[11px] shrink-0 pl-13 sm:pl-0">
+                  <div className="flex items-center justify-between sm:justify-end gap-2 text-[11px] shrink-0 pl-0 sm:pl-0">
                     <span className="text-slate-400">{j.applicants} pendaftar</span>
                     <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full text-[10px]">
                       {j.percent}%
@@ -514,9 +514,9 @@ export default function AdminOverviewPage() {
         </div>
 
         {/* Device Breakdown & Geo Origins */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-6 w-full max-w-full min-w-0">
           {/* Device Demographics */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-4">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-4 w-full max-w-full min-w-0 overflow-hidden">
             <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2">
               <Smartphone className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Akses Pengunjung Berdasarkan Perangkat</span>
@@ -568,7 +568,7 @@ export default function AdminOverviewPage() {
           </div>
 
           {/* Quick YouTube Cinema Selector */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-3">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-3 w-full max-w-full min-w-0 overflow-hidden">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-sm text-slate-900 flex items-center gap-2">
                 <Video className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -584,11 +584,11 @@ export default function AdminOverviewPage() {
             <select
               value={activeVideoId}
               onChange={(e) => handleSelectVideo(e.target.value)}
-              className="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-medium focus:ring-2 focus:ring-skagata-500 focus:outline-none"
+              className="w-full max-w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-medium focus:ring-2 focus:ring-skagata-500 focus:outline-none min-w-0 truncate"
             >
               {VIDEOS_DATA.map((v) => (
-                <option key={v.id} value={v.id}>
-                  {v.title} &bull; {v.speaker}
+                <option key={v.id} value={v.id} className="truncate">
+                  {v.title}
                 </option>
               ))}
             </select>
@@ -597,7 +597,8 @@ export default function AdminOverviewPage() {
       </div>
 
       {/* SECTION 3: HOMEPAGE ANNOUNCEMENT LIVE CONTROLLER (ADMIN MENGELOLA WEB SEPENUHNYA) */}
-      <div id="pengumuman-live" className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-5 sm:space-y-6">
+      {/* SECTION 3: HOMEPAGE ANNOUNCEMENT LIVE CONTROLLER (ADMIN MENGELOLA WEB SEPENUHNYA) */}
+      <div id="pengumuman-live" className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-5 sm:space-y-6 w-full max-w-full min-w-0 overflow-hidden">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div className="flex items-center gap-2">
@@ -632,21 +633,21 @@ export default function AdminOverviewPage() {
           </div>
         </div>
 
-        <form onSubmit={handleSaveBanner} className="space-y-4 text-xs">
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div>
+        <form onSubmit={handleSaveBanner} className="space-y-4 text-xs w-full min-w-0">
+          <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 w-full min-w-0">
+            <div className="min-w-0">
               <label className="font-semibold text-slate-700 block mb-1">Badge Tag</label>
               <input
                 type="text"
                 required
                 value={bannerForm.badge}
                 onChange={(e) => setBannerForm({ ...bannerForm, badge: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
+                className="w-full max-w-full min-w-0 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
                 placeholder="Contoh: INFO RESMI SPMB 2026"
               />
             </div>
 
-            <div>
+            <div className="min-w-0">
               <label className="font-semibold text-slate-700 block mb-1">Tema Warna</label>
               <select
                 value={bannerForm.theme}
@@ -656,58 +657,58 @@ export default function AdminOverviewPage() {
                     theme: e.target.value as "emerald" | "amber" | "indigo",
                   })
                 }
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none font-medium"
+                className="w-full max-w-full min-w-0 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none font-medium truncate"
               >
                 <option value="emerald">Emerald Hijau (SPMB / Prestasi)</option>
-                <option value="amber">Amber Kuning (Pemberitahuan Penting / Agenda)</option>
-                <option value="indigo">Indigo Biru (Kemitraan / Beasiswa Khusus)</option>
+                <option value="amber">Amber Kuning (Pemberitahuan / Agenda)</option>
+                <option value="indigo">Indigo Biru (Kemitraan / Beasiswa)</option>
               </select>
             </div>
 
-            <div>
+            <div className="min-w-0">
               <label className="font-semibold text-slate-700 block mb-1">Teks Tautan</label>
               <input
                 type="text"
                 value={bannerForm.linkText}
                 onChange={(e) => setBannerForm({ ...bannerForm, linkText: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
+                className="w-full max-w-full min-w-0 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
                 placeholder="Contoh: Pelajari Alur Pendaftaran"
               />
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="sm:col-span-2">
+          <div className="grid sm:grid-cols-3 gap-3 sm:gap-4 w-full min-w-0">
+            <div className="sm:col-span-2 min-w-0">
               <label className="font-semibold text-slate-700 block mb-1">Isi Pesan Pengumuman</label>
               <input
                 type="text"
                 required
                 value={bannerForm.text}
                 onChange={(e) => setBannerForm({ ...bannerForm, text: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
+                className="w-full max-w-full min-w-0 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
                 placeholder="Tulis pesan yang akan dibaca semua pengunjung web..."
               />
             </div>
 
-            <div>
+            <div className="min-w-0">
               <label className="font-semibold text-slate-700 block mb-1">URL Target Tautan</label>
               <input
                 type="text"
                 value={bannerForm.linkUrl}
                 onChange={(e) => setBannerForm({ ...bannerForm, linkUrl: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
+                className="w-full max-w-full min-w-0 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-skagata-500 focus:outline-none"
                 placeholder="/kabar?category=SPMB"
               />
             </div>
           </div>
 
           {/* Live Preview Box */}
-          <div className="p-3.5 bg-slate-900 text-white rounded-2xl space-y-1.5 overflow-hidden">
+          <div className="p-3.5 bg-slate-900 text-white rounded-2xl space-y-1.5 overflow-hidden w-full max-w-full min-w-0">
             <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block">
               Pratinjau Banner Live di Atas Beranda:
             </span>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-[11.5px]">
-              <div className="flex items-center gap-2 min-w-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-[11.5px] w-full min-w-0">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
                 <span className="px-2 py-0.5 rounded-full bg-emerald-500/30 text-emerald-300 font-bold text-[10px] shrink-0">
                   {bannerForm.badge}
                 </span>
@@ -730,17 +731,17 @@ export default function AdminOverviewPage() {
       </div>
 
       {/* SECTION 4: SERVER HEALTH INTEGRATION & AUDIT LOG */}
-      <div className="grid lg:grid-cols-12 gap-6">
+      <div className="grid lg:grid-cols-12 gap-6 w-full max-w-full min-w-0">
         {/* Status 8 Layanan Digital Kampus */}
-        <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-4">
+        <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-4 w-full max-w-full min-w-0 overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2 min-w-0">
               <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
               <div className="min-w-0">
-                <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 truncate">
+                <h3 className="font-display font-bold text-sm sm:text-base text-slate-900 leading-snug">
                   Konektivitas 8 Portal Layanan Digital Kampus
                 </h3>
-                <p className="text-xs text-slate-400 truncate">
+                <p className="text-xs text-slate-400 leading-normal mt-0.5">
                   Memantau ketersediaan sistem Moodle, perpustakaan Widura, dan cloud
                 </p>
               </div>
@@ -756,17 +757,17 @@ export default function AdminOverviewPage() {
             </button>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-3">
+          <div className="grid sm:grid-cols-2 gap-3 w-full min-w-0">
             {services.map((srv) => (
               <div
                 key={srv.id}
-                className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs hover:bg-emerald-50/40 transition"
+                className="p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs hover:bg-emerald-50/40 transition gap-2 w-full min-w-0"
               >
-                <div className="flex items-center gap-2.5 min-w-0">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <span className="font-bold text-slate-800 block truncate">{srv.name}</span>
-                    <span className="text-[10px] text-slate-400 truncate block font-mono">
+                    <span className="text-[10px] text-slate-400 block font-mono">
                       {serviceStatus[srv.id] || "200 OK • 28ms"}
                     </span>
                   </div>
@@ -776,7 +777,7 @@ export default function AdminOverviewPage() {
                   href={srv.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-emerald-700 p-1 flex-shrink-0"
+                  className="text-slate-400 hover:text-emerald-700 p-1.5 rounded-lg hover:bg-slate-200/50 flex-shrink-0 shrink-0"
                   title="Buka link"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -796,7 +797,7 @@ export default function AdminOverviewPage() {
         </div>
 
         {/* Audit Activity Trail */}
-        <div className="lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-4">
+        <div className="lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-slate-200 shadow-sm space-y-4 w-full max-w-full min-w-0 overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-slate-600 shrink-0" />
@@ -812,7 +813,7 @@ export default function AdminOverviewPage() {
             </Link>
           </div>
 
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 text-xs w-full min-w-0">
             {recentAuditLogs.length === 0 ? (
               <div className="p-4 rounded-2xl bg-slate-50 text-slate-400 text-center">
                 Belum ada log audit baru. Setiap aktivitas admin akan terekam otomatis di sini.
@@ -827,16 +828,16 @@ export default function AdminOverviewPage() {
                 return (
                   <div
                     key={log.id}
-                    className="flex items-start gap-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-emerald-200 transition"
+                    className="flex items-start gap-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-emerald-200 transition w-full min-w-0"
                   >
                     <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
                       {log.action.slice(0, 4)}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <span className="font-semibold text-slate-800 block truncate">
+                      <span className="font-semibold text-slate-800 block break-words text-xs leading-snug">
                         {log.details || `${log.action} pada ${log.entity}`}
                       </span>
-                      <span className="text-[10px] text-slate-400">
+                      <span className="text-[10px] text-slate-400 block mt-0.5">
                         {timeStr} &bull; {log.actor} ({log.entity})
                       </span>
                     </div>
