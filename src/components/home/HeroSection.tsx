@@ -17,7 +17,10 @@ import {
   Tv,
 } from "lucide-react";
 import TiltCard from "@/components/3d/TiltCard";
+import { useCMS } from "@/lib/store";
+
 export default function HeroSection() {
+  const { activeVideoId } = useCMS();
   const [isPlaying, setIsPlaying] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [haloActive, setHaloActive] = useState(false);
@@ -30,7 +33,7 @@ export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  const videoId = "tJhzVg7Nq4g";
+  const videoId = activeVideoId || "tJhzVg7Nq4g";
 
   useEffect(() => {
     const handleVisibility = () => setPageVisible(!document.hidden);

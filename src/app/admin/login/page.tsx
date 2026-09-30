@@ -22,20 +22,25 @@ export default function AdminLoginPage() {
     }
   }, [router]);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
     setLoading(true);
 
-    setTimeout(() => {
-      const res = authenticateAdmin(username, password);
+    try {
+      const res = await authenticateAdmin(username, password);
       if (res.success) {
-        router.push("/admin");
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get("redirect") || "/admin";
+        router.push(redirect);
       } else {
-        setErrorMsg(res.error || "Gagal masuk");
+        setErrorMsg(res.error || "Gagal masuk. Periksa kembali nama pengguna dan kata sandi Anda.");
         setLoading(false);
       }
-    }, 400);
+    } catch {
+      setErrorMsg("Terjadi gangguan saat memverifikasi akses ke server.");
+      setLoading(false);
+    }
   };
 
 

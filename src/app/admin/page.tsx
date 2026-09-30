@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -104,9 +104,27 @@ export default function AdminOverviewPage() {
     setActiveVideoId,
   } = useCMS();
 
-  // Analytics timeframe
+  // Analytics timeframe & live data
   const [timeframe, setTimeframe] = useState<Timeframe>("7d");
   const [hoveredPoint, setHoveredPoint] = useState<TrafficPoint | null>(null);
+  const [realAnalytics, setRealAnalytics] = useState<any>(null);
+  const [recentAuditLogs, setRecentAuditLogs] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/api/admin/analytics")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.status === "success") setRealAnalytics(d);
+      })
+      .catch(() => {});
+
+    fetch("/api/admin/audit-log?limit=5")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.status === "success") setRecentAuditLogs(d.logs || []);
+      })
+      .catch(() => {});
+  }, []);
 
   // Announcement Banner form state
   const [bannerForm, setBannerForm] = useState(announcement);
@@ -119,8 +137,8 @@ export default function AdminOverviewPage() {
   const [isTestingServices, setIsTestingServices] = useState(false);
   const [serviceStatus, setServiceStatus] = useState<Record<string, string>>({});
 
-  const trafficPoints = TRAFFIC_DATA[timeframe];
-  const maxVisitors = Math.max(...trafficPoints.map((p) => p.visitors));
+  const trafficPoints: TrafficPoint[] = (realAnalytics?.traffic && realAnalytics.traffic[timeframe]) || TRAFFIC_DATA[timeframe];
+  const maxVisitors = Math.max(...trafficPoints.map((p) => p.visitors), 1);
 
   const handleSaveBanner = (e: React.FormEvent) => {
     e.preventDefault();
@@ -217,56 +235,70 @@ export default function AdminOverviewPage() {
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-500">Total Pengunjung</span>
             <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <TrendingUp className="w-3 h-3" /> +18.4%
+              <TrendingUp className="w-3 h-3" /> Real-Time
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="font-display font-black text-3xl text-slate-900">48.290</span>
+            <span className="font-display font-black text-3xl text-slate-900">
+              {realAnalytics ? realAnalytics.summary.totalVisits.toLocaleString() : "..."}
+            </span>
             <span className="text-xs text-slate-400 font-normal">Sesi</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">31.420 Pengunjung Unik</span>
+          <span className="text-[11px] text-slate-400 mt-1 block">
+            {realAnalytics ? realAnalytics.summary.uniqueVisitors.toLocaleString() : "0"} Pengunjung Unik
+          </span>
         </div>
 
         <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500">Kunjungan Halaman</span>
+            <span className="text-xs font-semibold text-slate-500">Kunjungan Hari Ini</span>
             <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <TrendingUp className="w-3 h-3" /> +24.2%
+              <TrendingUp className="w-3 h-3" /> 24 Jam
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="font-display font-black text-3xl text-slate-900">142.610</span>
+            <span className="font-display font-black text-3xl text-slate-900">
+              {realAnalytics ? realAnalytics.summary.todayVisits.toLocaleString() : "..."}
+            </span>
             <span className="text-xs text-slate-400 font-normal">Hits</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">Rata-rata 2.9 hal/sesi</span>
+          <span className="text-[11px] text-emerald-600 mt-1 block font-medium">
+            {realAnalytics ? realAnalytics.summary.activeOnline : 1} Pengguna Aktif Sekarang
+          </span>
         </div>
 
         <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500">Durasi Kunjungan</span>
+            <span className="text-xs font-semibold text-slate-500">Perangkat Akses</span>
             <span className="text-[10px] font-bold text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <Clock className="w-3 h-3" /> 3m 48s
+              <Globe className="w-3 h-3" /> Web/Mobile
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="font-display font-black text-3xl text-slate-900">228s</span>
-            <span className="text-xs text-slate-400 font-normal">Avg</span>
+            <span className="font-display font-black text-3xl text-slate-900">
+              {realAnalytics ? realAnalytics.devices.desktop + realAnalytics.devices.mobile : "0"}
+            </span>
+            <span className="text-xs text-slate-400 font-normal">Klien</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">Bounce rate rendah 22.4%</span>
+          <span className="text-[11px] text-slate-400 mt-1 block">
+            Desktop {realAnalytics?.devices?.desktop ?? 0} &bull; Mobile {realAnalytics?.devices?.mobile ?? 0}
+          </span>
         </div>
 
         <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold text-slate-500">Konten Terbit di Web</span>
             <span className="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full flex items-center gap-0.5">
-              <Sparkles className="w-3 h-3" /> Aktif
+              <Sparkles className="w-3 h-3" /> Database
             </span>
           </div>
           <div className="mt-2 flex items-baseline gap-2">
             <span className="font-display font-black text-3xl text-slate-900">{posts.length}</span>
             <span className="text-xs text-slate-400 font-normal">Artikel</span>
           </div>
-          <span className="text-[11px] text-slate-400 mt-1 block">8 Jurusan &bull; {teachers.length} SDM Guru</span>
+          <span className="text-[11px] text-slate-400 mt-1 block">
+            {majors.length} Jurusan &bull; {teachers.length} SDM Guru
+          </span>
         </div>
       </div>
 
@@ -768,59 +800,46 @@ export default function AdminOverviewPage() {
                 Log Audit & Aktivitas Terakhir
               </h3>
             </div>
-            <span className="text-[10px] font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
-              SYNC AUTO
-            </span>
+            <Link
+              href="/admin/audit-log"
+              className="text-[11px] font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1 rounded-lg transition"
+            >
+              Lihat Semua Log &rarr;
+            </Link>
           </div>
 
           <div className="space-y-3 text-xs">
-            <div className="flex items-start gap-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100">
-              <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
-                CMS
+            {recentAuditLogs.length === 0 ? (
+              <div className="p-4 rounded-2xl bg-slate-50 text-slate-400 text-center">
+                Belum ada log audit baru. Setiap aktivitas admin akan terekam otomatis di sini.
               </div>
-              <div className="min-w-0 flex-1">
-                <span className="font-semibold text-slate-800 block">
-                  Pembaruan Pengumuman SPMB 2026
-                </span>
-                <span className="text-[10px] text-slate-400">Baru saja &bull; Oleh Admin SKAGATA</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100">
-              <div className="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
-                POST
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="font-semibold text-slate-800 block">
-                  Publikasi Berita Prestasi LKS DIY 2026
-                </span>
-                <span className="text-[10px] text-slate-400">18 menit lalu &bull; Humas Skagata</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100">
-              <div className="w-6 h-6 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
-                SDM
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="font-semibold text-slate-800 block">
-                  Sinkronisasi Profil Pendidik & Tenaga Kependidikan
-                </span>
-                <span className="text-[10px] text-slate-400">1 jam lalu &bull; Dapodik Sync</span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100">
-              <div className="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
-                BKK
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="font-semibold text-slate-800 block">
-                  Lowongan PT Denso Indonesia & Magang Jepang aktif
-                </span>
-                <span className="text-[10px] text-slate-400">2 jam lalu &bull; BKK Skagata</span>
-              </div>
-            </div>
+            ) : (
+              recentAuditLogs.map((log) => {
+                const date = new Date(log.createdAt);
+                const timeStr = date.toLocaleTimeString("id-ID", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
+                return (
+                  <div
+                    key={log.id}
+                    className="flex items-start gap-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-emerald-200 transition"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                      {log.action.slice(0, 4)}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <span className="font-semibold text-slate-800 block truncate">
+                        {log.details || `${log.action} pada ${log.entity}`}
+                      </span>
+                      <span className="text-[10px] text-slate-400">
+                        {timeStr} &bull; {log.actor} ({log.entity})
+                      </span>
+                    </div>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

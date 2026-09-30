@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "@/lib/auth-server";
+import { logAuditAction } from "@/lib/audit";
 import fs from "fs";
 import path from "path";
 import {
@@ -192,6 +194,21 @@ export async function POST(req: Request) {
       fs.writeFileSync(BACKUP_FILE, jsonString, "utf-8");
     } catch (fsErr) {
       console.warn("Failed to write filesystem backup:", fsErr);
+    }
+
+    // 3. Log audit action
+    try {
+      const session = await getServerSession();
+      const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.headers.get("x-real-ip") || "127.0.0.1";
+      await logAuditAction({
+        actor: session?.email || "Admin CMS",
+        action: "UPDATE",
+        entity: "SYSTEM",
+        details: "Pembaruan data snapshot CMS dan konten website",
+        ip,
+      });
+    } catch (auditErr) {
+      console.warn("Audit logging skipped:", auditErr);
     }
 
     return NextResponse.json({

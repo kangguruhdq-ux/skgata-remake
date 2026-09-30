@@ -3,6 +3,7 @@ import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { VisitorTracker } from "@/components/analytics/VisitorTracker";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -88,6 +89,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased overflow-x-hidden w-full max-w-full selection:bg-skagata-500 selection:text-white bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
         <ThemeProvider>
+          <VisitorTracker />
           <AppShell>{children}</AppShell>
         </ThemeProvider>
       </body>

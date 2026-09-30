@@ -3,7 +3,7 @@
 const AUTH_KEY = "skagata_admin_session";
 
 export interface AdminUser {
-  username: string;
+  username?: string;
   name: string;
   role: string;
   email: string;
@@ -31,33 +31,46 @@ export function clearAdminSession() {
   if (typeof window === "undefined") return;
   localStorage.removeItem(AUTH_KEY);
   window.dispatchEvent(new Event("skagata_auth_changed"));
+
+  // Call server logout endpoint
+  fetch("/api/auth/logout", { method: "POST" }).catch((err) => {
+    console.warn("Failed to notify server logout:", err);
+  });
 }
 
-export function authenticateAdmin(userOrEmail: string, pass: string): { success: boolean; error?: string } {
-  const cleanUser = userOrEmail.trim().toLowerCase();
-  const cleanPass = pass.trim();
+export async function authenticateAdmin(userOrEmail: string, pass: string): Promise<{ success: boolean; error?: string; user?: AdminUser }> {
+  try {
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: userOrEmail,
+        password: pass,
+      }),
+    });
 
-  // Valid credentials:
-  // 1. admin / skagata2026
-  // 2. admin@smkn3jogja.sch.id / skagata1952
-  const isValid =
-    (cleanUser === "admin" && cleanPass === "skagata2026") ||
-    (cleanUser === "admin@smkn3jogja.sch.id" && (cleanPass === "skagata1952" || cleanPass === "skagata2026"));
+    const data = await res.json();
+    if (!res.ok || data.status !== "success") {
+      return {
+        success: false,
+        error: data.message || "Kombinasi ID Pengguna dan Kata Sandi tidak cocok.",
+      };
+    }
 
-  if (isValid) {
     const session: AdminUser = {
-      username: "admin",
-      name: "Administrator Utama SKAGATA",
-      role: "Super Admin & Humas",
-      email: "humas@smkn3jogja.sch.id",
-      loginAt: new Date().toISOString(),
+      username: data.user.email.split("@")[0],
+      name: data.user.name,
+      role: data.user.role,
+      email: data.user.email,
+      loginAt: data.user.loginAt || new Date().toISOString(),
     };
-    setAdminSession(session);
-    return { success: true };
-  }
 
-  return {
-    success: false,
-    error: "Kombinasi ID Pengguna dan Kata Sandi tidak cocok. Silakan periksa kembali atau gunakan tombol 'Akun Demo'.",
-  };
+    setAdminSession(session);
+    return { success: true, user: session };
+  } catch (err: any) {
+    return {
+      success: false,
+      error: "Koneksi ke server gagal. Pastikan jaringan Anda terhubung.",
+    };
+  }
 }

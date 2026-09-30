@@ -104,10 +104,94 @@ model SiteSetting {
   phone            String   @default("(0274) 513503")
   email            String   @default("humas@smkn3jogja.sch.id")
   address          String   @default("Jl. R.W. Monginsidi No. 2, Jetis, Yogyakarta (STM 2 Jetis)")
+  headmaster       String   @default("Widada, S.Pd., M.Pd.")
+  logoUrl          String   @default("/media/school/logo.webp")
+  faviconUrl       String   @default("/favicon.ico")
+  metaTitle        String   @default("SMK Negeri 3 Yogyakarta | STM 2 Jetis Unggul & Berkarakter")
+  metaDescription  String   @default("Website resmi SMK Negeri 3 Yogyakarta (STM 2 Jetis). Konsisten mencetak teknisi unggul berstandar industri dengan 8 konsentrasi keahlian.")
+  metaKeywords     String   @default("SMK Negeri 3 Yogyakarta, STM 2 Jetis, SMKN 3 Jogja, SMK Vokasi Yogyakarta, Sekolah Kejuruan Teknik")
+  socialInstagram  String   @default("https://www.instagram.com/smkn3jogja")
+  socialYoutube    String   @default("https://www.youtube.com/@smknegeri3yogyakarta")
+  socialTiktok     String   @default("https://www.tiktok.com/@smkn3jogja")
+  socialFacebook   String   @default("https://www.facebook.com/smkn3jogja")
+  socialTwitter    String   @default("https://twitter.com/smkn3jogja")
   activeVideoId    String   @default("tJhzVg7Nq4g")
   spmbActive       Boolean  @default(true)
   spmbUrl          String   @default("https://smkn3jogja.sch.id/pengumuman/")
+  navLinks         String?  // JSON array of customizable navigation items
   updatedAt        DateTime @updatedAt
+}
+
+model OrganizationNode {
+  id          String   @id @default(cuid())
+  name        String
+  nip         String?
+  position    String   // e.g. Kepala Sekolah, Komite Sekolah, Wakasek, dsb.
+  department  String?  // Bagian / Divisi / Jurusan
+  level       Int      @default(1) // 1: Puncak, 2: Wakasek & KTU, 3: Kaprogli / Koordinator, 4: Unit / Staf
+  order       Int      @default(0)
+  photo       String?
+  task        String?  // Deskripsi tugas / uraian peran
+  parentId    String?
+  parent      OrganizationNode?  @relation("OrgHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children    OrganizationNode[] @relation("OrgHierarchy")
+  isActive    Boolean  @default(true)
+  period      String?  @default("2025/2026")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([level])
+  @@index([order])
+  @@index([isActive])
+}
+
+model MediaItem {
+  id           String   @id @default(cuid())
+  filename     String
+  originalName String
+  url          String
+  mimeType     String
+  size         Int
+  width        Int?
+  height       Int?
+  category     String   @default("general") // general, news, major, teacher, facility, archive
+  alt          String?
+  usageContext String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([category])
+  @@index([createdAt])
+}
+
+model VisitorLog {
+  id        String   @id @default(cuid())
+  ip        String
+  path      String
+  userAgent String?
+  referer   String?
+  device    String?  // desktop, mobile, tablet
+  browser   String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([path])
+  @@index([ip])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actor     String   // Nama/email petugas admin
+  action    String   // LOGIN, LOGOUT, CREATE, UPDATE, DELETE, SETTINGS_CHANGE, CLEAR_LOGS, MEDIA_UPLOAD, MEDIA_DELETE
+  entity    String   // POST, MAJOR, TEACHER, ORG_NODE, MEDIA, SETTINGS, SYSTEM, AUTH
+  entityId  String?
+  details   String?  // Deskripsi aksi atau JSON diff
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([action])
+  @@index([entity])
 }
 
 model CmsData {
@@ -115,3 +199,4 @@ model CmsData {
   data      String   // Full JSON snapshot of CMSState
   updatedAt DateTime @updatedAt
 }
+

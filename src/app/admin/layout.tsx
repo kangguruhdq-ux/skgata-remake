@@ -24,6 +24,9 @@ import {
   GraduationCap,
   Bot,
   Compass,
+  Network,
+  Image as ImageIcon,
+  FileText,
 } from "lucide-react";
 import { getAdminSession, clearAdminSession, AdminUser } from "@/lib/auth";
 
@@ -42,13 +45,32 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       return;
     }
 
-    const current = getAdminSession();
-    if (!current) {
-      router.replace(`/admin/login?redirect=${encodeURIComponent(pathname)}`);
-    } else {
-      setSession(current);
+    const cached = getAdminSession();
+    if (cached) {
+      setSession(cached);
     }
-    setIsCheckingAuth(false);
+
+    // Verify session with server HttpOnly cookie
+    fetch("/api/auth/session")
+      .then((res) => {
+        if (!res.ok) throw new Error("Unauthenticated");
+        return res.json();
+      })
+      .then((data) => {
+        if (data.status === "authenticated" && data.user) {
+          setSession(data.user);
+        } else {
+          router.replace(`/admin/login?redirect=${encodeURIComponent(pathname)}`);
+        }
+      })
+      .catch(() => {
+        if (!cached) {
+          router.replace(`/admin/login?redirect=${encodeURIComponent(pathname)}`);
+        }
+      })
+      .finally(() => {
+        setIsCheckingAuth(false);
+      });
 
     const handleAuthChange = () => {
       const updated = getAdminSession();
@@ -96,12 +118,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { label: "Overview Analytics", href: "/admin", icon: LayoutDashboard },
     { label: "Kelola Berita & Kabar", href: "/admin/berita", icon: Newspaper },
     { label: "Kelola 8 Jurusan", href: "/admin/jurusan", icon: Layers },
+    { label: "Struktur Organisasi", href: "/admin/organisasi", icon: Network },
     { label: "Direktori Guru & SDM", href: "/admin/sdm", icon: Users },
+    { label: "Media & Galeri Storage", href: "/admin/media", icon: ImageIcon },
     { label: "Sejarah & Galeri Arsip", href: "/admin/sejarah", icon: History },
     { label: "Fasilitas Bengkel & Sarana", href: "/admin/fasilitas", icon: Wrench },
     { label: "Profil & Visi Misi", href: "/admin/profil", icon: GraduationCap },
     { label: "Bursa Kerja (BKK)", href: "/admin/karir", icon: Briefcase },
     { label: "Layanan & Portal", href: "/admin/layanan", icon: Laptop },
+    { label: "Log Audit Sistem", href: "/admin/audit-log", icon: FileText },
     { label: "AI Bot & Kuis Jurusan", href: "/admin/ai-chatbot", icon: Bot },
     { label: "Pengaturan & 5 Medsos", href: "/admin/pengaturan", icon: Settings },
   ];
